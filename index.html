@@ -2,7 +2,9 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#062F45">
 <title>Sea Shanty Cafe — Trearddur Bay, Anglesey</title>
 <meta name="description" content="A licensed seaside cafe and restaurant on the beach at Trearddur Bay, Anglesey. Local seafood, cask ale, an Edwardian ice cream parlour. Book a table.">
 <link rel="icon" href="assets/images/favicon.png" type="image/png">
@@ -290,6 +292,139 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
   .foot{grid-template-columns:1fr 1fr}
 }
 @media (max-width:760px){.dishes{columns:1}.revs{grid-template-columns:1fr}}
+/* ============================================================
+   ────  MOBILE FIXES  ── everything below ~720px
+   ------------------------------------------------------------
+   iPhone-first: safe-area colouring, tide grid no longer forces
+   the page 200px wider than the viewport, menu tabs scroll on
+   one line, reviews auto-rotate one at a time, gallery becomes
+   a 2×2 grid, "Find us" stacks with a bigger centred button,
+   the footer stacks cleanly, the hero status shows day + status
+   + hours as one click-through to opening times.
+   ============================================================ */
+
+/* prevent any child from pushing the doc wider than the viewport */
+html,body{overflow-x:hidden;background:var(--ink)}
+body{background:#fff}
+/* the hero header extends full-bleed and up under the notch/dynamic island —
+   viewport-fit=cover in the <meta> above lets us paint into the safe area */
+.hero{padding-top:env(safe-area-inset-top)}
+header{padding-top:env(safe-area-inset-top)}
+
+/* new "day / status / hours" status widget */
+.dot{display:inline-flex;align-items:center;gap:11px;font-weight:600;color:#fff;
+  text-decoration:none;padding:6px 12px 6px 8px;margin-left:-8px;border-radius:8px;
+  transition:background .2s}
+.dot:hover{background:rgba(255,255,255,.08)}
+.dot i{width:9px;height:9px;border-radius:50%;background:#5FBF9E;flex:0 0 auto;
+  box-shadow:0 0 0 3px rgba(95,191,158,.24)}
+.dot.shut i{background:#9AA9B4;box-shadow:0 0 0 3px rgba(154,169,180,.22)}
+.dot-txt{display:flex;flex-direction:column;line-height:1.2;gap:1px}
+.dot-txt b{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:#B7D3E4;font-weight:600}
+.dot-txt span{font-size:15px;font-weight:600}
+.dot-txt small{font-size:12.5px;color:#B7D3E4;font-weight:400;letter-spacing:.02em}
+
+/* review carousel dots (mobile only, hidden on desktop) */
+.rev-dots{display:none;justify-content:center;gap:8px;margin-top:16px}
+.rev-dots span{width:7px;height:7px;border-radius:50%;background:rgba(6,47,69,.18);transition:background .3s}
+.rev-dots span[data-active="true"]{background:var(--stripe-ink)}
+
+@media (max-width:720px){
+  :root{--gut:20px}
+
+  /* -- tide 7-day strip: horizontal scroll, drag-to-swipe -- */
+  .week{display:flex;overflow-x:auto;scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    gap:8px;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut);
+    padding-bottom:8px;margin-top:28px}
+  .week::-webkit-scrollbar{display:none}
+  .week>div{flex:0 0 clamp(150px,42vw,180px);scroll-snap-align:start;
+    border-radius:8px;padding:14px 12px}
+  .week .tr{font-size:12.5px}
+  .week .today{box-shadow:0 0 0 2px var(--sky)}
+
+  /* -- MENU TABS: single-row scrolling pills, replaces the wrapped underline row -- */
+  .menubar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    border-bottom:0;gap:8px;padding:2px 0 6px;
+    margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut);
+    -webkit-overflow-scrolling:touch}
+  .menubar::-webkit-scrollbar{display:none}
+  .menubar button{border-radius:22px;padding:9px 15px 10px;font-size:14px;
+    background:rgba(6,47,69,.06);color:var(--ink);border-bottom:0;margin-bottom:0;
+    white-space:nowrap;flex:0 0 auto;transition:background .18s,color .18s}
+  .menubar button[aria-selected="true"]{background:var(--ink);color:#fff;border-bottom:0}
+
+  /* -- menu "book a table" button on its own line, full width -- */
+  .head--split{flex-direction:column;align-items:stretch;gap:14px}
+  .head--split>.btn{align-self:flex-start}
+  #menu .head--split>.btn{align-self:stretch;text-align:center}
+
+  /* -- REVIEWS: score row full-width, then a single card cycling every 6s -- */
+  .revwrap{grid-template-columns:1fr;gap:24px}
+  .score{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;
+    gap:6px 18px;align-items:center;text-align:left}
+  .score .num{grid-row:1/3;grid-column:1;font-size:64px;line-height:1}
+  .score .stars{grid-column:2;margin:0}
+  .score .meta{grid-column:2;margin:0}
+  .score .gsrc{grid-column:1/-1;margin-top:6px}
+  .score>div[style]{grid-column:1/-1;margin-top:10px!important;display:grid!important;
+    grid-template-columns:1fr 1fr;gap:8px!important}
+  .score .btn{width:100%;padding:12px 10px;font-size:12.5px}
+
+  .revs{position:relative;min-height:230px}
+  .revs .rev{position:absolute;inset:0;opacity:0;pointer-events:none;
+    transition:opacity .5s ease}
+  .revs .rev[data-active="true"]{opacity:1;pointer-events:auto;position:relative}
+  .revs .rev:first-child{position:relative}
+  .rev-dots{display:flex;position:absolute;left:0;right:0;bottom:-28px}
+  #reviews{padding-bottom:80px}
+
+  /* -- GALLERY: 2×2 grid, no scroll, hide the 5th image -- */
+  .gallery{display:grid;grid-template-columns:1fr 1fr;overflow:visible;
+    scroll-snap-type:none;gap:2px}
+  .gallery .imgwrap{flex:none;width:auto;aspect-ratio:1;scroll-snap-align:none}
+  .gallery .imgwrap:nth-child(n+5){display:none}
+
+  /* -- FIND US: full width heading, centred bigger book button below -- */
+  #visit .head--split{flex-direction:column;align-items:center;text-align:center;gap:20px}
+  #visit .head--split>div{max-width:none}
+  #visit .head--split .btn{padding:17px 48px;font-size:16px;letter-spacing:.06em;align-self:center;min-width:220px;flex:0 0 auto}
+
+  /* -- OPENING TIMES & GET IN TOUCH: one above the other, full width -- */
+  .visit{grid-template-columns:1fr;gap:38px}
+  .mapcard{min-height:280px}
+
+  /* -- FOOTER: single column, centred, socials centred -- */
+  .foot{grid-template-columns:1fr;gap:32px;padding-block:44px 28px;text-align:center}
+  .foot h4{margin-bottom:12px}
+  .foot .soc{justify-content:center;margin-top:14px}
+  .news{max-width:340px;margin:14px auto 0}
+  .foot p a[id="addrFoot"]{display:inline-block!important}
+  .legal{flex-direction:column;text-align:center;gap:8px;padding-block:20px 26px}
+  .legal br{display:none}
+
+  /* -- HERO tightening on phone -- */
+  .hero-in h1{font-size:clamp(38px,10vw,52px)}
+  .hero-cta{flex-direction:column;gap:10px;width:100%;max-width:280px;margin-inline:auto}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .hero-foot .wrap{flex-direction:column;align-items:flex-start;gap:10px}
+  .hero-foot .sep{margin-left:0}
+
+  /* -- tiles: bigger, no cropped labels -- */
+  .tiles{grid-template-columns:1fr 1fr}
+  .tile{aspect-ratio:4/5}
+  .tile-in{padding:20px 18px}
+  .tile h3{font-size:22px}
+  .tile p{font-size:13px}
+}
+
+/* very narrow phones (Galaxy S8, older SE) — collapse even more */
+@media (max-width:380px){
+  .hero-in{padding-inline:14px}
+  .tile-in{padding:16px 14px}
+  .tile p{display:none}   /* room only for the heading + "see the menu" chip */
+}
+
 
 /* nav — tighten between 1100 and 1320 so eight items fit beside the button */
 @media (max-width:1320px){nav{gap:20px}header .bar{gap:24px}}
@@ -360,8 +495,7 @@ header.solid .burger span{background:var(--ink)}
   </div>
   <div class="hero-foot">
     <div class="wrap">
-      <span class="dot" id="dot"><i></i><span id="dotText">Checking…</span></span>
-      <span>Food 12.00 – 20.30 · Bar till 23.00</span>
+      <a class="dot" id="dot" href="#visit"><i></i><div class="dot-txt"><b id="dotDay">&nbsp;</b><span id="dotText">Checking…</span><small id="dotHours">Food 12.00 – 20.30 · Bar till 23.00</small></div></a>
       <span><a id="addrTop" style="text-decoration:underline;text-underline-offset:3px">Lon St Ffraid, Trearddur Bay LL65 2YR</a></span>
       <span class="sep"><a id="phoneTop">01407 728 200</a></span>
     </div>
@@ -1123,10 +1257,18 @@ addEventListener("scroll",()=>hdr.classList.toggle("solid",scrollY>innerHeight*.
 const mins=t=>{const[h,m]=t.split(":").map(Number);return h*60+m};
 function status(){
   const n=new Date(),cur=n.getHours()*60+n.getMinutes(),d=$("#dot");
-  if(cur>=mins(C.hours.open)&&cur<mins(C.hours.close)){
+  const dayNames=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  $("#dotDay").textContent=dayNames[n.getDay()];
+  const open=cur>=mins(C.hours.open)&&cur<mins(C.hours.close);
+  if(open){
     d.classList.remove("shut");
-    $("#dotText").textContent=cur<mins(C.hours.lastFood)?"Open now":"Open — bar only";
-  }else{d.classList.add("shut");$("#dotText").textContent="Closed · opens "+C.hours.open}
+    $("#dotText").textContent=cur<mins(C.hours.lastFood)?"Open now":"Open · bar only";
+    $("#dotHours").textContent="Food till "+C.hours.lastFood.replace(":",".")+" · Bar till "+C.hours.close.replace(":",".");
+  }else{
+    d.classList.add("shut");
+    $("#dotText").textContent="Closed";
+    $("#dotHours").textContent="Opens at "+C.hours.open.replace(":",".");
+  }
 }
 status();setInterval(status,60000);
 
@@ -1215,6 +1357,16 @@ function drawWeek(){
   $("#week").innerHTML=html;
 }
 drawCurve();drawWeek();setInterval(drawCurve,60000);
+/* drag-to-scroll on the mobile tide strip */
+{const w=document.getElementById("week"); if(w){
+  let down=false,sx,sl;
+  w.addEventListener("pointerdown",e=>{down=true;sx=e.pageX;sl=w.scrollLeft;w.style.cursor="grabbing";w.setPointerCapture(e.pointerId)});
+  w.addEventListener("pointermove",e=>{if(!down)return;e.preventDefault();w.scrollLeft=sl-(e.pageX-sx)});
+  w.addEventListener("pointerup",()=>{down=false;w.style.cursor=""});
+  w.addEventListener("pointercancel",()=>{down=false;w.style.cursor=""});
+  w.style.cursor="grab";
+}}
+
 
 /* menu */
 const MENU={
@@ -1257,11 +1409,25 @@ function paint(d){
   $("#gScore").textContent=d.rating.toFixed(1);
   $("#gStars").innerHTML=[1,2,3,4,5].map(i=>star(i<=Math.round(d.rating))).join("");
   $("#gCount").textContent=d.total.toLocaleString("en-GB")+" reviews";
-  $("#revs").innerHTML=d.reviews.slice(0,4).map(r=>`<article class="rev">
-    <div class="stars">${[1,2,3,4,5].map(i=>star(i<=r.rating)).join("")}</div>
+  const items=d.reviews.slice(0,4);
+  $("#revs").innerHTML=items.map((r,i)=>`<article class="rev" data-index="${i}"${i===0?' data-active="true"':''}>
+    <div class="stars">${[1,2,3,4,5].map(k=>star(k<=r.rating)).join("")}</div>
     <p>${r.text}</p>
     <footer><span class="av">${r.initial}</span><span>${r.name}<br><small style="color:#8199A8">${r.when}</small></span></footer>
-  </article>`).join("");
+  </article>`).join("")+`<div class="rev-dots" aria-hidden="true">${items.map((_,i)=>`<span${i===0?' data-active="true"':''}></span>`).join("")}</div>`;
+  /* mobile-only rotation: 6-second cycle, paused if the page is off-screen */
+  if(items.length>1){
+    let i=0; const mq=matchMedia("(max-width:720px)");
+    const step=()=>{ if(!mq.matches) return;
+      i=(i+1)%items.length;
+      document.querySelectorAll("#revs .rev").forEach(el=>el.removeAttribute("data-active"));
+      document.querySelectorAll("#revs .rev-dots span").forEach(el=>el.removeAttribute("data-active"));
+      const r=document.querySelector(`#revs .rev[data-index="${i}"]`); if(r) r.setAttribute("data-active","true");
+      const dot=document.querySelectorAll("#revs .rev-dots span")[i]; if(dot) dot.setAttribute("data-active","true");
+    };
+    if(window.__revTimer) clearInterval(window.__revTimer);
+    window.__revTimer=setInterval(()=>{ if(document.visibilityState==="visible") step(); },6000);
+  }
 }
 (async()=>{if(C.reviewsEndpoint){try{const r=await fetch(C.reviewsEndpoint);if(r.ok){paint(await r.json());return}}catch(e){}}paint(SEED)})();
 })();

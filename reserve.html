@@ -305,6 +305,34 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 .faq-group h2{font-size:clamp(24px,2.6vw,32px);margin-bottom:6px}
 .faq-group .sub{font-size:15.5px;color:#5E7A8B;margin:0 0 18px}
 
+
+/* -- mobile — full-width sections, override any inline grid-templates -- */
+@media (max-width:720px){
+  :root{--gut:20px}
+  html,body{overflow-x:hidden}
+  /* the .split parents stack full-width. inline styles carry !important-weight
+     effectively when set on the element, so we match specificity here. */
+  .wrap.split[style]{grid-template-columns:1fr!important;gap:28px!important}
+  form .split[style]{grid-template-columns:1fr!important;gap:0!important}
+  /* long email/phone in the rows shouldn't force horizontal overflow */
+  .rows .v,.hrs .v{word-break:break-word;text-align:right}
+  .rows{grid-template-columns:1fr}
+  .rows>div{grid-template-columns:auto minmax(0,1fr)}
+  /* asides sit visually as a separate full-width block, separated from main */
+  .split>aside,.split>.align-h2{padding-top:8px;border-top:1px solid var(--line);margin-top:12px}
+  .split>aside:first-child,.split>.align-h2:first-child{border:0;padding-top:0;margin-top:0}
+  /* photo tiles below the fold */
+  .grid.grid--3,.grid.grid--4,.grid.grid--2{grid-template-columns:1fr!important}
+  /* form fields feel roomier */
+  .field{margin-bottom:14px}
+  /* page header hero: paint the safe-area top */
+  header,.pagehead{padding-top:env(safe-area-inset-top)}
+  /* footer stacks single column, centred */
+  footer.site .foot{grid-template-columns:1fr!important;gap:32px;padding-block:44px 28px;text-align:center}
+  footer.site .foot .soc{justify-content:center}
+  footer.site .news{max-width:340px;margin:14px auto 0}
+  footer.site .legal{flex-direction:column;text-align:center;gap:8px}
+}
 </style>
 </head>
 <body>
