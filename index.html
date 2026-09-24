@@ -360,7 +360,7 @@ header{padding-top:env(safe-area-inset-top)}
   #menu .head--split>.btn{align-self:stretch;text-align:center}
 
   /* -- REVIEWS: score row full-width, then a single card cycling every 6s -- */
-  .revwrap{grid-template-columns:1fr;gap:24px}
+  .revwrap{grid-template-columns:1fr;gap:14px}
   .score{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;
     gap:6px 18px;align-items:center;text-align:left}
   .score .num{grid-row:1/3;grid-column:1;font-size:64px;line-height:1}
@@ -371,13 +371,11 @@ header{padding-top:env(safe-area-inset-top)}
     grid-template-columns:1fr 1fr;gap:8px!important}
   .score .btn{width:100%;padding:12px 10px;font-size:12.5px}
 
-  .revs{position:relative;min-height:230px}
-  .revs .rev{position:absolute;inset:0;opacity:0;pointer-events:none;
-    transition:opacity .5s ease}
-  .revs .rev[data-active="true"]{opacity:1;pointer-events:auto;position:relative}
-  .revs .rev:first-child{position:relative}
-  .rev-dots{display:flex;position:absolute;left:0;right:0;bottom:-28px}
-  #reviews{padding-bottom:80px}
+  .revs{position:relative;overflow:hidden;touch-action:pan-y}
+  .revs .rev{display:none}
+  .revs .rev[data-active="true"]{display:flex}
+  .rev-dots{display:flex;margin-top:14px;justify-content:center}
+  #reviews{padding-bottom:60px}
 
   /* -- GALLERY: 2×2 grid, no scroll, hide the 5th image -- */
   .gallery{display:grid;grid-template-columns:1fr 1fr;overflow:visible;
@@ -1357,6 +1355,63 @@ function drawWeek(){
   $("#week").innerHTML=html;
 }
 drawCurve();drawWeek();setInterval(drawCurve,60000);
+/* tap a day card on mobile to update the main tide chart to that day */
+{const cards=document.querySelectorAll("#week > div");
+  cards.forEach((c,i)=>{
+    c.style.cursor="pointer";
+    c.addEventListener("click",()=>{
+      if(!matchMedia("(max-width:720px)").matches) return;
+      cards.forEach(x=>x.classList.remove("today"));
+      c.classList.add("today");
+      /* offset = days from today */
+      const now=new Date(), base=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+      const dayStart=base.getTime()+i*864e5;
+      const svg=document.getElementById("curve");
+      if(!svg) return;
+      /* redraw the curve for the selected day */
+      const W=680,H=220,PAD=28,N=144;
+      const hs=[];for(let j=0;j<=N;j++)hs.push(height(dayStart+j*(864e5/N)));
+      const lo=Math.min(...hs)-.4,hi=Math.max(...hs)+.4;
+      const x=t=>((t-dayStart)/864e5)*W, y=h=>PAD+(1-(h-lo)/(hi-lo))*(H-PAD*2);
+      let line="";hs.forEach((h,j)=>line+=(j?"L":"M")+((j/N)*W).toFixed(1)+" "+y(h).toFixed(1));
+      const area=line+"L"+W+" "+H+" L0 "+H+"Z";
+      /* now marker only if today */
+      const isToday=i===0;
+      const nx=isToday?Math.max(0,Math.min(W,x(Date.now()))):0;
+      const ny=isToday?y(height(Date.now())):0;
+      let marks="";
+      extremes(dayStart,dayStart+864e5).forEach(v=>{
+        const px=x(v.t),py=y(v.h),up=v.type==="High",
+          cx=Math.min(Math.max(px,34),W-34);
+        marks+='<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="4" fill="#fff"/>'+
+          '<text x="'+cx.toFixed(1)+'" y="'+(py+(up?-14:24)).toFixed(1)+'" text-anchor="middle" fill="#EAF3F8"'+
+          ' font-family="Instrument Sans,sans-serif" font-size="13" font-weight="600">'+
+          '<tspan font-size="10" fill="#B7D3E4">'+v.type.substring(0,1)+' </tspan>'+
+          v.h.toFixed(1)+'m '+hhmm(v.t)+'</text>';
+      });
+      let grid="";
+      for(let h=0;h<24;h+=3){const px=(h/24)*W;
+        grid+='<line x1="'+px+'" y1="'+PAD+'" x2="'+px+'" y2="'+(H-PAD)+'" stroke="rgba(255,255,255,.1)"/>'+
+          '<text x="'+(px+4)+'" y="'+(H-6)+'" fill="#7BA3BC" font-family="Instrument Sans,sans-serif" font-size="10">'+
+          String(h).padStart(2,"0")+'</text>';}
+      svg.setAttribute("viewBox","0 0 "+W+" "+H);
+      svg.innerHTML='<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">'+
+        '<stop offset="0" stop-color="#9CC6DE" stop-opacity=".5"/>'+
+        '<stop offset="1" stop-color="#2E77A6" stop-opacity="0"/></linearGradient>'+
+        (isToday?'<clipPath id="past"><rect width="'+nx.toFixed(1)+'" height="'+H+'"/></clipPath>':'')+
+        '</defs>'+grid+
+        '<path d="'+area+'" fill="url(#wg)" opacity=".4"/>'+
+        (isToday?'<path d="'+area+'" fill="url(#wg)" clip-path="url(#past)"/>':'')+
+        '<path d="'+line+'" fill="none" stroke="#BFD8E6" stroke-width="1.8" opacity=".45"/>'+
+        (isToday?'<path d="'+line+'" fill="none" stroke="#fff" stroke-width="2.6" clip-path="url(#past)"/>':
+                 '<path d="'+line+'" fill="none" stroke="#fff" stroke-width="2.6"/>')+
+        marks+
+        (isToday?'<line x1="'+nx.toFixed(1)+'" y1="'+(PAD-4)+'" x2="'+nx.toFixed(1)+'" y2="'+(H-PAD)+'" stroke="#C8402E" stroke-width="2"/>'+
+          '<circle cx="'+nx.toFixed(1)+'" cy="'+ny.toFixed(1)+'" r="5.5" fill="#C8402E" stroke="#0B2C44" stroke-width="2.2"/>':'');
+    });
+  });
+}
+
 /* drag-to-scroll on the mobile tide strip */
 {const w=document.getElementById("week"); if(w){
   let down=false,sx,sl;
@@ -1415,18 +1470,35 @@ function paint(d){
     <p>${r.text}</p>
     <footer><span class="av">${r.initial}</span><span>${r.name}<br><small style="color:#8199A8">${r.when}</small></span></footer>
   </article>`).join("")+`<div class="rev-dots" aria-hidden="true">${items.map((_,i)=>`<span${i===0?' data-active="true"':''}></span>`).join("")}</div>`;
-  /* mobile-only rotation: 6-second cycle, paused if the page is off-screen */
+  /* mobile swipe-through reviews */
   if(items.length>1){
-    let i=0; const mq=matchMedia("(max-width:720px)");
-    const step=()=>{ if(!mq.matches) return;
-      i=(i+1)%items.length;
+    const strip=document.getElementById("revs");
+    const goTo=idx=>{
       document.querySelectorAll("#revs .rev").forEach(el=>el.removeAttribute("data-active"));
       document.querySelectorAll("#revs .rev-dots span").forEach(el=>el.removeAttribute("data-active"));
-      const r=document.querySelector(`#revs .rev[data-index="${i}"]`); if(r) r.setAttribute("data-active","true");
-      const dot=document.querySelectorAll("#revs .rev-dots span")[i]; if(dot) dot.setAttribute("data-active","true");
+      const r=document.querySelector(`#revs .rev[data-index="${idx}"]`);
+      if(r) r.setAttribute("data-active","true");
+      const dot=document.querySelectorAll("#revs .rev-dots span")[idx];
+      if(dot) dot.setAttribute("data-active","true");
     };
-    if(window.__revTimer) clearInterval(window.__revTimer);
-    window.__revTimer=setInterval(()=>{ if(document.visibilityState==="visible") step(); },6000);
+    /* pointer drag (works on touch + mouse) */
+    let down=false,sx=0,cur=0;
+    strip.addEventListener("pointerdown",e=>{down=true;sx=e.clientX;strip.setPointerCapture(e.pointerId)});
+    strip.addEventListener("pointermove",e=>{if(!down)return;e.preventDefault()});
+    strip.addEventListener("pointerup",e=>{
+      if(!down)return;down=false;
+      const dx=e.clientX-sx;
+      if(Math.abs(dx)>40){
+        cur=Math.max(0,Math.min(items.length-1, cur+(dx<0?1:-1)));
+        goTo(cur);
+      }
+    });
+    strip.addEventListener("pointercancel",()=>{down=false});
+    /* dot taps */
+    document.querySelectorAll("#revs .rev-dots span").forEach((d,i)=>{
+      d.style.cursor="pointer";
+      d.addEventListener("click",()=>{cur=i;goTo(i)});
+    });
   }
 }
 (async()=>{if(C.reviewsEndpoint){try{const r=await fetch(C.reviewsEndpoint);if(r.ok){paint(await r.json());return}}catch(e){}}paint(SEED)})();

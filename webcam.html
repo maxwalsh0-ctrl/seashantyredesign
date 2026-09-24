@@ -305,6 +305,48 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 .faq-group h2{font-size:clamp(24px,2.6vw,32px);margin-bottom:6px}
 .faq-group .sub{font-size:15.5px;color:#5E7A8B;margin:0 0 18px}
 
+
+/* ── MOBILE-ONLY webcam layout ── */
+@media (max-width:720px){
+  :root{--gut:20px}
+  html,body{overflow-x:hidden}
+  header,.pagehead{padding-top:env(safe-area-inset-top)}
+
+  /* camera view: full width, break out of the split */
+  .wrap.split[style]{display:flex!important;flex-direction:column;gap:28px}
+
+  /* camera embed fills the screen edge-to-edge */
+  .embed--cam{margin-inline:calc(var(--gut)*-1);border-radius:0}
+  .embed--cam iframe{min-height:220px;aspect-ratio:16/9}
+  .embed-fallback{padding:30px var(--gut)!important}
+
+  /* "open camera full size" button below */
+  .embed--cam+p{text-align:center}
+
+  /* blue-flag cards stack full width */
+  .grid.grid--3{grid-template-columns:1fr!important}
+
+  /* tide panel: full width, clean layout */
+  aside[data-tide]{order:10}
+  .tidepanel{margin-inline:calc(var(--gut)*-1);padding:24px var(--gut)}
+  .tidepanel .big{font-size:38px}
+  .tidepanel dl{grid-template-columns:1fr;gap:8px}
+  .tidepanel dl div{font-size:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.12)}
+
+  /* weather notice: full width, centred text */
+  .notice{text-align:center;padding:22px var(--gut)}
+  .notice strong{display:block;margin-bottom:6px}
+
+  /* buttons below: stack full width, centred */
+  .btnrow{flex-direction:column;align-items:stretch;gap:10px;margin-top:18px}
+  .btnrow .btn{text-align:center;justify-content:center}
+
+  /* footer */
+  footer.site .foot{grid-template-columns:1fr!important;gap:32px;padding-block:44px 28px;text-align:center}
+  footer.site .foot .soc{justify-content:center}
+  footer.site .news{max-width:340px;margin:14px auto 0}
+  footer.site .legal{flex-direction:column;text-align:center;gap:8px}
+}
 </style>
 </head>
 <body>
