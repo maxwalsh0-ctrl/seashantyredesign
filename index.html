@@ -303,14 +303,6 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
    + hours as one click-through to opening times.
    ============================================================ */
 
-/* prevent any child from pushing the doc wider than the viewport */
-html,body{overflow-x:hidden;background:var(--ink)}
-body{background:#fff}
-/* the hero header extends full-bleed and up under the notch/dynamic island —
-   viewport-fit=cover in the <meta> above lets us paint into the safe area */
-.hero{padding-top:env(safe-area-inset-top)}
-header{padding-top:env(safe-area-inset-top)}
-
 /* new "day / status / hours" status widget */
 .dot{display:inline-flex;align-items:center;gap:11px;font-weight:600;color:#fff;
   text-decoration:none;padding:6px 12px 6px 8px;margin-left:-8px;border-radius:8px;
@@ -324,13 +316,17 @@ header{padding-top:env(safe-area-inset-top)}
 .dot-txt span{font-size:15px;font-weight:600}
 .dot-txt small{font-size:12.5px;color:#B7D3E4;font-weight:400;letter-spacing:.02em}
 
-/* review carousel dots (mobile only, hidden on desktop) */
+/* review carousel dots (hidden on desktop, shown in mobile @media below) */
 .rev-dots{display:none;justify-content:center;gap:8px;margin-top:16px}
 .rev-dots span{width:7px;height:7px;border-radius:50%;background:rgba(6,47,69,.18);transition:background .3s}
 .rev-dots span[data-active="true"]{background:var(--stripe-ink)}
 
 @media (max-width:720px){
   :root{--gut:20px}
+  html,body{overflow-x:hidden;background:var(--ink)}
+  body{background:#fff}
+  .hero{padding-top:env(safe-area-inset-top)}
+  header{padding-top:env(safe-area-inset-top)}
 
   /* -- tide 7-day strip: horizontal scroll, drag-to-swipe -- */
   .week{display:flex;overflow-x:auto;scroll-snap-type:x proximity;
@@ -359,23 +355,23 @@ header{padding-top:env(safe-area-inset-top)}
   .head--split>.btn{align-self:flex-start}
   #menu .head--split>.btn{align-self:stretch;text-align:center}
 
-  /* -- REVIEWS: score row full-width, then a single card cycling every 6s -- */
-  .revwrap{grid-template-columns:1fr;gap:14px}
-  .score{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;
-    gap:6px 18px;align-items:center;text-align:left}
-  .score .num{grid-row:1/3;grid-column:1;font-size:64px;line-height:1}
-  .score .stars{grid-column:2;margin:0}
-  .score .meta{grid-column:2;margin:0}
-  .score .gsrc{grid-column:1/-1;margin-top:6px}
-  .score>div[style]{grid-column:1/-1;margin-top:10px!important;display:grid!important;
-    grid-template-columns:1fr 1fr;gap:8px!important}
-  .score .btn{width:100%;padding:12px 10px;font-size:12.5px}
+  /* -- REVIEWS: score inline top-right, card below -- */
+  .revwrap{display:flex;flex-direction:column;gap:14px}
+  .score{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .score .num{font-size:48px;line-height:1;margin:0}
+  .score .stars{margin:0}
+  .score .stars svg{width:18px;height:18px}
+  .score .meta{font-size:13px;margin:0}
+  .score .gsrc{font-size:11px;margin-left:auto}
+  .score>div[style]{display:flex!important;gap:8px!important;margin-top:0!important;width:100%}
+  .score .btn{padding:10px 12px;font-size:11.5px;flex:1}
 
   .revs{position:relative;overflow:hidden;touch-action:pan-y}
   .revs .rev{display:none}
   .revs .rev[data-active="true"]{display:flex}
   .rev-dots{display:flex;margin-top:14px;justify-content:center}
-  #reviews{padding-bottom:60px}
+  #reviews{padding-block:36px 50px}
+  #reviews .head{margin-bottom:10px}
 
   /* -- GALLERY: 2×2 grid, no scroll, hide the 5th image -- */
   .gallery{display:grid;grid-template-columns:1fr 1fr;overflow:visible;
@@ -414,6 +410,43 @@ header{padding-top:env(safe-area-inset-top)}
   .tile-in{padding:20px 18px}
   .tile h3{font-size:22px}
   .tile p{font-size:13px}
+}
+
+
+/* ── MOBILE HOME: streamlined layout ── */
+@media (max-width:720px){
+
+  /* Hide: menu section, tide band, story, gallery */
+  #menu{display:none!important}
+  #tides{display:none!important}
+  #story{display:none!important}
+  #gallery{display:none!important}
+
+  /* Tiles become slim stacked rectangles, name only */
+  .tiles{grid-template-columns:1fr!important;gap:0}
+  .tile{aspect-ratio:auto!important;min-height:0;border-radius:0;overflow:visible}
+  .tile .imgwrap{display:none}
+  .tile .tile-in{position:relative;padding:16px var(--gut);display:flex;align-items:center;
+    justify-content:space-between;background:#fff;border-bottom:1px solid var(--line)}
+  .tile .tile-in h3{font-size:17px;margin:0;color:var(--ink)}
+  .tile .tile-in p{display:none}
+  .tile .tile-in .more{font-size:12px;letter-spacing:.08em;color:var(--stripe-ink);
+    position:static;margin:0;background:none;padding:0}
+  .tile:hover .tile-in{background:var(--sand)}
+
+  /* Reviews more compact — tighter padding, smaller text */
+  #reviews{padding-block:40px 50px}
+  #reviews .head{margin-bottom:14px}
+  #reviews .head h2{font-size:clamp(24px,6vw,30px)}
+  #reviews .kicker{font-size:11px}
+  .score .num{font-size:52px!important}
+  .score .stars svg{width:16px;height:16px}
+  .score .meta{font-size:13px}
+  .score .gsrc{font-size:12px}
+  .score .btn{font-size:11.5px;padding:10px 8px}
+  .revs .rev{padding:18px 20px}
+
+  /* Nav links: #menu → menu.html on mobile */
 }
 
 /* very narrow phones (Galaxy S8, older SE) — collapse even more */
@@ -468,7 +501,7 @@ header.solid .burger span{background:var(--ink)}
 </header>
 <div class="drawer" id="drawer" data-open="false" aria-hidden="true">
   <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
-  <a href="#top">Home</a><a href="about.html">About</a><a href="#menu">Menu</a><a href="reserve.html">Book a table</a>
+  <a href="#top">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a><a href="reserve.html">Book a table</a>
   <a href="webcam.html">Webcam</a><a href="gift-cards.html">Gift cards</a><a href="faq.html">FAQs</a><a href="jobs.html">Jobs</a>
   <a href="#tides">Tide times</a><a href="#visit">Find us</a>
   <div class="sub">
@@ -488,7 +521,7 @@ header.solid .burger span{background:var(--ink)}
     <p class="sub">Seafood, cask ale and ice cream on the sand at Trearddur Bay.<br>Open every day from half eleven.</p>
     <div class="hero-cta">
       <a class="btn btn--book" id="bookHero">BOOK A TABLE</a>
-      <a class="btn btn--onphoto" href="#menu">SEE THE MENU</a>
+      <a class="btn btn--onphoto" href="#menu" data-menu-link>SEE THE MENU</a>
     </div>
   </div>
   <div class="hero-foot">
@@ -503,15 +536,15 @@ header.solid .burger span{background:var(--ink)}
 
 <a id="spaces"></a>
 <div class="tiles">
-  <a class="tile" href="#menu" data-tab="From the sea">
+  <a class="tile" href="#menu" data-tab="From the sea" data-menu-link>
     <div class="imgwrap" data-alt="Photo of the restaurant floor — 1200×1600"><img id="imgRestaurant" alt="The restaurant"></div>
     <div class="tile-in"><h3>The Restaurant</h3><p>Big windows onto the bay, and a specials board that changes with whatever's landed.</p><span class="more">SEE THE MENU</span></div>
   </a>
-  <a class="tile" href="#menu" data-tab="Bar">
+  <a class="tile" href="#menu" data-tab="Bar" data-menu-link>
     <div class="imgwrap" data-alt="Photo of the bar — 1200×1600"><img id="imgBar" alt="The bar"></div>
     <div class="tile-in"><h3>The Bar</h3><p>Cask ale from Conwy and Snowdon, a long gin list, and coffee roasted by Chartley.</p><span class="more">WHAT'S ON TAP</span></div>
   </a>
-  <a class="tile" href="#menu" data-tab="Parlour">
+  <a class="tile" href="#menu" data-tab="Parlour" data-menu-link>
     <div class="imgwrap" data-alt="Photo of the ice cream parlour — 1200×1600"><img id="imgParlour" alt="The ice cream parlour"></div>
     <div class="tile-in"><h3>Ice Cream Parlour</h3><p>Edwardian counter, working nickelodeon, open ten in the morning until ten at night.</p><span class="more">CONES AND SUNDAES</span></div>
   </a>
@@ -1205,7 +1238,7 @@ return { restaurant, bar, parlour, terrace, story, portrait, bay, giftcard,
 </script>
 <script>
 (() => {
-const C=window.SEASHANTY, $=s=>document.querySelector(s);
+const C=window.SEASHANTY, $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 
 const bind=(el,url,lazy)=>{if(!el)return;const w=el.closest(".imgwrap");
   if(typeof url==="string"&&url.startsWith("art:")){
@@ -1251,6 +1284,14 @@ addEventListener("scroll",()=>hdr.classList.toggle("solid",scrollY>innerHeight*.
   ob.onclick=()=>set(true); $("#closeDrawer").onclick=()=>set(false);
   dr.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>set(false)));
   addEventListener("keydown",e=>{if(e.key==="Escape"&&dr.dataset.open==="true")set(false)}); }
+/* mobile: redirect #menu links to menu.html */
+if(matchMedia("(max-width:720px)").matches){
+  document.querySelectorAll("[data-menu-link], nav a[href='#menu']").forEach(a=>{
+    const tab=a.dataset.tab;
+    a.href=tab?"menu.html?tab="+encodeURIComponent(tab):"menu.html";
+  });
+}
+
 
 const mins=t=>{const[h,m]=t.split(":").map(Number);return h*60+m};
 function status(){
