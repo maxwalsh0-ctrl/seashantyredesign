@@ -462,10 +462,10 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 nav a[aria-current="page"]{border-bottom-color:var(--stripe)}
 header.solid nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
 /* burger + drawer (below 1100px the nav hides; before this there was no menu at all) */
-.burger{width:44px;height:44px;border:1px solid rgba(255,255,255,.5);background:rgba(6,47,69,.35);display:none;
+.burger{width:44px;height:44px;border:0;background:none;display:none;
   place-items:center;align-content:center;gap:4px;flex:0 0 auto;cursor:pointer;padding:0}
 .burger span{display:block;width:18px;height:2px;background:#fff}
-header.solid .burger{background:#fff;border-color:var(--line)}
+header.solid .burger{background:none}
 header.solid .burger span{background:var(--ink)}
 .drawer{position:fixed;inset:0;z-index:95;background:var(--ink);color:#fff;
   transform:translateY(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
@@ -473,7 +473,7 @@ header.solid .burger span{background:var(--ink)}
   padding:calc(env(safe-area-inset-top) + 16px) var(--gut) 28px}
 .drawer[data-open="true"]{transform:none;visibility:visible}
 .drawer .x{align-self:flex-end;width:44px;height:44px;background:none;
-  border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;cursor:pointer}
+  border:0;color:#fff;font-size:20px;cursor:pointer}
 .drawer a{display:block;font-family:var(--display);font-size:clamp(26px,7vw,34px);font-weight:500;color:#fff;
   text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .drawer .sub{margin-top:auto;padding-top:24px}
