@@ -68,7 +68,7 @@ header.site nav a{text-decoration:none;font:600 13.5px var(--body);letter-spacin
   padding:6px 0;border-bottom:2px solid transparent}
 header.site nav a:hover{border-bottom-color:var(--buoy)}
 header.site nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
-.burger{width:44px;height:44px;border:0;background:none;display:none;
+.burger{width:44px;height:44px;border:1px solid var(--line);background:#fff;display:none;
   place-items:center;gap:4px;flex:0 0 auto;cursor:pointer;padding:0}
 .burger span{display:block;width:18px;height:2px;background:var(--ink)}
 @media (max-width:980px){
@@ -84,7 +84,7 @@ header.site nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
   padding:calc(env(safe-area-inset-top) + 16px) var(--gut) 28px}
 .drawer[data-open="true"]{transform:none}
 .drawer .x{align-self:flex-end;width:44px;height:44px;background:none;
-  border:0;color:#fff;font-size:20px;cursor:pointer}
+  border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;cursor:pointer}
 .drawer a{display:block;font-family:var(--display);font-size:clamp(26px,7vw,34px);font-weight:500;
   text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .drawer .sub{margin-top:auto;padding-top:24px}
@@ -237,6 +237,10 @@ footer.site .soc svg{width:100%;height:100%;fill:currentColor;display:block}
 .news input::placeholder{color:#84A9C0}
 .news button{padding:13px 20px;border:0;background:var(--buoy);color:#fff;
   font:600 15px var(--body);cursor:pointer}
+.pay-icons{display:flex;gap:12px;align-items:center;padding:18px 0 0;margin-top:16px;border-top:1px solid rgba(255,255,255,.10)}
+.pay-icons svg{width:38px;height:24px;opacity:.55;transition:opacity .16s}
+.pay-icons svg:hover{opacity:.85}
+.pay-icons span{font-size:12px;color:#88AEC5;margin-right:4px}
 .legal{border-top:1px solid rgba(255,255,255,.16);padding-block:22px;display:flex;
   justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13.5px;color:#88AEC5}
 footer.site .legal a{display:inline;color:#88AEC5;padding:0}
