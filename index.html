@@ -117,7 +117,7 @@ nav a:hover{border-bottom-color:var(--buoy)}
 @keyframes slowzoom{from{transform:scale(1.07)}to{transform:scale(1)}}
 .hero::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(6,47,69,.62) 0%,rgba(6,47,69,.2) 42%,rgba(6,47,69,.8) 100%)}
-.hero-in{position:relative;z-index:2;padding:0 24px 100px;max-width:900px}
+.hero-in{position:relative;z-index:2;padding:0 24px 140px;max-width:900px}
 .hero-in img.mark{width:104px;height:104px;margin:0 auto 26px;display:block}
 .hero h1{font-size:clamp(48px,7vw,94px);font-variation-settings:"SOFT" 55,"WONK" 1,"opsz" 144;
   line-height:.94;text-shadow:0 2px 26px rgba(6,47,69,.45)}
@@ -393,9 +393,13 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
   .visit{grid-template-columns:1fr;gap:38px}
   .mapcard{min-height:280px}
 
-  /* -- FOOTER: single column, centred, socials centred -- */
-  .foot{grid-template-columns:1fr;gap:32px;padding-block:44px 28px;text-align:center}
-  .foot h4{margin-bottom:12px}
+  /* -- FOOTER: address full width, Visit+More two columns, newsletter full width -- */
+  .foot{grid-template-columns:1fr 1fr;gap:24px 20px;padding-block:44px 28px;text-align:center}
+  .foot>div:first-child{grid-column:1/-1}
+  .foot>div:nth-child(4){grid-column:1/-1}
+  .foot h4{margin-bottom:12px;text-align:left}
+  .foot>div:nth-child(2) a,
+  .foot>div:nth-child(3) a{padding-left:10px;text-align:left}
   .foot .soc{justify-content:center;margin-top:14px}
   .news{max-width:340px;margin:14px auto 0}
   .foot p a[id="addrFoot"]{display:inline-block!important}
@@ -404,8 +408,10 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
   .pay-icons{justify-content:center}
   .pay-icons svg{width:34px;height:22px}
 
-  /* -- HERO tightening on phone -- */
-  .hero{height:100svh;min-height:0;max-height:none}
+  /* -- HERO tightening on phone: text floats on the sea -- */
+  .hero{height:100svh;min-height:0;max-height:none;align-items:flex-end}
+  .hero-in{padding-bottom:90px}
+  .hero-in img.mark{width:72px;height:72px;margin-bottom:16px}
   .hero-in h1{font-size:clamp(38px,10vw,52px)}
   .hero-cta{flex-direction:column;gap:10px;width:100%;max-width:280px;margin-inline:auto}
   .hero-cta .btn{width:100%;justify-content:center}
@@ -424,10 +430,11 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 /* ── MOBILE HOME: streamlined layout ── */
 @media (max-width:720px){
 
-  /* Hide: menu section, story, gallery (tides shown on mobile) */
+  /* Hide: menu section, story, gallery, tides (tides on own page) */
   #menu{display:none!important}
   #story{display:none!important}
   #gallery{display:none!important}
+  #tides{display:none!important}
 
   /* Tide band: tighten for phone */
   .tideband{padding-block:44px}
@@ -509,7 +516,7 @@ header.solid .burger span{background:var(--ink)}
     </a>
     <nav aria-label="Primary">
       <a href="#top" aria-current="page">HOME</a><a href="about.html">ABOUT</a><a href="#menu">MENU</a><a href="reserve.html">BOOK A TABLE</a>
-      <a href="#tides">TIDE TIMES</a><a href="#contact">FIND US</a><a href="webcam.html">WEBCAM</a><a href="gift-cards.html">GIFT CARDS</a><a href="faq.html">FAQS</a><a href="jobs.html">JOBS</a>
+      <a href="tides.html">TIDE TIMES</a><a href="#contact">FIND US</a><a href="webcam.html">WEBCAM</a><a href="gift-cards.html">GIFT CARDS</a><a href="faq.html">FAQS</a><a href="jobs.html">JOBS</a>
     </nav>
     <a class="btn btn--book btn--sm" id="bookTop" target="_blank" rel="noopener">BOOK A TABLE</a>
     <button class="burger" id="openDrawer" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -519,7 +526,7 @@ header.solid .burger span{background:var(--ink)}
   <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
   <a href="#top">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a><a href="reserve.html">Book a table</a>
   <a href="webcam.html">Webcam</a><a href="gift-cards.html">Gift cards</a><a href="faq.html">FAQs</a><a href="jobs.html">Jobs</a>
-  <a href="#tides">Tide times</a><a href="#contact">Find us</a>
+  <a href="tides.html">Tide times</a><a href="#contact">Find us</a>
   <div class="sub">
     <a href="tel:+441407728200">01407 728 200</a>
     <a href="mailto:info@seashantycafe.co.uk">info@seashantycafe.co.uk</a>
@@ -695,7 +702,7 @@ header.solid .burger span{background:var(--ink)}
       </div>
       <div>
         <h4>VISIT</h4>
-        <a href="menu.html">Menu</a><a href="reserve.html">Book a table</a><a href="#tides">Tide times</a>
+        <a href="menu.html">Menu</a><a href="reserve.html">Book a table</a><a href="tides.html">Tide times</a>
         <a href="webcam.html">TBay webcam</a><a id="fMap">Directions</a>
       </div>
       <div>
@@ -717,10 +724,10 @@ header.solid .burger span{background:var(--ink)}
       <span>© <span id="yr"></span> Sea Shanty Restaurants Ltd · <a href="#">Privacy</a> · <a href="#">Cookies</a> · <a href="#">Accessibility</a></span>
       <div class="pay-icons">
         <span>We accept</span>
-        <svg viewBox="0 0 38 24" role="img" aria-label="Visa"><rect width="38" height="24" rx="3" fill="#1A1F71"/><path d="M15.3 16.2l1.6-9.8h2.5l-1.6 9.8h-2.5zm10.4-9.6c-.5-.2-1.3-.4-2.2-.4-2.5 0-4.2 1.3-4.2 3.1 0 1.4 1.2 2.1 2.2 2.6 1 .5 1.3.8 1.3 1.2 0 .7-.8 1-1.5 1-1 0-1.6-.2-2.4-.5l-.3-.2-.4 2.1c.6.3 1.7.5 2.9.5 2.6 0 4.3-1.3 4.3-3.2 0-1.1-.6-1.9-2-2.5-.9-.4-1.4-.7-1.4-1.2 0-.4.4-.8 1.4-.8.8 0 1.4.2 1.8.3l.2.1.3-2.1zM30.5 6.4h-2c-.6 0-1 .2-1.3.8L23.5 16h2.6l.5-1.4h3.2l.3 1.4h2.3L30.5 6.4zm-3.5 7.2l1.3-3.6.8 3.6H27zM13.5 6.4l-2.3 6.7-.3-1.2c-.4-1.5-1.8-3.1-3.4-3.9l2.2 8.2h2.6l3.9-9.8h-2.7z" fill="#fff"/><path d="M9.4 6.4H5.5l0 .2c3.1.8 5.2 2.7 6 5l-.9-4.3c-.1-.7-.6-.9-1.2-.9z" fill="#F9A533"/></svg>
-        <svg viewBox="0 0 38 24" role="img" aria-label="Mastercard"><rect width="38" height="24" rx="3" fill="#252525"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/><path d="M19 7.2a7 7 0 0 1 2.6 4.8A7 7 0 0 1 19 16.8 7 7 0 0 1 16.4 12 7 7 0 0 1 19 7.2z" fill="#FF5F00"/></svg>
-        <svg viewBox="0 0 38 24" role="img" aria-label="Amex"><rect width="38" height="24" rx="3" fill="#2557D6"/><path d="M6 10.2L8.5 4h3.6l1.4 3.4V4h4.5l.8 2.2.8-2.2h4.4v16H11.8L11 17.6l-.8 2.4H6v-9.8zM8.5 8.6l-1.5 3.4h2l.7-1.7.7 1.7h6.1v-1.3l.5 1.3h3.1l.5-1.4V12H24V8.6h-2.1l-.5 1.3-.5-1.3h-6.3v1.3l-.6-1.3H8.5z" fill="#fff"/></svg>
-        <svg viewBox="0 0 38 24" role="img" aria-label="Apple Pay"><rect width="38" height="24" rx="3" fill="#000"/><path d="M11.6 8.1c-.4.4-.9.7-1.5.7-.1-.6.2-1.3.5-1.7.4-.5 1-.7 1.5-.7.1.6-.2 1.3-.5 1.7zm.5.9c-.8 0-1.6.5-2 .5s-1-.5-1.7-.5c-.9 0-1.7.5-2.1 1.3-.9 1.6-.2 3.9.6 5.2.4.6.9 1.3 1.6 1.3.6 0 .9-.4 1.6-.4.7 0 .9.4 1.6.4.7 0 1.1-.6 1.5-1.3.5-.7.7-1.4.7-1.4-.7-.3-1.3-1.2-1.3-2.2 0-.9.5-1.7 1.2-2.1-.5-.7-1.2-.9-1.7-.9zm6.3-.7v8.7h1.3v-3h1.8c1.6 0 2.8-1.1 2.8-2.9 0-1.7-1.1-2.8-2.7-2.8h-3.2zm1.3 1.1h1.5c1.1 0 1.7.6 1.7 1.7s-.6 1.7-1.7 1.7h-1.5V9.4zm6.7 7.7c.8 0 1.6-.4 2-.1.1h0v.9h1.2v-4.4c0-1.3-1-2.1-2.6-2.1-1.4 0-2.5.8-2.5 2h1.2c.1-.6.6-1 1.3-1 .9 0 1.3.4 1.3 1.1v.5l-1.8.1c-1.6.1-2.5.8-2.5 2 0 1.2.9 2 2.4 2zm.4-1c-.7 0-1.2-.4-1.2-.9 0-.6.4-.9 1.3-1l1.6-.1v.5c0 .9-.7 1.5-1.7 1.5z" fill="#fff"/></svg>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Visa"><rect width="750" height="471" rx="40" fill="#1A1F71"/><path d="M278.2 334.2h-60.6l37.9-233.7h60.6L278.2 334.2zM524.8 104.9c-12-4.6-30.8-9.5-54.3-9.5-59.9 0-102.1 31.9-102.4 77.6-.4 33.7 30.1 52.5 53.1 63.7 23.6 11.5 31.5 18.8 31.4 29.1-.2 15.7-18.8 22.9-36.2 22.9-24.2 0-37.1-3.5-57-12.2l-7.8-3.7-8.5 52.4c14.1 6.6 40.3 12.3 67.4 12.6 63.7 0 105.1-31.5 105.6-80.3.2-26.8-16-47.2-51-64-21.2-10.9-34.2-18.2-34.1-29.2 0-9.8 11-20.2 34.8-20.2 19.8-.3 34.2 4.2 45.4 9l5.5 2.7 8.1-51zM661.6 100.5h-46.9c-14.5 0-25.4 4.2-31.8 19.5l-90.1 215.2h63.7s10.4-28.9 12.8-35.3h77.8c1.8 8.2 7.4 35.3 7.4 35.3h56.3l-49.2-234.7zm-75 151.4c5-13.6 24.3-66.1 24.3-66.1-.4.6 5-13.7 8.1-22.6l4.1 20.4s11.7 56.5 14.1 68.3h-50.6zM232.8 100.5L173.5 262l-6.3-32.6c-11.1-37.6-45.6-78.4-84.3-98.8l54.3 203.5h64.1l95.3-233.6h-63.8z" fill="#fff"/><path d="M131.9 100.5H34.8l-.8 4.7c76 19.4 126.3 66.3 147.2 122.7L160 124.5c-3.4-14.7-14.5-19.3-28.1-24z" fill="#F9A533"/></svg>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Mastercard"><rect width="750" height="471" rx="40" fill="#000"/><circle cx="299" cy="236" r="155" fill="#EB001B"/><circle cx="451" cy="236" r="155" fill="#F79E1B"/><path d="M375 119.7a154.5 154.5 0 0 1 57.2 116.3A154.5 154.5 0 0 1 375 352.3 154.5 154.5 0 0 1 317.8 236 154.5 154.5 0 0 1 375 119.7z" fill="#FF5F00"/></svg>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Amex"><rect width="750" height="471" rx="40" fill="#2557D6"/><path d="M0 221.3l36.6-85.2h58.4l21.2 48.3V136.1h72.5l13.1 36.5 12.4-36.5H750v256.8H0V221.3zm66.1-59.6L28.5 254.9h37.1l5.6-13.5h12.8l5.6 13.5h40.9v-10.3l3.6 10.3h21.2l3.6-10.5v10.5h101.7l12.4-12.8 11.6 12.8h65.8l-42.8-46.6 42.8-47.8h-64.8l-12.1 12.6-11.2-12.6h-110.8l-7.9 17.6-8.1-17.6h-58.2V172l-4.9-10.3H66.1zm10.5 20.4h-18l22.4 52.4v-33l20 33h15.1l20-33.3v33.3h12.5v-52.4h-19.5l-16.8 28.4-17.7-28.4h-18zm142.2 0h-53v52.4h52.1l16.7-17.4 16 17.4h16.7l-24.3-26.2 24.3-26.2h-15.9l-16.5 17.2-16.1-17.2zm-40.5 40.4v-10.4h29.7v-10.8h-29.7v-8.8h33.1l14.5 15.2-15.2 14.8h-32.4z" fill="#fff"/></svg>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Apple Pay"><rect width="750" height="471" rx="40" fill="#000"/><path d="M200.3 155.8c-12.5 14.8-32.7 26.3-52.6 24.6-2.5-20 7.3-41.2 18.8-54.3 12.5-14.3 34.3-25 52-25.8 2.1 20.8-6 41.2-18.2 55.5zm18 28.8c-29 1.7-53.7 16.5-67.4 16.5-14 0-35.2-15.7-58.2-15.2-30 .5-57.7 17.5-73 44.2-31.2 54.2-8 134.5 22.2 178.7 14.7 21.5 32.5 45.5 55.7 44.7 22.2-.7 30.7-14.5 57.7-14.5 26.7 0 34.5 14.5 58.2 14 24-.5 39.2-21.7 54-43.2 16.7-24.8 23.7-48.7 24-50-1-1-46.5-18.2-47-71.5-.5-44.5 36.2-66 38-67.2-20.8-30.7-53.2-34.2-64.7-35zm174.2-49.6v281.2h43.2v-96.2h59.8c54.7 0 93-37.5 93-92.7 0-55.2-37.5-92.2-91.5-92.2h-104.5zm43.2 36.7h49.7c37.5 0 59 20 59 55.5 0 35.5-21.5 55.7-59.2 55.7h-49.5V171.7zm227 248c27.2 0 52.5-13.8 64-35.5h.7v33.5h40v-148c0-40.2-32.2-66-81.7-66-46.5 0-81 26.2-82.2 62.2h38.7c3.2-17.2 19.2-28.5 42.2-28.5 27.2 0 42.5 12.7 42.5 36.2v15.8l-55.5 3.2c-51.7 3-79.5 24.3-79.5 61 0 37.5 28.8 62 70.8 62zm11.5-33c-23.7 0-38.8-11.5-38.8-29 0-18 14.5-28.5 42.2-30.2l49.5-3v16.2c0 27-22.8 46-52.8 46z" fill="#fff"/></svg>
       </div>
       <span>Interim photography: Trearddur Bay via Wikimedia Commons, CC BY-SA 2.0</span>
     </div>
@@ -1388,9 +1395,9 @@ function drawCurve(){
     <text x="${nx.toFixed(1)}" y="${PADT-20}" text-anchor="middle" fill="#C8402E"
       font-family="Instrument Sans,sans-serif" font-size="12" font-weight="700">NOW</text>`;
 
-  const nxt=extremes(now,now+18*36e5)[0];
+  const nxt=extremes(now,now+26*36e5).filter(v=>v.type==="High")[0];
   if(nxt){
-    $("#tideLbl").textContent="NEXT "+nxt.type.toUpperCase()+" WATER";
+    $("#tideLbl").textContent="NEXT HIGH WATER";
     $("#tideTime").firstChild.nodeValue=hhmm(nxt.t);
     $("#tideHeight").textContent=nxt.h.toFixed(1)+" m above chart datum";
     const mn=Math.round((nxt.t-now)/6e4);
@@ -1473,10 +1480,10 @@ drawCurve();drawWeek();setInterval(drawCurve,60000);
         (isToday?'<line x1="'+nx.toFixed(1)+'" y1="'+(PAD-4)+'" x2="'+nx.toFixed(1)+'" y2="'+(H-PAD)+'" stroke="#C8402E" stroke-width="2"/>'+
           '<circle cx="'+nx.toFixed(1)+'" cy="'+ny.toFixed(1)+'" r="5.5" fill="#C8402E" stroke="#0B2C44" stroke-width="2.2"/>':'');
       /* update the side panel for the selected day */
-      const nxtE=extremes(dayStart,dayStart+18*36e5);
+      const nxtE=extremes(dayStart,dayStart+26*36e5).filter(v=>v.type==="High");
       if(nxtE.length){
         const nxt=nxtE[0];
-        document.getElementById("tideLbl").textContent="NEXT "+nxt.type.toUpperCase()+" WATER";
+        document.getElementById("tideLbl").textContent="NEXT HIGH WATER";
         document.getElementById("tideTime").firstChild.nodeValue=hhmm(nxt.t);
         document.getElementById("tideHeight").textContent=nxt.h.toFixed(1)+" m above chart datum";
         if(isToday){
