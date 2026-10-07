@@ -73,7 +73,7 @@ section{padding-block:clamp(52px,7vw,92px)}
 header.site{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.95);
   backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
 header.site .bar{display:flex;align-items:center;gap:28px;height:76px}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:1;min-width:0;color:var(--ink)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto;color:var(--ink)}
 .brand img{width:42px;height:42px;flex:0 0 auto}
 .brand b{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em;
   font-variation-settings:"SOFT" 60,"WONK" 1;line-height:1;display:block}
@@ -349,7 +349,7 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
         <div class="card">
           <h3>Amazing food</h3>
           <p>Fresh fish landed a few miles up the coast, a specials board that changes daily, and a standing menu that runs from small plates to a proper steak sandwich. Gluten free options right across it.</p>
-          <p style="margin-top:14px"><a href="index.html#menu" style="font-weight:600;color:var(--stripe)">See the menu</a></p>
+          <p style="margin-top:14px"><a href="menu.html" style="font-weight:600;color:var(--stripe)">See the menu</a></p>
         </div>
         <div class="card">
           <h3>Fully stocked bar</h3>
@@ -1030,14 +1030,16 @@ const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
 
 /* ── site map: one place to edit navigation ── */
 const NAV = [
-  ["index.html",      "HOME"],
-  ["about.html",      "ABOUT"],
-  ["index.html#menu", "MENU"],
-  ["reserve.html",    "BOOK A TABLE"],
-  ["webcam.html",     "WEBCAM"],
-  ["gift-cards.html", "GIFT CARDS"],
-  ["faq.html",        "FAQS"],
-  ["jobs.html",       "JOBS"]
+  ["index.html",        "HOME"],
+  ["about.html",        "ABOUT"],
+  ["menu.html",         "MENU"],
+  ["reserve.html",      "BOOK A TABLE"],
+  ["tides.html",        "TIDE TIMES"],
+  ["index.html#contact","FIND US"],
+  ["webcam.html",       "WEBCAM"],
+  ["gift-cards.html",   "GIFT CARDS"],
+  ["faq.html",          "FAQS"],
+  ["jobs.html",         "JOBS"]
 ];
 
 const LOGO = () =>
@@ -1072,8 +1074,6 @@ function renderHeader(){
   <div class="drawer" id="drawer" data-open="false" aria-hidden="true">
     <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
     ${NAV.map(([h,t])=>`<a href="${h}">${t.charAt(0)+t.slice(1).toLowerCase()}</a>`).join("")}
-    <a href="index.html#tides">Tide times</a>
-    <a href="index.html#visit">Find us</a>
     <div class="sub">
       <a href="tel:${C.phone}">${C.phoneText}</a>
       <a href="mailto:${C.email}">${C.email}</a>
@@ -1114,9 +1114,9 @@ function renderFooter(){
         </div>
         <div>
           <h4>VISIT</h4>
-          <a href="index.html#menu">Menu</a>
+          <a href="menu.html">Menu</a>
           <a href="reserve.html">Book a table</a>
-          <a href="index.html#tides">Tide times</a>
+          <a href="tides.html">Tide times</a>
           <a href="webcam.html">TBay webcam</a>
           <a href="${C.maps}" target="_blank" rel="noopener">Directions</a>
         </div>

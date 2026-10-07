@@ -73,7 +73,7 @@ section{padding-block:clamp(52px,7vw,92px)}
 header.site{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.95);
   backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
 header.site .bar{display:flex;align-items:center;gap:28px;height:76px}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:1;min-width:0;color:var(--ink)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto;color:var(--ink)}
 .brand img{width:42px;height:42px;flex:0 0 auto}
 .brand b{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em;
   font-variation-settings:"SOFT" 60,"WONK" 1;line-height:1;display:block}
@@ -996,8 +996,6 @@ function renderHeader(){
   <div class="drawer" id="drawer" data-open="false" aria-hidden="true">
     <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
     ${NAV.map(([h,t])=>`<a href="${h}">${t.charAt(0)+t.slice(1).toLowerCase()}</a>`).join("")}
-    <a href="tides.html">Tide times</a>
-    <a href="index.html#visit">Find us</a>
     <div class="sub">
       <a href="tel:${C.phone}">${C.phoneText}</a>
       <a href="mailto:${C.email}">${C.email}</a>
