@@ -1320,14 +1320,20 @@ function drawCurve(){
     <text x="${nx.toFixed(1)}" y="${PADT-20}" text-anchor="middle" fill="#C8402E"
       font-family="Instrument Sans,sans-serif" font-size="12" font-weight="700">NOW</text>`;
 
-  /* ONLY show next HIGH tide */
-  const nxt=extremes(now,now+26*36e5).filter(v=>v.type==="High")[0];
-  if(nxt){
-    $("#tideLbl").textContent="NEXT HIGH WATER";
-    $("#tideTime").firstChild.nodeValue=hhmm(nxt.t);
-    $("#tideHeight").textContent=nxt.h.toFixed(1)+" m above chart datum";
-    const mn=Math.round((nxt.t-now)/6e4);
-    $("#tideCount").textContent=Math.floor(mn/60)+"h "+String(mn%60).padStart(2,"0")+"m";
+  /* Show current tide state: HIGH TIDE or LOW TIDE */
+  const recent=extremes(now-13*36e5,now);
+  const upcoming=extremes(now,now+13*36e5);
+  const lastEx=recent.length?recent[recent.length-1]:null;
+  if(lastEx){
+    const isHigh=lastEx.type==="High";
+    $("#tideLbl").textContent=isHigh?"HIGH TIDE":"LOW TIDE";
+    $("#tideTime").firstChild.nodeValue=hhmm(lastEx.t);
+    $("#tideHeight").textContent=lastEx.h.toFixed(1)+" m above chart datum";
+    const nextOpp=upcoming.filter(v=>v.type===(isHigh?"Low":"High"))[0];
+    if(nextOpp){
+      $("#tideCount").textContent=hhmm(nextOpp.t);
+      $("#tideCount").nextElementSibling.textContent="next "+(isHigh?"low":"high")+" tide";
+    }
   }
   $("#fNow").textContent=nh.toFixed(1)+" m "+(height(now+18e5)>nh?"rising":"falling");
   const sn=sun(now,53.2799,-4.6206);
@@ -1403,20 +1409,53 @@ drawCurve();drawWeek();setInterval(drawCurve,60000);
         marks+
         (isToday?'<line x1="'+nx.toFixed(1)+'" y1="'+(PAD-4)+'" x2="'+nx.toFixed(1)+'" y2="'+(H-PAD)+'" stroke="#C8402E" stroke-width="2"/>'+
           '<circle cx="'+nx.toFixed(1)+'" cy="'+ny.toFixed(1)+'" r="5.5" fill="#C8402E" stroke="#0B2C44" stroke-width="2.2"/>':'');
-      /* update side panel — HIGH tide only */
-      const nxtE=extremes(dayStart,dayStart+26*36e5).filter(v=>v.type==="High");
-      if(nxtE.length){
-        const nxt=nxtE[0];
-        document.getElementById("tideLbl").textContent="NEXT HIGH WATER";
-        document.getElementById("tideTime").firstChild.nodeValue=hhmm(nxt.t);
-        document.getElementById("tideHeight").textContent=nxt.h.toFixed(1)+" m above chart datum";
-        if(isToday){
-          const mn=Math.round((nxt.t-Date.now())/6e4);
-          document.getElementById("tideCount").textContent=Math.floor(mn/60)+"h "+String(mn%60).padStart(2,"0")+"m";
-        } else {
-          const dayName=new Date(dayStart).toLocaleDateString("en-GB",{weekday:"long"});
-          document.getElementById("tideCount").textContent=dayName;
+      /* update side panel */
+      if(isToday){
+        /* re-run live display */
+        const nowT=Date.now(),nhT=height(nowT);
+        const recentT=extremes(nowT-13*36e5,nowT);
+        const upcomingT=extremes(nowT,nowT+13*36e5);
+        const lastExT=recentT.length?recentT[recentT.length-1]:null;
+        if(lastExT){
+          const isH=lastExT.type==="High";
+          document.getElementById("tideLbl").textContent=isH?"HIGH TIDE":"LOW TIDE";
+          document.getElementById("tideTime").firstChild.nodeValue=hhmm(lastExT.t);
+          document.getElementById("tideHeight").textContent=lastExT.h.toFixed(1)+" m above chart datum";
+          const nOpp=upcomingT.filter(v=>v.type===(isH?"Low":"High"))[0];
+          if(nOpp){
+            document.getElementById("tideCount").textContent=hhmm(nOpp.t);
+            document.getElementById("tideCount").nextElementSibling.textContent="next "+(isH?"low":"high")+" tide";
+          }
         }
+        document.getElementById("fNow").textContent=nhT.toFixed(1)+" m "+(height(nowT+18e5)>nhT?"rising":"falling");
+        const snT=sun(nowT,53.2799,-4.6206);
+        document.getElementById("fRise").textContent=hhmm(snT.rise);
+        document.getElementById("fSet").textContent=hhmm(snT.set);
+        document.getElementById("fTemp").textContent=seaTemp()+" °C";
+      } else {
+        /* future day: show that day's high tides */
+        const dayEnd=dayStart+864e5;
+        const highs=extremes(dayStart,dayEnd).filter(v=>v.type==="High");
+        const lows=extremes(dayStart,dayEnd).filter(v=>v.type==="Low");
+        const dayName=new Date(dayStart).toLocaleDateString("en-GB",{weekday:"long"}).toUpperCase();
+        document.getElementById("tideLbl").textContent=dayName;
+        if(highs.length){
+          document.getElementById("tideTime").firstChild.nodeValue=hhmm(highs[0].t);
+          let sub=highs[0].h.toFixed(1)+"m high";
+          if(highs.length>1) sub+=" · also "+hhmm(highs[1].t)+" ("+highs[1].h.toFixed(1)+"m)";
+          document.getElementById("tideHeight").textContent=sub;
+        }
+        document.getElementById("tideCount").textContent=lows.map(v=>hhmm(v.t)).join(" & ")||"—";
+        document.getElementById("tideCount").nextElementSibling.textContent="low tide"+(lows.length>1?"s":"");
+        /* blank water now, update temp/sunrise/sunset for that day */
+        document.getElementById("fNow").textContent="—";
+        const dayMid=dayStart+12*36e5;
+        const snD=sun(dayMid,53.2799,-4.6206);
+        document.getElementById("fRise").textContent=hhmm(snD.rise);
+        document.getElementById("fSet").textContent=hhmm(snD.set);
+        /* approximate temp for that day */
+        const doyF=(dayStart-Date.UTC(new Date().getFullYear(),0,1))/864e5;
+        document.getElementById("fTemp").textContent=(11.5-4.2*Math.cos(2*Math.PI*(doyF-30)/365)).toFixed(1)+" °C";
       }
     });
   });
