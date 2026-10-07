@@ -111,13 +111,13 @@ nav a:hover{border-bottom-color:var(--buoy)}
 
 /* hero */
 .hero{position:relative;height:min(92vh,860px);min-height:600px;color:#fff;
-  display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
 .hero>.imgwrap{position:absolute;inset:0}
 .hero>.imgwrap img{animation:slowzoom 30s ease-out forwards}
 @keyframes slowzoom{from{transform:scale(1.07)}to{transform:scale(1)}}
 .hero::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(6,47,69,.62) 0%,rgba(6,47,69,.2) 42%,rgba(6,47,69,.8) 100%)}
-.hero-in{position:relative;z-index:2;padding:0 24px 60px;max-width:900px}
+.hero-in{position:relative;z-index:2;padding:0 24px 100px;max-width:900px}
 .hero-in img.mark{width:104px;height:104px;margin:0 auto 26px;display:block}
 .hero h1{font-size:clamp(48px,7vw,94px);font-variation-settings:"SOFT" 55,"WONK" 1,"opsz" 144;
   line-height:.94;text-shadow:0 2px 26px rgba(6,47,69,.45)}
@@ -208,6 +208,8 @@ section{padding-block:100px}
 .week .hl{flex:0 0 auto;font-weight:700;color:var(--sky);font-size:11px;letter-spacing:.06em}
 .week em{font-style:normal;color:#93B6CC}
 .week .today{background:rgba(156,198,222,.22);border-color:var(--sky)}
+.week div{cursor:pointer;transition:background .2s,border-color .2s}
+.week div:hover{background:rgba(255,255,255,.12)}
 .tidefoot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   margin-top:16px;font-size:13px;color:#8FB3C8}
 .tidefoot a{color:var(--sky);font-weight:600}
@@ -280,6 +282,9 @@ footer.site .soc svg{width:100%;height:100%;fill:currentColor;display:block}
 .legal{border-top:1px solid rgba(255,255,255,.16);padding-block:22px;display:flex;
   justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13.5px;color:#88AEC5}
 footer.site .legal a{display:inline;color:#88AEC5;padding:0}
+.pay-icons{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pay-icons svg{width:38px;height:24px;border-radius:4px;background:#fff;padding:3px;flex:0 0 auto;opacity:.7}
+.pay-icons span{font-size:12px;color:#6A96B0;margin-right:4px}
 
 @media (max-width:1100px){
   nav{display:none}
@@ -396,6 +401,8 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
   .foot p a[id="addrFoot"]{display:inline-block!important}
   .legal{flex-direction:column;text-align:center;gap:8px;padding-block:20px 26px}
   .legal br{display:none}
+  .pay-icons{justify-content:center}
+  .pay-icons svg{width:34px;height:22px}
 
   /* -- HERO tightening on phone -- */
   .hero{height:100svh;min-height:0;max-height:none}
@@ -417,11 +424,19 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 /* ── MOBILE HOME: streamlined layout ── */
 @media (max-width:720px){
 
-  /* Hide: menu section, tide band, story, gallery */
+  /* Hide: menu section, story, gallery (tides shown on mobile) */
   #menu{display:none!important}
-  #tides{display:none!important}
   #story{display:none!important}
   #gallery{display:none!important}
+
+  /* Tide band: tighten for phone */
+  .tideband{padding-block:44px}
+  .tide-row{gap:20px}
+  .tide-big{font-size:40px}
+  .tide-big small{font-size:13px}
+  .tide-side{grid-template-columns:1fr 1fr;gap:8px}
+  .tide-side div{font-size:13px;padding-bottom:7px}
+  .tidefoot{font-size:12px;flex-direction:column;gap:8px}
 
   /* Tiles become slim stacked rectangles, name only */
   .tiles{grid-template-columns:1fr!important;gap:0}
@@ -458,8 +473,8 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 }
 
 
-/* nav — tighten between 1100 and 1320 so eight items fit beside the button */
-@media (max-width:1320px){nav{gap:20px}header .bar{gap:24px}}
+/* nav — tighten so ten items fit beside the button */
+@media (max-width:1440px){nav{gap:14px}header .bar{gap:18px}nav a{font-size:12.5px;letter-spacing:.03em}}
 nav a[aria-current="page"]{border-bottom-color:var(--stripe)}
 header.solid nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
 /* burger + drawer (below 1100px the nav hides; before this there was no menu at all) */
@@ -494,7 +509,7 @@ header.solid .burger span{background:var(--ink)}
     </a>
     <nav aria-label="Primary">
       <a href="#top" aria-current="page">HOME</a><a href="about.html">ABOUT</a><a href="#menu">MENU</a><a href="reserve.html">BOOK A TABLE</a>
-      <a href="webcam.html">WEBCAM</a><a href="gift-cards.html">GIFT CARDS</a><a href="faq.html">FAQS</a><a href="jobs.html">JOBS</a>
+      <a href="#tides">TIDE TIMES</a><a href="#contact">FIND US</a><a href="webcam.html">WEBCAM</a><a href="gift-cards.html">GIFT CARDS</a><a href="faq.html">FAQS</a><a href="jobs.html">JOBS</a>
     </nav>
     <a class="btn btn--book btn--sm" id="bookTop" target="_blank" rel="noopener">BOOK A TABLE</a>
     <button class="burger" id="openDrawer" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -504,7 +519,7 @@ header.solid .burger span{background:var(--ink)}
   <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
   <a href="#top">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a><a href="reserve.html">Book a table</a>
   <a href="webcam.html">Webcam</a><a href="gift-cards.html">Gift cards</a><a href="faq.html">FAQs</a><a href="jobs.html">Jobs</a>
-  <a href="#tides">Tide times</a><a href="#visit">Find us</a>
+  <a href="#tides">Tide times</a><a href="#contact">Find us</a>
   <div class="sub">
     <a href="tel:+441407728200">01407 728 200</a>
     <a href="mailto:info@seashantycafe.co.uk">info@seashantycafe.co.uk</a>
@@ -649,7 +664,7 @@ header.solid .burger span{background:var(--ink)}
           <div><span class="k">Christmas Day</span><span class="v">Closed</span></div>
         </div>
       </div>
-      <div class="contact">
+      <div class="contact" id="contact">
         <h3>Get in touch</h3>
         <a id="cPhone"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg><span><b id="cPhoneT">—</b><br><small>Bookings and enquiries</small></span></a>
         <a id="cMail"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><b id="cMailT">—</b><br><small>We can't take bookings by email</small></span></a>
@@ -680,7 +695,7 @@ header.solid .burger span{background:var(--ink)}
       </div>
       <div>
         <h4>VISIT</h4>
-        <a href="#menu">Menu</a><a href="reserve.html">Book a table</a><a href="#tides">Tide times</a>
+        <a href="menu.html">Menu</a><a href="reserve.html">Book a table</a><a href="#tides">Tide times</a>
         <a href="webcam.html">TBay webcam</a><a id="fMap">Directions</a>
       </div>
       <div>
@@ -700,6 +715,13 @@ header.solid .burger span{background:var(--ink)}
     </div>
     <div class="legal">
       <span>© <span id="yr"></span> Sea Shanty Restaurants Ltd · <a href="#">Privacy</a> · <a href="#">Cookies</a> · <a href="#">Accessibility</a></span>
+      <div class="pay-icons">
+        <span>We accept</span>
+        <svg viewBox="0 0 38 24" role="img" aria-label="Visa"><rect width="38" height="24" rx="3" fill="#1A1F71"/><path d="M15.3 16.2l1.6-9.8h2.5l-1.6 9.8h-2.5zm10.4-9.6c-.5-.2-1.3-.4-2.2-.4-2.5 0-4.2 1.3-4.2 3.1 0 1.4 1.2 2.1 2.2 2.6 1 .5 1.3.8 1.3 1.2 0 .7-.8 1-1.5 1-1 0-1.6-.2-2.4-.5l-.3-.2-.4 2.1c.6.3 1.7.5 2.9.5 2.6 0 4.3-1.3 4.3-3.2 0-1.1-.6-1.9-2-2.5-.9-.4-1.4-.7-1.4-1.2 0-.4.4-.8 1.4-.8.8 0 1.4.2 1.8.3l.2.1.3-2.1zM30.5 6.4h-2c-.6 0-1 .2-1.3.8L23.5 16h2.6l.5-1.4h3.2l.3 1.4h2.3L30.5 6.4zm-3.5 7.2l1.3-3.6.8 3.6H27zM13.5 6.4l-2.3 6.7-.3-1.2c-.4-1.5-1.8-3.1-3.4-3.9l2.2 8.2h2.6l3.9-9.8h-2.7z" fill="#fff"/><path d="M9.4 6.4H5.5l0 .2c3.1.8 5.2 2.7 6 5l-.9-4.3c-.1-.7-.6-.9-1.2-.9z" fill="#F9A533"/></svg>
+        <svg viewBox="0 0 38 24" role="img" aria-label="Mastercard"><rect width="38" height="24" rx="3" fill="#252525"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/><path d="M19 7.2a7 7 0 0 1 2.6 4.8A7 7 0 0 1 19 16.8 7 7 0 0 1 16.4 12 7 7 0 0 1 19 7.2z" fill="#FF5F00"/></svg>
+        <svg viewBox="0 0 38 24" role="img" aria-label="Amex"><rect width="38" height="24" rx="3" fill="#2557D6"/><path d="M6 10.2L8.5 4h3.6l1.4 3.4V4h4.5l.8 2.2.8-2.2h4.4v16H11.8L11 17.6l-.8 2.4H6v-9.8zM8.5 8.6l-1.5 3.4h2l.7-1.7.7 1.7h6.1v-1.3l.5 1.3h3.1l.5-1.4V12H24V8.6h-2.1l-.5 1.3-.5-1.3h-6.3v1.3l-.6-1.3H8.5z" fill="#fff"/></svg>
+        <svg viewBox="0 0 38 24" role="img" aria-label="Apple Pay"><rect width="38" height="24" rx="3" fill="#000"/><path d="M11.6 8.1c-.4.4-.9.7-1.5.7-.1-.6.2-1.3.5-1.7.4-.5 1-.7 1.5-.7.1.6-.2 1.3-.5 1.7zm.5.9c-.8 0-1.6.5-2 .5s-1-.5-1.7-.5c-.9 0-1.7.5-2.1 1.3-.9 1.6-.2 3.9.6 5.2.4.6.9 1.3 1.6 1.3.6 0 .9-.4 1.6-.4.7 0 .9.4 1.6.4.7 0 1.1-.6 1.5-1.3.5-.7.7-1.4.7-1.4-.7-.3-1.3-1.2-1.3-2.2 0-.9.5-1.7 1.2-2.1-.5-.7-1.2-.9-1.7-.9zm6.3-.7v8.7h1.3v-3h1.8c1.6 0 2.8-1.1 2.8-2.9 0-1.7-1.1-2.8-2.7-2.8h-3.2zm1.3 1.1h1.5c1.1 0 1.7.6 1.7 1.7s-.6 1.7-1.7 1.7h-1.5V9.4zm6.7 7.7c.8 0 1.6-.4 2-.1.1h0v.9h1.2v-4.4c0-1.3-1-2.1-2.6-2.1-1.4 0-2.5.8-2.5 2h1.2c.1-.6.6-1 1.3-1 .9 0 1.3.4 1.3 1.1v.5l-1.8.1c-1.6.1-2.5.8-2.5 2 0 1.2.9 2 2.4 2zm.4-1c-.7 0-1.2-.4-1.2-.9 0-.6.4-.9 1.3-1l1.6-.1v.5c0 .9-.7 1.5-1.7 1.5z" fill="#fff"/></svg>
+      </div>
       <span>Interim photography: Trearddur Bay via Wikimedia Commons, CC BY-SA 2.0</span>
     </div>
   </div>
@@ -1402,7 +1424,6 @@ drawCurve();drawWeek();setInterval(drawCurve,60000);
   cards.forEach((c,i)=>{
     c.style.cursor="pointer";
     c.addEventListener("click",()=>{
-      if(!matchMedia("(max-width:720px)").matches) return;
       cards.forEach(x=>x.classList.remove("today"));
       c.classList.add("today");
       /* offset = days from today */
@@ -1411,7 +1432,8 @@ drawCurve();drawWeek();setInterval(drawCurve,60000);
       const svg=document.getElementById("curve");
       if(!svg) return;
       /* redraw the curve for the selected day */
-      const W=680,H=220,PAD=28,N=144;
+      const mob=matchMedia("(max-width:720px)").matches;
+      const W=mob?680:1000, H=mob?220:300, PAD=mob?28:38, N=mob?144:200;
       const hs=[];for(let j=0;j<=N;j++)hs.push(height(dayStart+j*(864e5/N)));
       const lo=Math.min(...hs)-.4,hi=Math.max(...hs)+.4;
       const x=t=>((t-dayStart)/864e5)*W, y=h=>PAD+(1-(h-lo)/(hi-lo))*(H-PAD*2);
@@ -1450,6 +1472,21 @@ drawCurve();drawWeek();setInterval(drawCurve,60000);
         marks+
         (isToday?'<line x1="'+nx.toFixed(1)+'" y1="'+(PAD-4)+'" x2="'+nx.toFixed(1)+'" y2="'+(H-PAD)+'" stroke="#C8402E" stroke-width="2"/>'+
           '<circle cx="'+nx.toFixed(1)+'" cy="'+ny.toFixed(1)+'" r="5.5" fill="#C8402E" stroke="#0B2C44" stroke-width="2.2"/>':'');
+      /* update the side panel for the selected day */
+      const nxtE=extremes(dayStart,dayStart+18*36e5);
+      if(nxtE.length){
+        const nxt=nxtE[0];
+        document.getElementById("tideLbl").textContent="NEXT "+nxt.type.toUpperCase()+" WATER";
+        document.getElementById("tideTime").firstChild.nodeValue=hhmm(nxt.t);
+        document.getElementById("tideHeight").textContent=nxt.h.toFixed(1)+" m above chart datum";
+        if(isToday){
+          const mn=Math.round((nxt.t-Date.now())/6e4);
+          document.getElementById("tideCount").textContent=Math.floor(mn/60)+"h "+String(mn%60).padStart(2,"0")+"m";
+        } else {
+          const dayName=new Date(dayStart).toLocaleDateString("en-GB",{weekday:"long"});
+          document.getElementById("tideCount").textContent=dayName;
+        }
+      }
     });
   });
 }
