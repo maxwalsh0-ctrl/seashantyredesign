@@ -255,6 +255,9 @@ footer.site .soc svg{width:100%;height:100%;fill:currentColor;display:block}
 .legal{border-top:1px solid rgba(255,255,255,.16);padding-block:22px;display:flex;
   justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13.5px;color:#88AEC5}
 footer.site .legal a{display:inline;color:#88AEC5;padding:0}
+.pay-icons{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pay-icons svg{width:56px;height:35px;border-radius:5px;flex:0 0 auto}
+.pay-icons span{font-size:12px;color:#6A96B0;margin-right:4px}
 @media (max-width:980px){footer.site .foot{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){footer.site .foot{grid-template-columns:1fr;gap:32px}}
 
@@ -1109,6 +1112,13 @@ function renderFooter(){
       <div class="legal">
         <span>&copy; ${new Date().getFullYear()} Sea Shanty Restaurants Ltd &middot;
           <a href="privacy.html">Privacy</a> &middot; <a href="privacy.html#cookies">Cookies</a> &middot; <a href="#">Accessibility</a></span>
+        <div class="pay-icons">
+        <span>We accept</span>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Visa" shape-rendering="geometricPrecision"><rect width="750" height="471" rx="40" fill="#1A1F71"/><path d="M278.2 334.2h-60.6l37.9-233.7h60.6L278.2 334.2zM524.8 104.9c-12-4.6-30.8-9.5-54.3-9.5-59.9 0-102.1 31.9-102.4 77.6-.4 33.7 30.1 52.5 53.1 63.7 23.6 11.5 31.5 18.8 31.4 29.1-.2 15.7-18.8 22.9-36.2 22.9-24.2 0-37.1-3.5-57-12.2l-7.8-3.7-8.5 52.4c14.1 6.6 40.3 12.3 67.4 12.6 63.7 0 105.1-31.5 105.6-80.3.2-26.8-16-47.2-51-64-21.2-10.9-34.2-18.2-34.1-29.2 0-9.8 11-20.2 34.8-20.2 19.8-.3 34.2 4.2 45.4 9l5.5 2.7 8.1-51zM661.6 100.5h-46.9c-14.5 0-25.4 4.2-31.8 19.5l-90.1 215.2h63.7s10.4-28.9 12.8-35.3h77.8c1.8 8.2 7.4 35.3 7.4 35.3h56.3l-49.2-234.7zm-75 151.4c5-13.6 24.3-66.1 24.3-66.1-.4.6 5-13.7 8.1-22.6l4.1 20.4s11.7 56.5 14.1 68.3h-50.6zM232.8 100.5L173.5 262l-6.3-32.6c-11.1-37.6-45.6-78.4-84.3-98.8l54.3 203.5h64.1l95.3-233.6h-63.8z" fill="#fff"/><path d="M131.9 100.5H34.8l-.8 4.7c76 19.4 126.3 66.3 147.2 122.7L160 124.5c-3.4-14.7-14.5-19.3-28.1-24z" fill="#F7B600"/></svg>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Mastercard" shape-rendering="geometricPrecision"><rect width="750" height="471" rx="40" fill="#1A1F25"/><circle cx="299" cy="236" r="158" fill="#EB001B"/><circle cx="451" cy="236" r="158" fill="#F79E1B"/><path d="M375 116.5a157.5 157.5 0 0 1 58.5 119.5A157.5 157.5 0 0 1 375 355.5 157.5 157.5 0 0 1 316.5 236 157.5 157.5 0 0 1 375 116.5z" fill="#FF5F00"/></svg>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Amex" shape-rendering="geometricPrecision"><rect width="750" height="471" rx="40" fill="#006FCF"/><path d="M0 221.3l36.6-85.2h58.4l21.2 48.3V136.1h72.5l13.1 36.5 12.4-36.5H750v256.8H0V221.3zm66.1-59.6L28.5 254.9h37.1l5.6-13.5h12.8l5.6 13.5h40.9v-10.3l3.6 10.3h21.2l3.6-10.5v10.5h101.7l12.4-12.8 11.6 12.8h65.8l-42.8-46.6 42.8-47.8h-64.8l-12.1 12.6-11.2-12.6h-110.8l-7.9 17.6-8.1-17.6h-58.2V172l-4.9-10.3H66.1zm10.5 20.4h-18l22.4 52.4v-33l20 33h15.1l20-33.3v33.3h12.5v-52.4h-19.5l-16.8 28.4-17.7-28.4h-18zm142.2 0h-53v52.4h52.1l16.7-17.4 16 17.4h16.7l-24.3-26.2 24.3-26.2h-15.9l-16.5 17.2-16.1-17.2zm-40.5 40.4v-10.4h29.7v-10.8h-29.7v-8.8h33.1l14.5 15.2-15.2 14.8h-32.4z" fill="#fff"/></svg>
+        <svg viewBox="0 0 750 471" role="img" aria-label="Apple Pay" shape-rendering="geometricPrecision"><rect width="750" height="471" rx="40" fill="#000"/><path d="M200.3 155.8c-12.5 14.8-32.7 26.3-52.6 24.6-2.5-20 7.3-41.2 18.8-54.3 12.5-14.3 34.3-25 52-25.8 2.1 20.8-6 41.2-18.2 55.5zm18 28.8c-29 1.7-53.7 16.5-67.4 16.5-14 0-35.2-15.7-58.2-15.2-30 .5-57.7 17.5-73 44.2-31.2 54.2-8 134.5 22.2 178.7 14.7 21.5 32.5 45.5 55.7 44.7 22.2-.7 30.7-14.5 57.7-14.5 26.7 0 34.5 14.5 58.2 14 24-.5 39.2-21.7 54-43.2 16.7-24.8 23.7-48.7 24-50-1-1-46.5-18.2-47-71.5-.5-44.5 36.2-66 38-67.2-20.8-30.7-53.2-34.2-64.7-35zm174.2-49.6v281.2h43.2v-96.2h59.8c54.7 0 93-37.5 93-92.7 0-55.2-37.5-92.2-91.5-92.2h-104.5zm43.2 36.7h49.7c37.5 0 59 20 59 55.5 0 35.5-21.5 55.7-59.2 55.7h-49.5V171.7zm227 248c27.2 0 52.5-13.8 64-35.5h.7v33.5h40v-148c0-40.2-32.2-66-81.7-66-46.5 0-81 26.2-82.2 62.2h38.7c3.2-17.2 19.2-28.5 42.2-28.5 27.2 0 42.5 12.7 42.5 36.2v15.8l-55.5 3.2c-51.7 3-79.5 24.3-79.5 61 0 37.5 28.8 62 70.8 62zm11.5-33c-23.7 0-38.8-11.5-38.8-29 0-18 14.5-28.5 42.2-30.2l49.5-3v16.2c0 27-22.8 46-52.8 46z" fill="#fff"/></svg>
+      </div>
         <span>Interim photography: Trearddur Bay via Wikimedia Commons, CC BY-SA 2.0</span>
       </div>
     </div>

@@ -283,8 +283,17 @@ footer.site .soc svg{width:100%;height:100%;fill:currentColor;display:block}
   justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13.5px;color:#88AEC5}
 footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 .pay-icons{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.pay-icons svg{width:42px;height:26px;border-radius:4px;background:#fff;padding:2px;flex:0 0 auto;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+.pay-icons svg{width:56px;height:35px;border-radius:5px;flex:0 0 auto}
 .pay-icons span{font-size:12px;color:#6A96B0;margin-right:4px}
+
+/* desktop hero: left-aligned */
+@media (min-width:981px){
+  .hero{text-align:left}
+  .hero-in{max-width:var(--wrap);width:100%;padding:0 var(--gut) 140px}
+  .hero-in img.mark{margin:0 0 26px}
+  .hero .sub{margin:20px 0 34px}
+  .hero-cta{justify-content:flex-start}
+}
 
 @media (max-width:1100px){
   nav{display:none}
@@ -406,7 +415,7 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
   .legal{flex-direction:column;text-align:center;gap:8px;padding-block:20px 26px}
   .legal br{display:none}
   .pay-icons{justify-content:center}
-  .pay-icons svg{width:38px;height:24px}
+  .pay-icons svg{width:46px;height:29px}
 
   /* -- HERO tightening on phone: text floats on the sea -- */
   .hero{height:100svh;min-height:0;max-height:none;align-items:flex-end}
