@@ -1553,7 +1553,7 @@ document.querySelectorAll('a[href="#visit"],a[href="#contact"]').forEach(a=>a.ad
   if(!el)return;
   e.preventDefault();
   const hdr=document.querySelector("header.site")||document.querySelector("header");
-  const off=hdr?hdr.offsetHeight+12:92;
+  const off=hdr?hdr.offsetHeight-20:62;
   const y=el.getBoundingClientRect().top+window.scrollY-off;
   window.scrollTo({top:y,behavior:"smooth"});
   /* re-check after images may have shifted layout */
