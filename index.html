@@ -1547,16 +1547,22 @@ document.querySelectorAll(".tile[data-tab]").forEach(a=>a.addEventListener("clic
 }));
 
 /* precise scroll for Find Us — avoids first-click misalignment from lazy images */
-document.querySelectorAll('a[href="#visit"],a[href="#contact"]').forEach(a=>a.addEventListener("click",function(e){
-  const id=this.getAttribute("href").slice(1);
-  const el=document.getElementById(id);
+function scrollToHash(hash,smooth){
+  const el=document.getElementById(hash);
   if(!el)return;
-  e.preventDefault();
   const hdr=document.querySelector("header.site")||document.querySelector("header");
   const off=hdr?hdr.offsetHeight+12:92;
   const y=el.getBoundingClientRect().top+window.scrollY-off;
-  window.scrollTo({top:y,behavior:"smooth"});
+  window.scrollTo({top:y,behavior:smooth?"smooth":"auto"});
+}
+document.querySelectorAll('a[href="#visit"],a[href="#contact"]').forEach(a=>a.addEventListener("click",function(e){
+  e.preventDefault();
+  scrollToHash(this.getAttribute("href").slice(1),true);
 }));
+/* on page load from another page (e.g. index.html#visit), re-scroll after images settle */
+if(location.hash&&/^#(visit|contact)$/.test(location.hash)){
+  window.addEventListener("load",()=>setTimeout(()=>scrollToHash(location.hash.slice(1),false),80));
+}
 
 /* reviews */
 const SEED={rating:4.4,total:2320,reviews:[
