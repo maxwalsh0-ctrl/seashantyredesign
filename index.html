@@ -1556,6 +1556,8 @@ document.querySelectorAll('a[href="#visit"],a[href="#contact"]').forEach(a=>a.ad
   const off=hdr?hdr.offsetHeight+12:92;
   const y=el.getBoundingClientRect().top+window.scrollY-off;
   window.scrollTo({top:y,behavior:"smooth"});
+  /* re-check after images may have shifted layout */
+  setTimeout(()=>{const y2=el.getBoundingClientRect().top+window.scrollY-off;window.scrollTo({top:y2,behavior:"smooth"})},600);
 }));
 
 /* reviews */
