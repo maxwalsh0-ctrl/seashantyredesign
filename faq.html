@@ -99,7 +99,7 @@ header.site nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
   padding:calc(env(safe-area-inset-top) + 16px) var(--gut) 28px}
 .drawer[data-open="true"]{transform:none}
 .drawer .x{align-self:flex-end;width:44px;height:44px;background:none;outline:0;
-  border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;cursor:pointer}
+  border:0;-webkit-appearance:none;appearance:none;box-shadow:none;color:#fff;font-size:20px;cursor:pointer}
 .drawer a{display:block;font-family:var(--display);font-size:clamp(26px,7vw,34px);font-weight:500;
   text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .drawer .sub{margin-top:auto;padding-top:24px}
@@ -1053,7 +1053,7 @@ function renderFooter(){
           <a href="faq.html">FAQs</a>
           <a href="jobs.html">Jobs</a>
           <a href="index.html#reviews">Reviews</a>
-          <a href="menu.html">Allergens</a>
+          
         </div>
         <div>
           <h4>NEWS &amp; OFFERS</h4>
