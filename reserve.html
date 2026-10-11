@@ -345,8 +345,17 @@ footer.site .pay-icons{justify-content:center}
   .field{margin-bottom:14px}
   /* page header hero: paint the safe-area top */
   header,.pagehead{padding-top:env(safe-area-inset-top)}
-  /* footer stacks single column, centred */
-  footer.site .foot{grid-template-columns:1fr!important;gap:32px;padding-block:44px 28px;text-align:center}
+  /* footer: two-column nav, stacked newsletter + address */
+  footer.site .foot{grid-template-columns:1fr 1fr!important;gap:4px 28px;padding-block:36px 28px;text-align:center}
+  footer.site .foot>div:nth-child(2){order:1}
+  footer.site .foot>div:nth-child(3){order:2}
+  footer.site .foot>div:nth-child(4){order:3;grid-column:1/-1;margin-top:6px;padding-top:22px;position:relative}
+  footer.site .foot>div:first-child{order:4;grid-column:1/-1;margin-top:6px;padding-top:22px;position:relative}
+  footer.site .foot>div:nth-child(2) a,
+  footer.site .foot>div:nth-child(3) a{padding:4px 0;font-size:14.5px}
+  footer.site .foot>div:nth-child(4)::before,
+  footer.site .foot>div:first-child::before{content:'';position:absolute;top:0;left:20px;right:20px;
+    height:1px;background:rgba(161,178,206,.35)}
   footer.site .foot .soc{justify-content:center}
   footer.site .news{max-width:340px;margin:14px auto 0}
   footer.site .legal{flex-direction:column;text-align:center;gap:8px}
@@ -1156,7 +1165,7 @@ function renderFooter(){
           <a href="faq.html">FAQs</a>
           <a href="jobs.html">Jobs</a>
           <a href="index.html#reviews">Reviews</a>
-          <a href="#">Allergens</a>
+          <a href="menu.html">Allergens</a>
         </div>
         <div>
           <h4>NEWS &amp; OFFERS</h4>
