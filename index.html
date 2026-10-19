@@ -288,6 +288,21 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 .pay-icons{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .pay-icons svg{width:56px;height:35px;border-radius:5px;flex:0 0 auto}
 .pay-icons span{font-size:12px;color:#6A96B0;margin-right:4px}
+/* policy modal */
+.policy-overlay{position:fixed;inset:0;background:rgba(6,47,69,.85);z-index:9999;display:none;
+  align-items:center;justify-content:center;padding:24px;overflow-y:auto}
+.policy-overlay.open{display:flex}
+.policy-modal{background:var(--sand);color:var(--ink);max-width:680px;width:100%;
+  border-radius:12px;padding:48px 40px 40px;position:relative;max-height:90vh;overflow-y:auto}
+.policy-modal h2{font:700 28px/1.2 var(--display);margin:0 0 8px;color:var(--ink)}
+.policy-modal .updated{font-size:13px;color:#5E7A8B;margin-bottom:24px}
+.policy-modal h3{font:600 16px/1.3 var(--body);margin:24px 0 8px;color:var(--ink)}
+.policy-modal p,.policy-modal li{font:15px/1.6 var(--body);color:#3D5A80;margin:0 0 12px}
+.policy-modal ul{padding-left:20px;margin:0 0 12px}
+.policy-modal .close-policy{position:absolute;top:16px;right:16px;width:36px;height:36px;
+  border:0;background:none;cursor:pointer;color:#5E7A8B;font-size:24px;display:flex;
+  align-items:center;justify-content:center;border-radius:50%}
+.policy-modal .close-policy:hover{background:rgba(0,0,0,.06);color:var(--ink)}
 
 @media (max-width:1100px){
   nav{display:none}
@@ -729,7 +744,7 @@ header.solid .burger span{background:var(--ink)}
       </div>
     </div>
     <div class="legal">
-      <span>© <span id="yr"></span> Sea Shanty Restaurants Ltd · <a href="#">Privacy</a> · <a href="#">Cookies</a> · <a href="#">Accessibility</a></span>
+      <span>© <span id="yr"></span> Sea Shanty Restaurants Ltd · <a href="#" onclick="openPolicy('privacy');return false">Privacy</a> · <a href="#" onclick="openPolicy('cookies');return false">Cookies</a> · <a href="#" onclick="openPolicy('accessibility');return false">Accessibility</a></span>
       <div class="pay-icons">
         <span>We accept</span>
         <svg viewBox="0 0 120 80" role="img" aria-label="Visa"><rect width="120" height="80" rx="4" fill="#fff"/><path d="M46.61,24.32,33.26,56.18H24.54L18,30.76c-.41-1.57-.75-2.14-2-2.8a34.65,34.65,0,0,0-8.14-2.71l.2-.93h14a3.84,3.84,0,0,1,3.8,3.25L29.38,46,38,24.32ZM80.75,45.78c0-8.41-11.63-8.86-11.55-12.62,0-1.15,1.11-2.37,3.49-2.67a15.46,15.46,0,0,1,8.13,1.42l1.45-6.76a22.2,22.2,0,0,0-7.71-1.41c-8.15,0-13.88,4.34-13.93,10.54-.05,4.58,4.09,7.14,7.22,8.67s4.28,2.56,4.27,4c0,2.14-2.56,3.07-4.93,3.11a17.23,17.23,0,0,1-8.47-2l-1.49,7a25.05,25.05,0,0,0,9.17,1.7c8.65,0,14.32-4.29,14.35-10.91m21.51,10.4h7.62l-6.65-31.86h-7a3.77,3.77,0,0,0-3.51,2.34L80.32,56.18H89l1.72-4.75h10.57ZM93.06,44.9l4.34-12,2.5,12ZM58.39,24.32,51.57,56.18H43.32l6.83-31.86Z" fill="#1434CB"/></svg>
@@ -741,6 +756,77 @@ header.solid .burger span{background:var(--ink)}
     </div>
   </div>
 </footer>
+
+<!-- Policy modals -->
+<div class="policy-overlay" id="privacy-overlay" onclick="if(event.target===this)closePolicy()">
+  <div class="policy-modal">
+    <button class="close-policy" onclick="closePolicy()" aria-label="Close">&times;</button>
+    <h2>Privacy Policy</h2>
+    <p class="updated">Last updated: October 2026</p>
+    <h3>Who we are</h3>
+    <p>Sea Shanty Restaurants Ltd operates the Sea Shanty Cafe at Lon St Ffraid, Trearddur Bay, Anglesey LL65 2YR. We are the data controller for any personal information collected through this website.</p>
+    <h3>What we collect</h3>
+    <ul>
+      <li>Name, email address, phone number and party size when you make a reservation through ResDiary</li>
+      <li>Email address if you sign up for our newsletter</li>
+      <li>Basic analytics data (pages visited, device type) through cookies</li>
+    </ul>
+    <h3>How we use it</h3>
+    <ul>
+      <li>To process and manage your reservation</li>
+      <li>To send occasional emails about specials and events (only if you opted in)</li>
+      <li>To understand how visitors use our website so we can improve it</li>
+    </ul>
+    <h3>Who we share it with</h3>
+    <p>We do not sell or share your personal data with third parties for marketing. Reservation data is processed by ResDiary on our behalf. We may share data if required by law.</p>
+    <h3>Your rights</h3>
+    <p>You can request access to, correction of, or deletion of your personal data at any time by emailing <a href="mailto:info@seashantycafe.co.uk">info@seashantycafe.co.uk</a>. You can unsubscribe from our newsletter using the link in any email.</p>
+    <h3>Contact</h3>
+    <p>For any privacy-related questions, email us at <a href="mailto:info@seashantycafe.co.uk">info@seashantycafe.co.uk</a> or write to the address above.</p>
+  </div>
+</div>
+
+<div class="policy-overlay" id="cookies-overlay" onclick="if(event.target===this)closePolicy()">
+  <div class="policy-modal">
+    <button class="close-policy" onclick="closePolicy()" aria-label="Close">&times;</button>
+    <h2>Cookie Policy</h2>
+    <p class="updated">Last updated: October 2026</p>
+    <h3>What are cookies?</h3>
+    <p>Cookies are small text files stored on your device when you visit a website. They help the site work properly and can provide usage information.</p>
+    <h3>Cookies we use</h3>
+    <ul>
+      <li><strong>Essential cookies</strong> — required for the website to function (e.g. remembering your session). These cannot be disabled.</li>
+      <li><strong>Analytics cookies</strong> — help us understand how visitors use the site (pages viewed, time on site). Data is anonymised and never used for advertising.</li>
+    </ul>
+    <h3>Third-party cookies</h3>
+    <p>Our reservation system (ResDiary) may set its own cookies when you use the booking page. These are governed by ResDiary's own cookie policy.</p>
+    <h3>Managing cookies</h3>
+    <p>You can control and delete cookies through your browser settings. Disabling essential cookies may affect how the site works. For more information, visit <a href="https://www.aboutcookies.org" target="_blank" rel="noopener">aboutcookies.org</a>.</p>
+  </div>
+</div>
+
+<div class="policy-overlay" id="accessibility-overlay" onclick="if(event.target===this)closePolicy()">
+  <div class="policy-modal">
+    <button class="close-policy" onclick="closePolicy()" aria-label="Close">&times;</button>
+    <h2>Accessibility</h2>
+    <p class="updated">Last updated: October 2026</p>
+    <h3>Our commitment</h3>
+    <p>We want everyone to be able to use the Sea Shanty website. We aim to meet WCAG 2.1 Level AA standards and are continually working to improve accessibility.</p>
+    <h3>What we've done</h3>
+    <ul>
+      <li>Semantic HTML with proper heading structure</li>
+      <li>Keyboard-navigable menus and interactive elements</li>
+      <li>Sufficient colour contrast across the site</li>
+      <li>Alt text on all meaningful images</li>
+      <li>Responsive design that works on all screen sizes</li>
+      <li>Clear, readable fonts at comfortable sizes</li>
+    </ul>
+    <h3>The cafe</h3>
+    <p>The Sea Shanty Cafe has step-free access to the main dining area and accessible toilet facilities. If you have any specific requirements for your visit, please call us on <a href="tel:+441407728200">01407 728 200</a> and we'll do our best to help.</p>
+    <h3>Feedback</h3>
+    <p>If you have difficulty using any part of this website, please let us know at <a href="mailto:info@seashantycafe.co.uk">info@seashantycafe.co.uk</a> so we can fix it.</p>
+  </div>
+</div>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Restaurant","name":"Sea Shanty Cafe",
@@ -1611,6 +1697,11 @@ function paint(d){
 }
 (async()=>{if(C.reviewsEndpoint){try{const r=await fetch(C.reviewsEndpoint);if(r.ok){paint(await r.json());return}}catch(e){}}paint(SEED)})();
 })();
+</script>
+<script>
+function openPolicy(id){document.getElementById(id+'-overlay').classList.add('open');document.body.style.overflow='hidden'}
+function closePolicy(){document.querySelectorAll('.policy-overlay').forEach(o=>o.classList.remove('open'));document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePolicy()});
 </script>
 </body>
 </html>
