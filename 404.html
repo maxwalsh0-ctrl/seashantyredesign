@@ -109,6 +109,15 @@ header.site nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
   text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .drawer .sub{margin-top:auto;padding-top:24px}
 .drawer .sub a{font-family:var(--body);font-size:16px;border:0;padding:7px 0;color:#DCEAF3}
+.drawer-sub{display:none;padding-left:24px}
+.drawer-sub a{font-size:clamp(18px,5vw,22px)!important;padding:8px 0!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;color:#DCEAF3!important}
+.drawer-sub a:last-child{border-bottom:1px solid rgba(255,255,255,.14)!important}
+.drawer-toggle{position:relative}
+.drawer-toggle>.arrow{position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:20px;height:20px;transition:transform .2s}
+.drawer-toggle>.arrow path{stroke:#DCEAF3;stroke-width:2;fill:none}
+.drawer-toggle[aria-expanded="true"]>.arrow{transform:translateY(-50%) rotate(180deg)}
 
 /* ── page header ── */
 .pagehead{position:relative;color:#fff;overflow:hidden;
@@ -992,7 +1001,10 @@ function renderHeader(){
   </header>
   <div class="drawer" id="drawer" data-open="false" aria-hidden="true">
     <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
-    ${NAV.map(([h,t])=>`<a href="${h}">${t.charAt(0)+t.slice(1).toLowerCase()}</a>`).join("")}
+    ${NAV.map(([h,t])=>{
+      if(t==="MENU") return '<a href="'+h+'" class="drawer-toggle" id="menuToggle" aria-expanded="false" onclick="toggleDrawerSub(event)">Menu<svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5"/></svg></a><div class="drawer-sub" id="menuSub"><a href="menu.html?tab=From+the+sea">The Restaurant</a><a href="menu.html?tab=Bar">The Bar</a><a href="menu.html?tab=Parlour">Ice Cream Parlour</a><a href="webcam.html">The Terrace</a></div>';
+      return `<a href="${h}">${t.charAt(0)+t.slice(1).toLowerCase()}</a>`;
+    }).join("")}
     <a href="index.html#tides">Tide times</a>
     <a href="index.html#visit">Find us</a>
     <div class="sub">
@@ -1007,8 +1019,8 @@ function renderHeader(){
   const set=o=>{dr.dataset.open=o;dr.setAttribute("aria-hidden",!o);
     document.body.style.overflow=o?"hidden":""};
   $("#openDrawer").onclick=()=>set(true);
-  $("#closeDrawer").onclick=()=>set(false);
-  $$("a",dr).forEach(a=>a.addEventListener("click",()=>set(false)));
+  $("#closeDrawer").onclick=()=>{set(false);var t=$("#menuToggle"),s=$("#menuSub");if(t){t.setAttribute("aria-expanded","false");s.style.display="none"}};
+  $$("a",dr).forEach(a=>{if(!a.classList.contains("drawer-toggle"))a.addEventListener("click",()=>set(false))});
   addEventListener("keydown",e=>{if(e.key==="Escape")set(false)});
 }
 
@@ -1217,6 +1229,15 @@ document.readyState==="loading"
   : boot();
 })();
 
+</script>
+<script>
+function toggleDrawerSub(e){
+  e.preventDefault();e.stopPropagation();
+  var tog=document.getElementById('menuToggle'),sub=document.getElementById('menuSub');
+  var open=tog.getAttribute('aria-expanded')==='true';
+  tog.setAttribute('aria-expanded',!open);
+  sub.style.display=open?'none':'block';
+}
 </script>
 </body>
 </html>
