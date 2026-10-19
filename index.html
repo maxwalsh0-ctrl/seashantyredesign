@@ -468,17 +468,8 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
   .tide-side div{font-size:13px;padding-bottom:7px}
   .tidefoot{font-size:12px;flex-direction:column;gap:8px}
 
-  /* Tiles become slim stacked rectangles, name only */
-  .tiles{grid-template-columns:1fr!important;gap:0}
-  .tile{aspect-ratio:auto!important;min-height:0;border-radius:0;overflow:visible}
-  .tile .imgwrap{display:none}
-  .tile .tile-in{position:relative;padding:16px var(--gut);display:flex;align-items:center;
-    justify-content:space-between;background:#fff;border-bottom:1px solid var(--line)}
-  .tile .tile-in h3{font-size:17px;margin:0;color:var(--ink)}
-  .tile .tile-in p{display:none}
-  .tile .tile-in .more{font-size:12px;letter-spacing:.08em;color:var(--stripe-ink);
-    position:static;margin:0;background:none;padding:0}
-  .tile:hover .tile-in{background:var(--sand)}
+  /* Tiles hidden on mobile — replaced by sub-menu in drawer */
+  .tiles{display:none!important}
 
   /* Reviews more compact — tighter padding, smaller text */
   #reviews{padding-block:40px 50px}
@@ -498,8 +489,6 @@ footer.site .legal a{display:inline;color:#88AEC5;padding:0}
 /* very narrow phones (Galaxy S8, older SE) — collapse even more */
 @media (max-width:380px){
   .hero-in{padding-inline:14px}
-  .tile-in{padding:16px 14px}
-  .tile p{display:none}   /* room only for the heading + "see the menu" chip */
 }
 
 
@@ -524,6 +513,15 @@ header.solid .burger span{background:var(--ink)}
   text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .drawer .sub{margin-top:auto;padding-top:24px}
 .drawer .sub a{font-family:var(--body);font-size:16px;border:0;padding:7px 0;color:#DCEAF3}
+.drawer-sub{display:none;padding-left:24px}
+.drawer-sub a{font-size:clamp(18px,5vw,22px)!important;padding:8px 0!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;color:#DCEAF3!important}
+.drawer-sub a:last-child{border-bottom:1px solid rgba(255,255,255,.14)!important}
+.drawer-toggle{position:relative}
+.drawer-toggle>.arrow{position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:20px;height:20px;transition:transform .2s}
+.drawer-toggle>.arrow path{stroke:#DCEAF3;stroke-width:2;fill:none}
+.drawer-toggle[aria-expanded="true"]>.arrow{transform:translateY(-50%) rotate(180deg)}
 @media (max-width:1100px){.burger{display:grid}#bookTop{margin-left:auto}}
 @media (max-width:600px){header .bar{gap:12px;height:70px}}
 @media (max-width:480px){.brand span{display:none}}
@@ -547,7 +545,15 @@ header.solid .burger span{background:var(--ink)}
 </header>
 <div class="drawer" id="drawer" data-open="false" aria-hidden="true">
   <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
-  <a href="#top">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a><a href="reserve.html">Book a table</a>
+  <a href="#top">Home</a><a href="about.html">About</a>
+  <a href="menu.html" class="drawer-toggle" id="menuToggle" aria-expanded="false" onclick="toggleDrawerSub(event)">Menu<svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5"/></svg></a>
+  <div class="drawer-sub" id="menuSub">
+    <a href="menu.html?tab=From+the+sea">The Restaurant</a>
+    <a href="menu.html?tab=Bar">The Bar</a>
+    <a href="menu.html?tab=Parlour">Ice Cream Parlour</a>
+    <a href="webcam.html">The Terrace</a>
+  </div>
+  <a href="reserve.html">Book a table</a>
   <a href="webcam.html">Webcam</a><a href="gift-cards.html">Gift cards</a><a href="faq.html">FAQs</a><a href="jobs.html">Jobs</a>
   <a href="tides.html">Tide times</a><a href="#contact">Find us</a>
   <div class="sub">
@@ -1699,6 +1705,13 @@ function paint(d){
 })();
 </script>
 <script>
+function toggleDrawerSub(e){
+  e.preventDefault();
+  const tog=document.getElementById('menuToggle'),sub=document.getElementById('menuSub');
+  const open=tog.getAttribute('aria-expanded')==='true';
+  tog.setAttribute('aria-expanded',!open);
+  sub.style.display=open?'none':'block';
+}
 function openPolicy(id){document.getElementById(id+'-overlay').classList.add('open');document.body.style.overflow='hidden'}
 function closePolicy(){document.querySelectorAll('.policy-overlay').forEach(o=>o.classList.remove('open'));document.body.style.overflow=''}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePolicy()});
