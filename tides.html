@@ -1500,10 +1500,10 @@ drawCurve();drawWeek();setInterval(drawCurve,60000);
 
 /* drag-to-scroll on the mobile tide strip */
 {const w=document.getElementById("week"); if(w){
-  let down=false,dragging=false,sx,sl;
-  w.addEventListener("pointerdown",e=>{down=true;dragging=false;sx=e.pageX;sl=w.scrollLeft;w.setPointerCapture(e.pointerId)});
+  let down=false,dragging=false,sx,sl,pid;
+  w.addEventListener("pointerdown",e=>{down=true;dragging=false;sx=e.pageX;sl=w.scrollLeft;pid=e.pointerId});
   w.addEventListener("pointermove",e=>{if(!down)return;
-    if(!dragging&&Math.abs(e.pageX-sx)>5){dragging=true;w.style.cursor="grabbing";}
+    if(!dragging&&Math.abs(e.pageX-sx)>5){dragging=true;w.style.cursor="grabbing";try{w.setPointerCapture(pid)}catch(x){}}
     if(dragging){e.preventDefault();w.scrollLeft=sl-(e.pageX-sx);}});
   w.addEventListener("pointerup",()=>{down=false;dragging=false;w.style.cursor=""});
   w.addEventListener("pointercancel",()=>{down=false;dragging=false;w.style.cursor=""});
