@@ -1500,12 +1500,14 @@ drawCurve();drawWeek();setInterval(drawCurve,60000);
 
 /* drag-to-scroll on the mobile tide strip */
 {const w=document.getElementById("week"); if(w){
-  let down=false,sx,sl;
-  w.addEventListener("pointerdown",e=>{down=true;sx=e.pageX;sl=w.scrollLeft;w.style.cursor="grabbing";w.setPointerCapture(e.pointerId)});
-  w.addEventListener("pointermove",e=>{if(!down)return;e.preventDefault();w.scrollLeft=sl-(e.pageX-sx)});
-  w.addEventListener("pointerup",()=>{down=false;w.style.cursor=""});
-  w.addEventListener("pointercancel",()=>{down=false;w.style.cursor=""});
-  w.style.cursor="grab";
+  let down=false,dragging=false,sx,sl;
+  w.addEventListener("pointerdown",e=>{down=true;dragging=false;sx=e.pageX;sl=w.scrollLeft;w.setPointerCapture(e.pointerId)});
+  w.addEventListener("pointermove",e=>{if(!down)return;
+    if(!dragging&&Math.abs(e.pageX-sx)>5){dragging=true;w.style.cursor="grabbing";}
+    if(dragging){e.preventDefault();w.scrollLeft=sl-(e.pageX-sx);}});
+  w.addEventListener("pointerup",()=>{down=false;dragging=false;w.style.cursor=""});
+  w.addEventListener("pointercancel",()=>{down=false;dragging=false;w.style.cursor=""});
+  if(matchMedia("(max-width:720px)").matches) w.style.cursor="grab";
 }}
 
 /* wire EasyTide link */
