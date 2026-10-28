@@ -40,7 +40,7 @@ function renderHeader(url) {
     `<a href="${href}"${href === url ? ' aria-current="page"' : ""}>${label}</a>`).join("");
   const sub = ["From the sea", "Bar", "Parlour"];
   const drawer = site.nav.map(([href, label]) => {
-    const text = label.charAt(0) + label.slice(1).toLowerCase().replace("faqs", "FAQs");
+    const text = label === "FAQS" ? "FAQs" : label.charAt(0) + label.slice(1).toLowerCase();
     if (href === "/menu") return `<a href="/menu" class="drawer-toggle" id="menuToggle" aria-expanded="false" onclick="toggleDrawerSub(event)">Menu<svg class="arrow" viewBox="0 0 20 20"><path d="M5 7l5 5 5-5"/></svg></a>`
       + `<div class="drawer-sub" id="menuSub"><a href="/menu?tab=From+the+sea">The Restaurant</a><a href="/menu?tab=Bar">The Bar</a><a href="/menu?tab=Parlour">Ice Cream Parlour</a><a href="/webcam">The Terrace</a></div>`
       + `<a href="/reserve">Book a table</a>`;
