@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0B2C44">
+<title>Tide Times — Sea Shanty Cafe, Trearddur Bay</title>
+<meta name="description" content="Live tide predictions for Trearddur Bay — high and low water times, tide height chart, sunrise, sunset and sea temperature.">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/images/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.tideband{position:relative;color:#fff;overflow:hidden;padding-block:76px}
+.tideband>.imgwrap{position:absolute;inset:0}
+.tideband::after{content:"";position:absolute;inset:0;background:rgba(6,47,69,.87)}
+.tideband>.wrap{position:relative;z-index:2}
+.tide-row{display:grid;grid-template-columns:220px minmax(0,1fr) 172px;gap:34px;align-items:center}
+.tide-now .k{font-size:12.5px;letter-spacing:.13em;color:var(--sky);margin-bottom:9px}
+.tide-big{font-family:var(--display);font-size:58px;font-weight:600;line-height:.92; font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;letter-spacing:-.03em}
+.tide-big small{display:block;font:500 15px var(--body);color:#B7D3E4;margin-top:13px; letter-spacing:normal;word-spacing:.14em}
+.tide-in{margin-top:16px;display:inline-flex;align-items:baseline;gap:8px; font-variant-numeric:tabular-nums;border:1px solid rgba(255,255,255,.28);padding:8px 14px}
+.tide-in b{font-size:19px}
+.tide-in span{font-size:12.5px;color:#B7D3E4}
+#curve{width:100%;height:auto;display:block}
+.tide-side{margin:0;display:grid;gap:12px}
+.tide-side div{display:flex;justify-content:space-between;gap:18px;font-size:14.5px; border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:9px}
+.tide-side dt{color:#A9C8DA}
+.tide-side dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-top:34px}
+.week div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:13px 14px}
+.week .d{font-size:11.5px;letter-spacing:.11em;color:var(--sky);margin-bottom:8px}
+.week svg{width:100%;height:30px;display:block;margin-bottom:8px}
+.week .t{font-size:13px;font-variant-numeric:tabular-nums;line-height:1.5}
+.week .tr{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.week .hl{flex:0 0 auto;font-weight:700;color:var(--sky);font-size:11px;letter-spacing:.06em}
+.week em{font-style:normal;color:#93B6CC}
+.week .today{background:rgba(156,198,222,.22);border-color:var(--sky)}
+.week div{cursor:pointer;transition:background .2s,border-color .2s}
+.week div:hover{background:rgba(255,255,255,.12)}
+.tidefoot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap; margin-top:16px;font-size:13px;color:#8FB3C8}
+.tidefoot a{color:var(--sky);font-weight:600}
+@media (max-width:1100px){
+  .tide-row{grid-template-columns:1fr}
+  .week{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:720px){
+  .tideband{padding-block:44px}
+  .tide-row{gap:20px}
+  .tide-big{font-size:40px}
+  .tide-big small{font-size:13px}
+  .tide-side{grid-template-columns:1fr 1fr;gap:8px}
+  .tide-side div{font-size:13px;padding-bottom:7px}
+  .tidefoot{font-size:12px;flex-direction:column;gap:8px}
+  .week{display:flex;overflow-x:auto;scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;scrollbar-width:none; gap:8px;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut); padding-bottom:8px;margin-top:28px}
+  .week::-webkit-scrollbar{display:none}
+  .week>div{flex:0 0 clamp(150px,42vw,180px);scroll-snap-align:start; border-radius:8px;padding:14px 12px}
+  .week .tr{font-size:12.5px}
+  .week .today{box-shadow:0 0 0 2px var(--sky)}
+}
+</style></head>
+<body>
+
+<!-- @header -->
+
+<div class="pagehead" style="min-height:clamp(220px,26vw,300px)">
+  <div class="imgwrap" data-img="tide" data-eager="1" data-img-alt="Trearddur Bay beach"></div>
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Home</a> / Tide Times</p>
+    <h1>Tide times</h1>
+    <p>Predictions for Trearddur Bay — updated every minute.</p>
+  </div>
+</div>
+
+<div class="tideband" id="tides">
+  <div class="imgwrap" data-img="tide" data-img-alt=""><img data-img="tide" alt=""></div>
+  <div class="wrap">
+    <div class="tide-row">
+      <div class="tide-now">
+        <p class="k" id="tideLbl">NEXT HIGH WATER</p>
+        <div class="tide-big" id="tideTime">—<small id="tideHeight">—</small></div>
+        <div class="tide-in"><b id="tideCount">—</b><span>from now</span></div>
+      </div>
+      <svg id="curve" viewBox="0 0 1000 300" preserveAspectRatio="none" role="img" aria-label="Tide height across today"></svg>
+      <dl class="tide-side">
+        <div><dt>Water now</dt><dd id="fNow">—</dd></div>
+        <div><dt>Sea temp</dt><dd id="fTemp">—</dd></div>
+        <div><dt>Sunrise</dt><dd id="fRise">—</dd></div>
+        <div><dt>Sunset</dt><dd id="fSet">—</dd></div>
+      </dl>
+    </div>
+    <div class="week" id="week"></div>
+    <div class="tidefoot">
+      <span>Heights in metres above chart datum. Predictions only — not for navigation.</span>
+      <a id="easytide" target="_blank" rel="noopener">Full tables at Admiralty EasyTide</a>
+    </div>
+  </div>
+</div>
+
+<!-- @footer -->
+<!-- @scripts -->
+
+<script>
+const $ = (s,r=document)=>r.querySelector(s);
+/* tide maths is shared: see /assets/site.js */
+const {height,extremes,hhmm,sun,seaTemp}=window.SS_TIDE;
+
+function drawCurve(){
+  const now=Date.now(),d=new Date();
+  const s=new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime(),e=s+864e5;
+  const W=1000,H=300,PADT=38,PADB=78,N=200;
+  const PAD=PADT;
+  const hs=[];for(let i=0;i<=N;i++)hs.push(height(s+i*(864e5/N)));
+  const lo=Math.min(...hs)-.5,hi=Math.max(...hs)+.5;
+  const x=t=>((t-s)/864e5)*W,y=h=>PADT+(1-(h-lo)/(hi-lo))*(H-PADT-PADB);
+  let line="";hs.forEach((h,i)=>line+=(i?"L":"M")+((i/N)*W).toFixed(1)+" "+y(h).toFixed(1));
+  const area=line+`L${W} ${H} L0 ${H}Z`;
+  const nx=Math.max(0,Math.min(W,x(now))),nh=height(now),ny=y(nh);
+  let marks="";
+  extremes(s,e).forEach(v=>{const px=x(v.t),py=y(v.h),up=v.type==="High",cx=Math.min(Math.max(px,36),W-36);
+    marks+=`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4.5" fill="#fff"/>
+      <text x="${cx.toFixed(1)}" y="${(py+(up?-17:28)).toFixed(1)}" text-anchor="middle" fill="#EAF3F8"
+        font-family="Instrument Sans,sans-serif" font-size="17" font-weight="600">${hhmm(v.t)}</text>
+      <text x="${cx.toFixed(1)}" y="${(py+(up?-37:46)).toFixed(1)}" text-anchor="middle" fill="#9CC6DE"
+        font-family="Instrument Sans,sans-serif" font-size="13">${v.type} ${v.h.toFixed(1)}m</text>`});
+  let grid="";
+  for(let h=0;h<24;h+=3){const px=(h/24)*W;
+    grid+=`<line x1="${px}" y1="${PADT}" x2="${px}" y2="${H-PADB}" stroke="rgba(255,255,255,.1)"/>
+      <text x="${px+6}" y="${H-16}" fill="#7BA3BC" font-family="Instrument Sans,sans-serif" font-size="11.5">${String(h).padStart(2,"0")}:00</text>`}
+  $("#curve").innerHTML=`<defs>
+      <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#9CC6DE" stop-opacity=".5"/><stop offset="1" stop-color="#2E77A6" stop-opacity="0"/></linearGradient>
+      <clipPath id="past"><rect width="${nx.toFixed(1)}" height="${H}"/></clipPath></defs>
+    ${grid}
+    <path d="${area}" fill="url(#wg)" opacity=".4"/>
+    <path d="${area}" fill="url(#wg)" clip-path="url(#past)"/>
+    <path d="${line}" fill="none" stroke="#BFD8E6" stroke-width="2" opacity=".45"/>
+    <path d="${line}" fill="none" stroke="#fff" stroke-width="3" clip-path="url(#past)"/>
+    ${marks}
+    <line x1="${nx.toFixed(1)}" y1="${PADT-12}" x2="${nx.toFixed(1)}" y2="${H-PADB}" stroke="#C8402E" stroke-width="2"/>
+    <circle cx="${nx.toFixed(1)}" cy="${ny.toFixed(1)}" r="7" fill="#C8402E" stroke="#0B2C44" stroke-width="2.5"/>
+    <text x="${nx.toFixed(1)}" y="${PADT-20}" text-anchor="middle" fill="#C8402E"
+      font-family="Instrument Sans,sans-serif" font-size="12" font-weight="700">NOW</text>`;
+
+  /* Show current tide state: HIGH TIDE or LOW TIDE */
+  const recent=extremes(now-13*36e5,now);
+  const upcoming=extremes(now,now+13*36e5);
+  const lastEx=recent.length?recent[recent.length-1]:null;
+  if(lastEx){
+    const isHigh=lastEx.type==="High";
+    $("#tideLbl").textContent=isHigh?"HIGH TIDE":"LOW TIDE";
+    $("#tideTime").firstChild.nodeValue=hhmm(lastEx.t);
+    $("#tideHeight").textContent=lastEx.h.toFixed(1)+" m above chart datum";
+    const nextOpp=upcoming.filter(v=>v.type===(isHigh?"Low":"High"))[0];
+    if(nextOpp){
+      $("#tideCount").textContent=hhmm(nextOpp.t);
+      $("#tideCount").nextElementSibling.textContent="next "+(isHigh?"low":"high")+" tide";
+    }
+  }
+  $("#fNow").textContent=nh.toFixed(1)+" m "+(height(now+18e5)>nh?"rising":"falling");
+  const sn=sun(now,53.2799,-4.6206);
+  $("#fRise").textContent=hhmm(sn.rise);$("#fSet").textContent=hhmm(sn.set);
+  $("#fTemp").textContent=seaTemp()+" °C";
+}
+function drawWeek(){
+  const d=new Date(),base=new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime();
+  let html="";
+  for(let i=0;i<7;i++){
+    const s=base+i*864e5,e=s+864e5,pts=[];
+    for(let k=0;k<=48;k++)pts.push(height(s+k*(864e5/48)));
+    const lo=Math.min(...pts),hi=Math.max(...pts);
+    let p="";pts.forEach((h,k)=>p+=(k?"L":"M")+(k/48*100).toFixed(1)+" "+(28-((h-lo)/(hi-lo||1))*24).toFixed(1));
+    const hg=extremes(s,e).filter(v=>v.type==="High").slice(0,2);
+    const lw=extremes(s,e).filter(v=>v.type==="Low").slice(0,2);
+    html+=`<div class="${i?"":"today"}">
+      <div class="d">${i?new Date(s).toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase():"TODAY"}</div>
+      <svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="${p}" fill="none" stroke="#9CC6DE" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+      <div class="t"><span class="tr"><span class="hl">H</span><b>${hg.map(v=>hhmm(v.t)).join(" &amp; ")||"—"}</b></span><span class="tr"><span class="hl">L</span><em>${lw.map(v=>hhmm(v.t)).join(" &amp; ")||"—"}</em></span></div></div>`;
+  }
+  $("#week").innerHTML=html;
+}
+drawCurve();drawWeek();setInterval(drawCurve,60000);
+
+/* tap a day card to update the main chart */
+{const cards=document.querySelectorAll("#week > div");
+  cards.forEach((c,i)=>{
+    c.style.cursor="pointer";
+    c.addEventListener("click",()=>{
+      cards.forEach(x=>x.classList.remove("today"));
+      c.classList.add("today");
+      const now=new Date(), base=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+      const dayStart=base.getTime()+i*864e5;
+      const svg=document.getElementById("curve");
+      if(!svg) return;
+      const mob=matchMedia("(max-width:720px)").matches;
+      const W=mob?680:1000, H=mob?220:300, PAD=mob?28:38, N=mob?144:200;
+      const hs=[];for(let j=0;j<=N;j++)hs.push(height(dayStart+j*(864e5/N)));
+      const lo=Math.min(...hs)-.4,hi=Math.max(...hs)+.4;
+      const x=t=>((t-dayStart)/864e5)*W, y=h=>PAD+(1-(h-lo)/(hi-lo))*(H-PAD*2);
+      let line="";hs.forEach((h,j)=>line+=(j?"L":"M")+((j/N)*W).toFixed(1)+" "+y(h).toFixed(1));
+      const area=line+"L"+W+" "+H+" L0 "+H+"Z";
+      const isToday=i===0;
+      const nx=isToday?Math.max(0,Math.min(W,x(Date.now()))):0;
+      const ny=isToday?y(height(Date.now())):0;
+      let marks="";
+      extremes(dayStart,dayStart+864e5).forEach(v=>{
+        const px=x(v.t),py=y(v.h),up=v.type==="High",
+          cx=Math.min(Math.max(px,34),W-34);
+        marks+='<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="4" fill="#fff"/>'+
+          '<text x="'+cx.toFixed(1)+'" y="'+(py+(up?-14:24)).toFixed(1)+'" text-anchor="middle" fill="#EAF3F8"'+
+          ' font-family="Instrument Sans,sans-serif" font-size="13" font-weight="600">'+
+          '<tspan font-size="10" fill="#B7D3E4">'+v.type.substring(0,1)+' </tspan>'+
+          v.h.toFixed(1)+'m '+hhmm(v.t)+'</text>';
+      });
+      let grid="";
+      for(let h=0;h<24;h+=3){const px=(h/24)*W;
+        grid+='<line x1="'+px+'" y1="'+PAD+'" x2="'+px+'" y2="'+(H-PAD)+'" stroke="rgba(255,255,255,.1)"/>'+
+          '<text x="'+(px+4)+'" y="'+(H-6)+'" fill="#7BA3BC" font-family="Instrument Sans,sans-serif" font-size="10">'+
+          String(h).padStart(2,"0")+'</text>';}
+      svg.setAttribute("viewBox","0 0 "+W+" "+H);
+      svg.innerHTML='<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">'+
+        '<stop offset="0" stop-color="#9CC6DE" stop-opacity=".5"/>'+
+        '<stop offset="1" stop-color="#2E77A6" stop-opacity="0"/></linearGradient>'+
+        (isToday?'<clipPath id="past"><rect width="'+nx.toFixed(1)+'" height="'+H+'"/></clipPath>':'')+
+        '</defs>'+grid+
+        '<path d="'+area+'" fill="url(#wg)" opacity=".4"/>'+
+        (isToday?'<path d="'+area+'" fill="url(#wg)" clip-path="url(#past)"/>':'')+
+        '<path d="'+line+'" fill="none" stroke="#BFD8E6" stroke-width="1.8" opacity=".45"/>'+
+        (isToday?'<path d="'+line+'" fill="none" stroke="#fff" stroke-width="2.6" clip-path="url(#past)"/>':
+                 '<path d="'+line+'" fill="none" stroke="#fff" stroke-width="2.6"/>')+
+        marks+
+        (isToday?'<line x1="'+nx.toFixed(1)+'" y1="'+(PAD-4)+'" x2="'+nx.toFixed(1)+'" y2="'+(H-PAD)+'" stroke="#C8402E" stroke-width="2"/>'+
+          '<circle cx="'+nx.toFixed(1)+'" cy="'+ny.toFixed(1)+'" r="5.5" fill="#C8402E" stroke="#0B2C44" stroke-width="2.2"/>':'');
+      /* update side panel */
+      if(isToday){
+        /* re-run live display */
+        const nowT=Date.now(),nhT=height(nowT);
+        const recentT=extremes(nowT-13*36e5,nowT);
+        const upcomingT=extremes(nowT,nowT+13*36e5);
+        const lastExT=recentT.length?recentT[recentT.length-1]:null;
+        if(lastExT){
+          const isH=lastExT.type==="High";
+          document.getElementById("tideLbl").textContent=isH?"HIGH TIDE":"LOW TIDE";
+          document.getElementById("tideTime").firstChild.nodeValue=hhmm(lastExT.t);
+          document.getElementById("tideHeight").textContent=lastExT.h.toFixed(1)+" m above chart datum";
+          const nOpp=upcomingT.filter(v=>v.type===(isH?"Low":"High"))[0];
+          if(nOpp){
+            document.getElementById("tideCount").textContent=hhmm(nOpp.t);
+            document.getElementById("tideCount").nextElementSibling.textContent="next "+(isH?"low":"high")+" tide";
+          }
+        }
+        document.getElementById("fNow").textContent=nhT.toFixed(1)+" m "+(height(nowT+18e5)>nhT?"rising":"falling");
+        const snT=sun(nowT,53.2799,-4.6206);
+        document.getElementById("fRise").textContent=hhmm(snT.rise);
+        document.getElementById("fSet").textContent=hhmm(snT.set);
+        document.getElementById("fTemp").textContent=seaTemp()+" °C";
+      } else {
+        /* future day: show that day's high tides */
+        const dayEnd=dayStart+864e5;
+        const highs=extremes(dayStart,dayEnd).filter(v=>v.type==="High");
+        const lows=extremes(dayStart,dayEnd).filter(v=>v.type==="Low");
+        const dayName=new Date(dayStart).toLocaleDateString("en-GB",{weekday:"long"}).toUpperCase();
+        document.getElementById("tideLbl").textContent=dayName;
+        if(highs.length){
+          document.getElementById("tideTime").firstChild.nodeValue=hhmm(highs[0].t);
+          let sub=highs[0].h.toFixed(1)+"m high";
+          if(highs.length>1) sub+=" · also "+hhmm(highs[1].t)+" ("+highs[1].h.toFixed(1)+"m)";
+          document.getElementById("tideHeight").textContent=sub;
+        }
+        document.getElementById("tideCount").textContent=lows.map(v=>hhmm(v.t)).join(" & ")||"—";
+        document.getElementById("tideCount").nextElementSibling.textContent="low tide"+(lows.length>1?"s":"");
+        /* blank water now, update temp/sunrise/sunset for that day */
+        document.getElementById("fNow").textContent="—";
+        const dayMid=dayStart+12*36e5;
+        const snD=sun(dayMid,53.2799,-4.6206);
+        document.getElementById("fRise").textContent=hhmm(snD.rise);
+        document.getElementById("fSet").textContent=hhmm(snD.set);
+        /* approximate temp for that day */
+        const doyF=(dayStart-Date.UTC(new Date().getFullYear(),0,1))/864e5;
+        document.getElementById("fTemp").textContent=(11.5-4.2*Math.cos(2*Math.PI*(doyF-30)/365)).toFixed(1)+" °C";
+      }
+    });
+  });
+}
+
+/* drag-to-scroll on the mobile tide strip */
+{const w=document.getElementById("week"); if(w){
+  let down=false,dragging=false,sx,sl,pid;
+  w.addEventListener("pointerdown",e=>{down=true;dragging=false;sx=e.pageX;sl=w.scrollLeft;pid=e.pointerId});
+  w.addEventListener("pointermove",e=>{if(!down)return;
+    if(!dragging&&Math.abs(e.pageX-sx)>5){dragging=true;w.style.cursor="grabbing";try{w.setPointerCapture(pid)}catch(x){}}
+    if(dragging){e.preventDefault();w.scrollLeft=sl-(e.pageX-sx);}});
+  w.addEventListener("pointerup",()=>{down=false;dragging=false;w.style.cursor=""});
+  w.addEventListener("pointercancel",()=>{down=false;dragging=false;w.style.cursor=""});
+  if(matchMedia("(max-width:720px)").matches) w.style.cursor="grab";
+}}
+
+/* wire EasyTide link */
+document.getElementById("easytide").href=window.SEASHANTY.easytide;
+</script>
+</body>
+</html>

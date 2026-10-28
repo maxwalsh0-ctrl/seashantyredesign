@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0B2C44">
+<title>TBay webcam — Sea Shanty Cafe, Trearddur Bay</title>
+<meta name="description" content="Live webcam looking out over Trearddur Bay, with today's tide times, sunrise, sunset and sea temperature.">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/images/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+@media (max-width:720px){
+  .wrap.split[style]{display:flex!important;flex-direction:column;gap:28px}
+  .embed--cam{margin-inline:calc(var(--gut)*-1);border-radius:0}
+  .embed--cam iframe{min-height:220px;aspect-ratio:16/9}
+  .embed-fallback{padding:30px var(--gut)!important}
+  .embed--cam+p{text-align:center}
+  .grid.grid--3{grid-template-columns:1fr!important}
+  aside[data-tide]{order:10}
+  .tidepanel{margin-inline:calc(var(--gut)*-1);padding:24px var(--gut)}
+  .tidepanel .big{font-size:38px}
+  .tidepanel dl{grid-template-columns:1fr;gap:8px}
+  .tidepanel dl div{font-size:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .notice{text-align:center;padding:22px var(--gut)}
+  .notice strong{display:block;margin-bottom:6px}
+  .btnrow{flex-direction:column;align-items:stretch;gap:10px;margin-top:18px}
+  .btnrow .btn{text-align:center;justify-content:center}
+}
+</style></head>
+<body>
+
+<!-- @header -->
+
+<div class="pagehead" style="min-height:clamp(220px,26vw,300px)">
+  <div class="imgwrap" data-img="bay" data-eager="1" data-img-alt="Trearddur Bay"></div>
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Home</a> / TBay webcam</p>
+    <h1>TBay webcam</h1>
+    <p>Looking out over the bay, live. Handy for deciding whether today's a beach day or a fish-and-chips-indoors day.</p>
+  </div>
+</div>
+
+<div class="tidestrip" data-tide>
+  <div class="wrap">
+    <span class="dot"><i></i><span>Checking…</span></span>
+    <span class="muted" data-tide="short">—</span>
+    <span class="sep"><a href="reserve.html" style="color:var(--sky);font-weight:600">Book a table &rarr;</a></span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap split" style="grid-template-columns:minmax(0,1.9fr) minmax(0,1fr)">
+
+    <div>
+      <div class="embed embed--cam" id="camEmbed">
+        <div class="embed-fallback" id="camFallback" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <h3>Live view over Big Bay</h3>
+          <p>The camera streams from trearddurbay.org. Some browsers block embedded video from other sites — if the picture doesn't appear, this opens it full size.</p>
+          <p style="margin-top:20px"><a class="btn btn--book btn--sm" data-link="webcamLink" style="display:inline-flex">WATCH THE LIVE CAMERA</a></p>
+        </div>
+      </div>
+      <p style="margin-top:14px"><a class="btn btn--ghost btn--sm" data-link="webcamLink" style="display:inline-flex">OPEN THE CAMERA FULL SIZE &rarr;</a></p>
+      <p class="hint" style="margin-top:12px">Live camera by <a href="https://trearddurbay.org/webcam/" target="_blank" rel="noopener" style="color:var(--stripe);font-weight:600">trearddurbay.org</a>, looking out over Big Bay. It streams continuously — no need to reload the page.</p>
+
+      <div class="grid grid--3" style="margin-top:34px;background:var(--line)">
+        <div class="card" style="padding:24px 22px">
+          <h3 style="font-size:19px">Blue Flag beach</h3>
+          <p>Lifeguarded through the summer season, with the RNLI station two minutes along the front.</p>
+        </div>
+        <div class="card" style="padding:24px 22px">
+          <h3 style="font-size:19px">It dries right out</h3>
+          <p>At low water the bay empties a long way. Great for rockpools, less great for launching anything.</p>
+        </div>
+        <div class="card" style="padding:24px 22px">
+          <h3 style="font-size:19px">Sailing in August</h3>
+          <p>Trearddur Bay Sailing Club has run since 1919 and, unusually, operates only in August. Expect dinghies.</p>
+        </div>
+      </div>
+    </div>
+
+    <aside data-tide>
+      <div class="tidepanel">
+        <p class="k" data-tide="label">NEXT HIGH WATER</p>
+        <div class="big"><span data-tide="time">—</span><small data-tide="height">—</small></div>
+        <svg class="curve" viewBox="0 0 520 170" role="img" aria-label="Tide height across today"></svg>
+        <dl>
+          <div><dt>In</dt><dd data-tide="in">—</dd></div>
+          <div><dt>Water now</dt><dd data-tide="now">—</dd></div>
+          <div><dt>Sea temp</dt><dd data-tide="temp">—</dd></div>
+          <div><dt>Sunrise</dt><dd data-tide="rise">—</dd></div>
+          <div><dt>Sunset</dt><dd data-tide="set">—</dd></div>
+        </dl>
+        <p class="foot">Predictions only — not for navigation.
+          <a data-link="easytide">Full tables &rarr;</a></p>
+      </div>
+
+      <div class="notice" style="margin-top:24px">
+        <strong>Weather looking grim?</strong>
+        The restaurant, the bar and the ice cream parlour are all indoors, and the nickelodeon works whatever the sky is doing.
+      </div>
+
+      <div class="btnrow" style="margin-top:22px">
+        <a class="btn btn--book btn--block" href="reserve.html">BOOK A TABLE</a>
+        <a class="btn btn--ghost btn--block btn--sm" href="tides.html">SEE THE FULL 7-DAY TIDE CHART</a>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- @footer -->
+<!-- @scripts -->
+<script>
+(() => {
+  const C = window.SEASHANTY;
+  if(!C.webcamEmbed) return;
+  const slot = document.getElementById("camEmbed");
+  const fb   = document.getElementById("camFallback");
+  const f = document.createElement("iframe");
+  f.title = "Live webcam looking over Trearddur Bay";
+  f.src = C.webcamEmbed;
+  f.allow = "autoplay; fullscreen";
+  f.style.cssText = "width:100%;height:100%;border:0;display:none";
+  slot.appendChild(f);
+  let done = false;
+  f.addEventListener("load", () => { done = true; fb.remove(); f.style.display = "block"; });
+  setTimeout(() => { if(!done) f.remove(); }, 6000);
+})();
+</script>
+</body>
+</html>

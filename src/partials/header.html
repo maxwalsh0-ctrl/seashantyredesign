@@ -1,0 +1,18 @@
+<header class="{{headerClass}}" id="hdr">
+  <div class="wrap bar">
+    <a class="brand" href="/"><img src="/assets/images/logo.png" alt="" width="512" height="512" decoding="async"><span><b>Sea Shanty</b><i>TREARDDUR BAY</i></span></a>
+    <nav aria-label="Primary">{{nav}}</nav>
+    <a class="btn btn--book btn--sm headBook" href="/reserve">BOOK A TABLE</a>
+    <button class="burger" id="openDrawer" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="drawer" id="drawer" data-open="false" aria-hidden="true">
+  <button class="x" id="closeDrawer" aria-label="Close menu">&#10005;</button>
+  {{drawerNav}}
+  <div class="sub">
+    <a href="tel:{{phone}}">{{phoneText}}</a>
+    <a href="mailto:{{email}}">{{email}}</a>
+    <a href="{{facebook}}" target="_blank" rel="noopener">Facebook</a>
+    <a href="{{instagram}}" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</div>

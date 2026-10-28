@@ -1,3 +1,4 @@
+
 /* ============================================================
    Sea Shanty Cafe — shared stylesheet for all inner pages
    The two home-page models (sea-shanty-desktop / -mobile) are
@@ -58,7 +59,7 @@ section{padding-block:clamp(52px,7vw,92px)}
 header.site{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.95);
   backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
 header.site .bar{display:flex;align-items:center;gap:28px;height:76px}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:1;min-width:0;color:var(--ink)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto;color:var(--ink)}
 .brand img{width:42px;height:42px;flex:0 0 auto}
 .brand b{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em;
   font-variation-settings:"SOFT" 60,"WONK" 1;line-height:1;display:block}
@@ -68,8 +69,8 @@ header.site nav a{text-decoration:none;font:600 13.5px var(--body);letter-spacin
   padding:6px 0;border-bottom:2px solid transparent}
 header.site nav a:hover{border-bottom-color:var(--buoy)}
 header.site nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
-.burger{width:44px;height:44px;border:1px solid var(--line);background:#fff;display:none;
-  place-items:center;gap:4px;flex:0 0 auto;cursor:pointer;padding:0}
+.burger{width:44px;height:44px;border:0;background:none;display:none;
+  place-items:center;gap:4px;flex:0 0 auto;cursor:pointer;padding:0;margin-left:auto}
 .burger span{display:block;width:18px;height:2px;background:var(--ink)}
 @media (max-width:980px){
   header.site nav{display:none}
@@ -83,12 +84,21 @@ header.site nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
   display:flex;flex-direction:column;overflow:auto;
   padding:calc(env(safe-area-inset-top) + 16px) var(--gut) 28px}
 .drawer[data-open="true"]{transform:none}
-.drawer .x{align-self:flex-end;width:44px;height:44px;background:none;
+.drawer .x{align-self:flex-end;width:88px;height:88px;background:none;outline:0;
   border:0;-webkit-appearance:none;appearance:none;box-shadow:none;color:#fff;font-size:40px;cursor:pointer}
 .drawer a{display:block;font-family:var(--display);font-size:clamp(26px,7vw,34px);font-weight:500;
   text-decoration:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14)}
 .drawer .sub{margin-top:auto;padding-top:24px}
 .drawer .sub a{font-family:var(--body);font-size:16px;border:0;padding:7px 0;color:#DCEAF3}
+.drawer-sub{display:none;padding-left:24px}
+.drawer-sub a{font-size:clamp(18px,5vw,22px)!important;padding:8px 0!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;color:#DCEAF3!important}
+.drawer-sub a:last-child{border-bottom:1px solid rgba(255,255,255,.14)!important}
+.drawer-toggle{position:relative}
+.drawer-toggle>.arrow{position:absolute;right:0;top:50%;transform:translateY(-50%);
+  width:20px;height:20px;transition:transform .2s}
+.drawer-toggle>.arrow path{stroke:#DCEAF3;stroke-width:2;fill:none}
+.drawer-toggle[aria-expanded="true"]>.arrow{transform:translateY(-50%) rotate(180deg)}
 
 /* ── page header ── */
 .pagehead{position:relative;color:#fff;overflow:hidden;
@@ -240,6 +250,9 @@ footer.site .soc svg{width:100%;height:100%;fill:currentColor;display:block}
 .legal{border-top:1px solid rgba(255,255,255,.16);padding-block:22px;display:flex;
   justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13.5px;color:#88AEC5}
 footer.site .legal a{display:inline;color:#88AEC5;padding:0}
+.pay-icons{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pay-icons svg{width:56px;height:35px;border-radius:5px;flex:0 0 auto}
+.pay-icons span{font-size:12px;color:#6A96B0;margin-right:4px}
 @media (max-width:980px){
 footer.site .foot{grid-template-columns:1fr 1fr;gap:4px 28px;text-align:center}
 footer.site .foot>div:nth-child(2){order:1}
@@ -304,3 +317,64 @@ footer.site .pay-icons{justify-content:center}
 .faq-group{margin-bottom:44px}
 .faq-group h2{font-size:clamp(24px,2.6vw,32px);margin-bottom:6px}
 .faq-group .sub{font-size:15.5px;color:#5E7A8B;margin:0 0 18px}
+
+
+/* ── shared mobile chrome (was copied into several pages) ── */
+@media (max-width:720px){
+  :root{--gut:20px}
+  html,body{overflow-x:hidden}
+  header,.pagehead{padding-top:env(safe-area-inset-top)}
+  footer.site .foot{grid-template-columns:1fr 1fr!important;gap:4px 28px;padding-block:36px 28px;text-align:center}
+  footer.site .foot>div:nth-child(2){order:1}
+  footer.site .foot>div:nth-child(3){order:2}
+  footer.site .foot>div:nth-child(4){order:3;grid-column:1/-1;margin-top:6px;padding-top:22px;position:relative}
+  footer.site .foot>div:first-child{order:4;grid-column:1/-1;margin-top:6px;padding-top:22px;position:relative}
+  footer.site .foot>div:nth-child(2) a, footer.site .foot>div:nth-child(3) a{padding:4px 0;font-size:14.5px}
+  footer.site .foot>div:nth-child(4)::before, footer.site .foot>div:first-child::before{content:'';position:absolute;top:0;left:20px;right:20px; height:1px;background:rgba(161,178,206,.35)}
+  footer.site .foot .soc{justify-content:center}
+  footer.site .news{max-width:340px;margin:14px auto 0}
+  footer.site .legal{flex-direction:column;text-align:center;gap:8px}
+  .pay-icons{justify-content:center}
+  .pay-icons svg{width:46px;height:29px}
+}
+
+/* ── food menu: used on the home page and /menu ── */
+.menubar{display:flex;border-bottom:2px solid var(--line);margin-bottom:40px;flex-wrap:wrap}
+.menubar button{font:600 15px var(--body);color:#6B8496;background:none;border:0; padding:14px 24px 12px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.menubar button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--buoy)}
+.dishes{columns:2;column-gap:70px}
+.dish{break-inside:avoid;padding:18px 0;border-bottom:1px solid var(--line); display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 20px}
+.dish h4{font-size:19px;font-weight:600;margin:0}
+.dish p{grid-column:1;font-size:15px;color:#5E7A8B;margin:0}
+.dish .price{font:600 18px var(--body);color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.dish .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em; color:var(--stripe-ink);border:1.5px solid var(--stripe-ink);border-radius:3px;padding:1px 5px; margin-left:7px;vertical-align:middle;font-family:var(--body)}
+.menufoot{margin-top:28px;font-size:14px;color:#6C8899}
+@media (max-width:720px){
+  .dishes{columns:1}
+  .menubar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none; border-bottom:0;gap:8px;padding:2px 0 6px; margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut); -webkit-overflow-scrolling:touch}
+  .menubar::-webkit-scrollbar{display:none}
+  .menubar button{border-radius:22px;padding:9px 15px 10px;font-size:14px; background:rgba(6,47,69,.06);color:var(--ink);border-bottom:0;margin-bottom:0; white-space:nowrap;flex:0 0 auto}
+  .menubar button[aria-selected="true"]{background:var(--ink);color:#fff;border-bottom:0}
+}/* every category is in the HTML; once JS runs it becomes tabs */
+.menu-cat-title{font-size:clamp(22px,2.4vw,28px);margin:34px 0 4px}
+.menu-cat:first-of-type .menu-cat-title{margin-top:0}
+[data-menu].is-tabbed .menu-cat-title{display:none}
+/* hint that the tab strip scrolls on phones */
+.menubar.more{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 72px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 72px),transparent)}
+
+/* ── legal pages (privacy, accessibility) ── */
+.legalpage{max-width:44em}
+.legalpage h2{font-size:clamp(22px,2.6vw,29px);margin:46px 0 12px}
+.legalpage h2:first-of-type{margin-top:0}
+.legalpage h3{font-family:var(--body);font-size:16.5px;font-weight:650; color:var(--stripe-ink);margin:26px 0 6px}
+.legalpage p,.legalpage li{font-size:16.5px;color:#3E6076;line-height:1.62}
+.legalpage ul{margin:10px 0 0;padding-left:22px}
+.legalpage li{margin-bottom:7px}
+.legalpage li::marker{color:var(--stripe-ink)}
+.legalpage a{color:var(--stripe-ink);text-underline-offset:3px}
+.updated{font-size:14px;letter-spacing:.04em;color:#6C8899; border-top:1px solid var(--line);margin-top:52px;padding-top:18px}
+
+/* ── buttons: one family of sizes ── */
+.news input{min-height:44px}
+.news button{padding:0 20px;min-height:44px;font:600 13.5px var(--body);letter-spacing:.04em}
+.drawer .x{font-family:var(--body)}

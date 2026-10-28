@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#062F45">
+<base href="/">
+<title>Page not found — Sea Shanty Cafe, Trearddur Bay</title>
+<meta name="description" content="That page could not be found. Head back to the Sea Shanty Cafe home page.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/images/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.lost{position:relative;color:#fff;overflow:hidden; min-height:min(78svh,720px);display:flex;align-items:center;justify-content:center;text-align:center}
+.lost>.imgwrap{position:absolute;inset:0}
+.lost::after{content:"";position:absolute;inset:0; background:linear-gradient(180deg,rgba(6,47,69,.58) 0%,rgba(6,47,69,.42) 45%,rgba(6,47,69,.86) 100%)}
+.lost-in{position:relative;z-index:2;padding:clamp(48px,8vw,90px) var(--gut);max-width:780px}
+.lost-in .mark{width:clamp(88px,11vw,132px);height:auto;margin-bottom:22px;margin-inline:auto; filter:drop-shadow(0 3px 18px rgba(6,47,69,.5))}
+.lost-in .code{display:block;font:600 13px var(--body);letter-spacing:.18em; color:#B7D3E4;margin-bottom:16px}
+.lost-in h1{font-family:var(--display);font-size:clamp(32px,5.4vw,62px);line-height:1.08; font-variation-settings:"SOFT" 55,"WONK" 1,"opsz" 144;text-shadow:0 2px 24px rgba(6,47,69,.45)}
+.lost-in p{margin:18px auto 0;font-size:clamp(16px,1.5vw,19px);color:#E4EEF4;max-width:30em}
+.lost .btnrow{justify-content:center;margin-top:34px}
+.lost-more{margin-top:26px;font-size:14.5px;color:#C3D8E6}
+.lost-more a{color:#fff;text-underline-offset:4px}
+.lost-more span{opacity:.5;padding:0 9px}
+@media (max-width:600px){
+  .lost{min-height:min(88svh,680px)}
+  .lost-more span{display:block;height:0;overflow:hidden;padding:0}
+  .lost-more a{display:inline-block;margin:5px 9px}
+}
+</style></head>
+<body>
+
+<!-- @header -->
+
+<div class="lost">
+  <div class="imgwrap" data-img="hero" data-eager="1" data-img-alt="Trearddur Bay from the beach"></div>
+  <div class="lost-in">
+    <img class="mark" src="assets/images/logo.png" alt="" width="512" height="512" decoding="async">
+    <span class="code">ERROR 404</span>
+    <h1>Apologies, this page appears to be lost at sea</h1>
+    <p>The link may be out of date, or the address mistyped. Everything else is still where you left it.</p>
+    <div class="btnrow">
+      <a class="btn btn--book" href="index.html">BACK TO HOME</a>
+    </div>
+    <p class="lost-more">
+      <a href="/menu">See the menu</a><span>&middot;</span><a href="reserve.html">Book a table</a><span>&middot;</span><a href="faq.html">FAQs</a><span>&middot;</span><a data-link="phone" data-link-text="phoneText">01407 728 200</a>
+    </p>
+  </div>
+</div>
+<div class="stripe"></div>
+
+<!-- @footer -->
+<!-- @scripts -->
+
+</body>
+</html>

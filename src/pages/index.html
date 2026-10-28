@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#062F45">
+<title>Sea Shanty Cafe — Trearddur Bay, Anglesey</title>
+<meta name="description" content="A licensed seaside cafe and restaurant on the beach at Trearddur Bay, Anglesey. Local seafood, cask ale, an Edwardian ice cream parlour. Book a table.">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/images/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+.btn--onphoto{background:rgba(255,255,255,.12);border-color:#fff;color:#fff;backdrop-filter:blur(6px)}
+.btn--onphoto:hover{background:#fff;color:var(--ink)}
+.hero{position:relative;height:min(92vh,860px);min-height:600px;color:#fff; display:flex;align-items:flex-end;justify-content:center;text-align:center;overflow:hidden}
+.hero>.imgwrap{position:absolute;inset:0}
+.hero>.imgwrap img{animation:slowzoom 30s ease-out forwards}
+@keyframes slowzoom{from{transform:scale(1.07)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0; background:linear-gradient(180deg,rgba(6,47,69,.62) 0%,rgba(6,47,69,.2) 42%,rgba(6,47,69,.8) 100%)}
+.hero-in{position:relative;z-index:2;padding:0 24px 140px;max-width:900px}
+.hero-in img.mark{width:104px;height:104px;margin:0 auto 26px;display:block}
+.hero h1{font-size:clamp(48px,7vw,94px);font-variation-settings:"SOFT" 55,"WONK" 1,"opsz" 144; line-height:.94;text-shadow:0 2px 26px rgba(6,47,69,.45)}
+.hero .sub{font-size:clamp(17px,1.6vw,21px);margin:20px auto 34px;max-width:32em;color:#EAF2F7}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-foot{position:absolute;left:0;right:0;bottom:0;z-index:3; border-top:1px solid rgba(255,255,255,.22);background:rgba(6,47,69,.45);backdrop-filter:blur(10px)}
+.hero-foot .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap;padding-block:15px; font-size:14.5px;color:#DCE9F1;position:relative}
+.dot{display:inline-flex;align-items:center;gap:9px;font-weight:600;color:#fff}
+.dot i{width:8px;height:8px;border-radius:50%;background:#5FBF9E}
+.hero-foot .sep{margin-left:auto}
+.hero-foot a{color:#fff;font-weight:600}
+.hero-foot .addr{position:absolute;left:50%;transform:translateX(-50%);text-align:center}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line)}
+.tile{position:relative;aspect-ratio:3/4;overflow:hidden;text-decoration:none;color:#fff;display:block}
+.tile>.imgwrap{position:absolute;inset:0}
+.tile img{transition:transform .7s cubic-bezier(.2,.6,.2,1)}
+.tile:hover img{transform:scale(1.05)}
+.tile::after{content:"";position:absolute;inset:0; background:linear-gradient(180deg,rgba(6,47,69,.05) 28%,rgba(6,47,69,.85) 100%)}
+.tile-in{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 26px}
+.tile h3{font-size:29px;font-variation-settings:"SOFT" 50,"WONK" 1,"opsz" 90}
+.tile p{margin:8px 0 0;font-size:14.5px;color:#D6E4EE;line-height:1.45}
+.tile .more{display:inline-block;margin-top:16px;font-size:12.5px;font-weight:700; letter-spacing:.1em;border-bottom:2px solid var(--buoy);padding-bottom:3px}
+.head--split{max-width:none;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.head--split>.btn{flex:0 0 auto}
+.head--split>div{max-width:660px}
+.head--wide>div{max-width:none}
+.head--wide p{max-width:none}
+.tideband{position:relative;color:#fff;overflow:hidden;padding-block:76px}
+.tideband>.imgwrap{position:absolute;inset:0}
+.tideband::after{content:"";position:absolute;inset:0;background:rgba(6,47,69,.87)}
+.tideband>.wrap{position:relative;z-index:2}
+.tide-row{display:grid;grid-template-columns:220px minmax(0,1fr) 172px;gap:34px;align-items:center}
+.tide-now .k{font-size:12.5px;letter-spacing:.13em;color:var(--sky);margin-bottom:9px}
+.tide-big{font-family:var(--display);font-size:58px;font-weight:600;line-height:.92; font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;letter-spacing:-.03em}
+.tide-big small{display:block;font:500 15px var(--body);color:#B7D3E4;margin-top:13px; letter-spacing:normal;word-spacing:.14em}
+.tide-in{margin-top:16px;display:inline-flex;align-items:baseline;gap:8px; font-variant-numeric:tabular-nums;border:1px solid rgba(255,255,255,.28);padding:8px 14px}
+.tide-in b{font-size:19px}
+.tide-in span{font-size:12.5px;color:#B7D3E4}
+#curve{width:100%;height:auto;display:block}
+.tide-side{margin:0;display:grid;gap:12px}
+.tide-side div{display:flex;justify-content:space-between;gap:18px;font-size:14.5px; border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:9px}
+.tide-side dt{color:#A9C8DA}
+.tide-side dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-top:34px}
+.week div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:13px 14px}
+.week .d{font-size:11.5px;letter-spacing:.11em;color:var(--sky);margin-bottom:8px}
+.week svg{width:100%;height:30px;display:block;margin-bottom:8px}
+.week .t{font-size:13px;font-variant-numeric:tabular-nums;line-height:1.5}
+.week .tr{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.week .hl{flex:0 0 auto;font-weight:700;color:var(--sky);font-size:11px;letter-spacing:.06em}
+.week em{font-style:normal;color:#93B6CC}
+.week .today{background:rgba(156,198,222,.22);border-color:var(--sky)}
+.week div{cursor:pointer;transition:background .2s,border-color .2s}
+.week div:hover{background:rgba(255,255,255,.12)}
+.tidefoot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap; margin-top:16px;font-size:13px;color:#8FB3C8}
+.tidefoot a{color:var(--sky);font-weight:600}
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:70px;align-items:center}
+.story>.imgwrap{aspect-ratio:5/4}
+.story p{font-size:18px;color:#3E6076;max-width:34em}
+.revwrap{display:grid;grid-template-columns:300px minmax(0,1fr);gap:56px;align-items:start}
+.score .num{font-family:var(--display);font-size:86px;font-weight:600;line-height:.82; font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144}
+.stars{display:flex;gap:3px;margin:14px 0 8px}
+.stars svg{width:22px;height:22px;fill:var(--brass)}
+.score .meta{font-size:15px;color:#5E7A8B}
+.gsrc{display:inline-flex;align-items:center;gap:9px;font-size:14px;color:#5E7A8B;margin-top:12px}
+.gsrc svg{width:17px;height:17px}
+.revs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.rev{background:#fff;border:1px solid var(--line);border-top:4px solid var(--stripe-ink); padding:26px;display:flex;flex-direction:column;gap:13px}
+.rev .stars{margin:0}
+.rev .stars svg{width:16px;height:16px}
+.rev p{margin:0;font-size:16px;line-height:1.55;flex:1}
+.rev footer{display:flex;align-items:center;gap:11px;font-size:14px;color:#5E7A8B}
+.rev .av{width:34px;height:34px;border-radius:50%;background:var(--stripe-ink);color:#fff; display:grid;place-items:center;font-weight:700;font-size:14px;flex:0 0 auto}
+.gallery{display:flex;gap:2px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.gallery .imgwrap{flex:0 0 clamp(250px,25vw,380px);aspect-ratio:4/5;scroll-snap-align:start}
+#visit{scroll-margin-top:20px}
+#contact{scroll-margin-top:80px}
+.visit{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:48px}
+.visit h3{font-size:23px;margin-bottom:18px}
+.hrs div{display:flex;justify-content:space-between;gap:14px;padding:12px 0; border-bottom:1px solid rgba(6,47,69,.12);font-size:15.5px}
+.hrs .k{color:#5E7A8B}
+.hrs .v{font-weight:600;font-variant-numeric:tabular-nums}
+.contact a{display:flex;gap:13px;align-items:flex-start;text-decoration:none;padding:14px 0; border-bottom:1px solid rgba(6,47,69,.12);font-size:16px}
+.contact a:hover b{color:var(--buoy)}
+.contact svg{width:19px;height:19px;stroke:var(--stripe-ink);fill:none;stroke-width:1.7;margin-top:3px;flex:0 0 auto}
+.contact small{color:#5E7A8B;font-size:13.5px}
+.mapcard{border:1px solid var(--line);overflow:hidden;min-height:320px}
+.mapcard iframe{width:100%;height:100%;min-height:320px;border:0;display:block}
+@media (max-width:1100px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .tide-row{grid-template-columns:1fr}
+  .story,.revwrap{grid-template-columns:1fr;gap:40px}
+  .visit{grid-template-columns:1fr 1fr}
+  .mapcard{grid-column:1/-1}
+  .week{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:760px){
+  .revs{grid-template-columns:1fr}
+}
+.dot{display:inline-flex;align-items:center;gap:11px;font-weight:600;color:#fff; text-decoration:none;padding:6px 12px 6px 8px;margin-left:-8px;border-radius:8px; transition:background .2s}
+.dot:hover{background:rgba(255,255,255,.08)}
+.dot i{width:9px;height:9px;border-radius:50%;background:#5FBF9E;flex:0 0 auto; box-shadow:0 0 0 3px rgba(95,191,158,.24)}
+.dot.shut i{background:#9AA9B4;box-shadow:0 0 0 3px rgba(154,169,180,.22)}
+.dot-txt{display:flex;flex-direction:column;line-height:1.2;gap:1px;text-align:left;align-items:flex-start}
+.dot-txt b{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:#B7D3E4;font-weight:600}
+.dot-txt span{font-size:15px;font-weight:600}
+.dot-txt small{font-size:12.5px;color:#B7D3E4;font-weight:400;letter-spacing:.02em}
+.rev-dots{display:none;justify-content:center;gap:8px;margin-top:16px}
+.rev-dots span{width:7px;height:7px;border-radius:50%;background:rgba(6,47,69,.18);transition:background .3s}
+.rev-dots span[data-active="true"]{background:var(--stripe-ink)}
+@media (max-width:720px){
+  html,body{overflow-x:hidden;background:var(--ink)}
+  body{background:#fff}
+  .hero{margin-top:calc(-1 * env(safe-area-inset-top));padding-top:env(safe-area-inset-top)}
+  .week{display:flex;overflow-x:auto;scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;scrollbar-width:none; gap:8px;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut); padding-bottom:8px;margin-top:28px}
+  .week::-webkit-scrollbar{display:none}
+  .week>div{flex:0 0 clamp(150px,42vw,180px);scroll-snap-align:start; border-radius:8px;padding:14px 12px}
+  .week .tr{font-size:12.5px}
+  .week .today{box-shadow:0 0 0 2px var(--sky)}
+  .head--split{flex-direction:column;align-items:stretch;gap:14px}
+  .head--split>.btn{align-self:flex-start}
+  #menu .head--split>.btn{align-self:stretch;text-align:center}
+  .revwrap{display:flex;flex-direction:column;gap:14px}
+  .score{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .score .num{font-size:48px;line-height:1;margin:0}
+  .score .stars{margin:0}
+  .score .stars svg{width:18px;height:18px}
+  .score .meta{font-size:13px;margin:0}
+  .score .gsrc{font-size:11px;margin-left:auto}
+  .score>div[style]{display:flex!important;gap:8px!important;margin-top:0!important;width:100%}
+  .score .btn{padding:10px 12px;font-size:11.5px;flex:1}
+  .revs{position:relative;overflow:hidden;touch-action:pan-y}
+  .revs .rev{display:none}
+  .revs .rev[data-active="true"]{display:flex}
+  .rev-dots{display:flex;margin-top:14px;justify-content:center}
+  #reviews{padding-block:36px 50px}
+  #reviews .head{margin-bottom:10px}
+  .gallery{display:grid;grid-template-columns:1fr 1fr;overflow:visible; scroll-snap-type:none;gap:2px}
+  .gallery .imgwrap{flex:none;width:auto;aspect-ratio:1;scroll-snap-align:none}
+  .gallery .imgwrap:nth-child(n+5){display:none}
+  #visit .head--split{flex-direction:column;align-items:center;text-align:center;gap:20px}
+  #visit .head--split>div{max-width:none}
+  #visit .head--split .btn{padding:17px 48px;font-size:16px;letter-spacing:.06em;align-self:center;min-width:220px;flex:0 0 auto}
+  .visit{grid-template-columns:1fr;gap:38px}
+  .mapcard{min-height:280px}
+  .hero{height:100svh;min-height:0;max-height:none;align-items:center}
+  .hero-in{padding:0 24px;transform:translateY(-5%)}
+  .hero-in img.mark{width:72px;height:72px;margin-bottom:16px}
+  .hero-in h1{font-size:clamp(38px,10vw,52px)}
+  .hero-cta{flex-direction:column;gap:10px;width:100%;max-width:280px;margin-inline:auto}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .hero-foot .wrap{flex-direction:column;align-items:flex-start;gap:10px}
+  .hero-foot .addr{position:static;transform:none;text-align:left}
+  .hero-foot .sep{margin-left:0}
+  .tiles{grid-template-columns:1fr 1fr}
+  .tile{aspect-ratio:4/5}
+  .tile-in{padding:20px 18px}
+  .tile h3{font-size:22px}
+  .tile p{font-size:13px}
+}
+#menu,#story,#gallery,#tides{display:none!important}
+@media (max-width:720px){
+  .tideband{padding-block:44px}
+  .tide-row{gap:20px}
+  .tide-big{font-size:40px}
+  .tide-big small{font-size:13px}
+  .tide-side{grid-template-columns:1fr 1fr;gap:8px}
+  .tide-side div{font-size:13px;padding-bottom:7px}
+  .tidefoot{font-size:12px;flex-direction:column;gap:8px}
+  .tiles{display:none!important}
+  #reviews{padding-block:40px 50px}
+  #reviews .head{margin-bottom:14px}
+  #reviews .head h2{font-size:clamp(24px,6vw,30px)}
+  #reviews .kicker{font-size:11px}
+  .score .num{font-size:52px!important}
+  .score .stars svg{width:16px;height:16px}
+  .score .meta{font-size:13px}
+  .score .gsrc{font-size:12px}
+  .score .btn{font-size:11.5px;padding:10px 8px}
+  .revs .rev{padding:18px 20px}
+}
+@media (max-width:380px){
+  .hero-in{padding-inline:14px}
+}
+@media (max-width:1100px){
+  #bookTop{margin-left:auto}
+}
+/* home: the shared header sits over the hero photo, then turns solid on scroll */
+header.site--hero{position:fixed;top:0;left:0;right:0;background:transparent;backdrop-filter:none;box-shadow:none;transition:background .3s,box-shadow .3s}
+header.site--hero .brand,header.site--hero nav a{color:#fff}
+header.site--hero .brand i{color:#fff;opacity:.75}
+header.site--hero .burger span{background:#fff}
+header.site--hero nav a[aria-current="page"]{border-bottom-color:var(--stripe)}
+header.site--hero.solid{background:#fff;box-shadow:0 1px 0 var(--line)}
+header.site--hero.solid .brand,header.site--hero.solid nav a{color:var(--ink)}
+header.site--hero.solid .brand i{color:var(--stripe-ink);opacity:1}
+header.site--hero.solid .burger span{background:var(--ink)}
+header.site--hero.solid nav a[aria-current="page"]{border-bottom-color:var(--stripe-ink)}
+@media (max-width:720px){header.site--hero{padding-top:env(safe-area-inset-top)}}
+</style>
+</head>
+<body class="page-home">
+
+<!-- @header -->
+
+<div id="top"></div>
+
+<div class="hero">
+  <div class="imgwrap" data-art-key="hero" data-alt="Hero photograph — the building from the beach, 2200×1300"><img data-art-key="hero" id="imgHero" alt="Trearddur Bay"></div>
+  <div class="hero-in">
+    <img class="mark" src="assets/images/logo.png" alt="" width="512" height="512" decoding="async">
+    <h1>Croeso i'r Sea Shanty</h1>
+    <p class="sub">Seafood, cask ale and ice cream on the sand at Trearddur Bay.<br>Open every day from half eleven.</p>
+    <div class="hero-cta">
+      <a class="btn btn--book" id="bookHero" href="/reserve">BOOK A TABLE</a>
+      <a class="btn btn--onphoto" href="/menu">SEE THE MENU</a>
+    </div>
+  </div>
+  <div class="hero-foot">
+    <div class="wrap">
+      <a class="dot" id="dot" href="#visit"><i></i><div class="dot-txt"><b id="dotDay">&nbsp;</b><span id="dotText">Checking…</span><small id="dotHours">Food 12.00 – 20.30 · Bar till 23.00</small></div></a>
+      <span class="addr"><a id="addrTop" href="{{maps}}" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">Lon St Ffraid, Trearddur Bay LL65 2YR</a></span>
+      <span class="sep"><a id="phoneTop" href="tel:{{phone}}">01407 728 200</a></span>
+    </div>
+  </div>
+</div>
+<div class="stripe"></div>
+
+<a id="spaces"></a>
+<div class="tiles">
+  <a class="tile" href="/menu?tab=From+the+sea">
+    <div class="imgwrap" data-alt="Photo of the restaurant floor — 1200×1600"><img id="imgRestaurant" alt="The restaurant"></div>
+    <div class="tile-in"><h3>The Restaurant</h3><p>Big windows onto the bay, and a specials board that changes with whatever's landed.</p><span class="more">SEE THE MENU</span></div>
+  </a>
+  <a class="tile" href="/menu?tab=Bar">
+    <div class="imgwrap" data-alt="Photo of the bar — 1200×1600"><img id="imgBar" alt="The bar"></div>
+    <div class="tile-in"><h3>The Bar</h3><p>Cask ale from Conwy and Snowdon, a long gin list, and coffee roasted by Chartley.</p><span class="more">WHAT'S ON TAP</span></div>
+  </a>
+  <a class="tile" href="/menu?tab=Parlour">
+    <div class="imgwrap" data-alt="Photo of the ice cream parlour — 1200×1600"><img id="imgParlour" alt="The ice cream parlour"></div>
+    <div class="tile-in"><h3>Ice Cream Parlour</h3><p>Edwardian counter, working nickelodeon, open ten in the morning until ten at night.</p><span class="more">CONES AND SUNDAES</span></div>
+  </a>
+  <a class="tile" href="webcam.html">
+    <div class="imgwrap" data-alt="Photo of the terrace and beach frontage — 1200×1600"><img id="imgTerrace" alt="The terrace"></div>
+    <div class="tile-in"><h3>The Terrace</h3><p>Straight onto the sand. Dogs welcome, first come first served when the sun's out.</p><span class="more">SEE THE WEBCAM</span></div>
+  </a>
+</div>
+
+<section id="menu" class="sand">
+  <div class="wrap">
+    <div class="head head--split head--wide">
+      <div>
+        <span class="kicker">Bwydlen</span>
+        <h2>Whatever came off the boat this morning</h2>
+        <p>The specials board changes daily and the catch of the day depends entirely on the weather.<br>This is everything else.</p>
+      </div>
+      <a class="btn btn--book btn--sm" id="bookMenu" href="/reserve">BOOK A TABLE</a>
+    </div>
+    <!-- @menu -->
+    <p class="menufoot">(GF) gluten free · (GFA) gluten free available · (V) vegetarian. Full allergen information is available — please ask your server.</p>
+  </div>
+</section>
+
+<div class="tideband" id="tides">
+  <div class="imgwrap" data-art-key="tide" data-alt=""><img data-art-key="tide" id="imgTide" alt=""></div>
+  <div class="wrap">
+    <div class="tide-row">
+      <div class="tide-now">
+        <p class="k" id="tideLbl">NEXT HIGH WATER</p>
+        <div class="tide-big" id="tideTime">—<small id="tideHeight">—</small></div>
+        <div class="tide-in"><b id="tideCount">—</b><span>from now</span></div>
+      </div>
+      <svg id="curve" viewBox="0 0 1000 300" preserveAspectRatio="none" role="img" aria-label="Tide height across today"></svg>
+      <dl class="tide-side">
+        <div><dt>Water now</dt><dd id="fNow">—</dd></div>
+        <div><dt>Sea temp</dt><dd id="fTemp">—</dd></div>
+        <div><dt>Sunrise</dt><dd id="fRise">—</dd></div>
+        <div><dt>Sunset</dt><dd id="fSet">—</dd></div>
+      </dl>
+    </div>
+    <div class="week" id="week"></div>
+    <div class="tidefoot">
+      <span>Heights in metres above chart datum. Predictions only — not for navigation.</span>
+      <a id="easytide" href="{{easytide}}" target="_blank" rel="noopener">Full tables at Admiralty EasyTide</a>
+    </div>
+  </div>
+</div>
+
+<section class="story wrap" id="story">
+  <figure style="margin:0">
+    <div class="imgwrap" data-art-key="story" data-alt="The original Sea Shanty"><img data-art-key="story" id="imgStory" alt="The original Sea Shanty, which traded here until 2002"></div>
+    <p class="figcap">The original Sea Shanty, which traded on this spot for sixty-odd years until it closed in 2002.</p>
+  </figure>
+  <div>
+    <span class="kicker">Ein stori</span>
+    <h2 style="font-size:clamp(34px,3.8vw,50px)">A building made of other buildings</h2>
+    <p>The original Sea Shanty traded for sixty-odd years before it closed in 2002, and nothing quite replaced it. The one standing here now opened in July 2016 — bigger kitchen, bigger room, a licence, and an interior built almost entirely from salvage by craftsmen from the island.</p>
+    <blockquote class="pull">There's an Edwardian ice cream parlour, a fully restored nickelodeon, and a fair amount that's there purely to make children stop and stare.</blockquote>
+    <p>In summer we employ close to eighty people from around Anglesey, and about sixty the rest of the year.</p>
+  </div>
+</section>
+
+<section class="sand" id="reviews">
+  <div class="wrap">
+    <div class="head"><span class="kicker">Beth mae pobl yn ei ddweud</span><h2>What people say</h2></div>
+    <div class="revwrap">
+      <div class="score">
+        <div class="num" id="gScore">—</div>
+        <div class="stars" id="gStars"></div>
+        <div class="meta" id="gCount">Loading…</div>
+        <div class="gsrc"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-8Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.6 1.1-2.8 0-5.2-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6 14.4a6.6 6.6 0 0 1 0-4.2V7.4H2.3a11 11 0 0 0 0 9.8L6 14.4Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.1 1.6l3.1-3.1A11 11 0 0 0 2.3 7.4L6 10.2c.8-2.5 3.2-4.4 6-4.4Z"/></svg>Live from Google</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
+          <a class="btn btn--ghost btn--sm" id="gLink" href="{{googleReviews}}" target="_blank" rel="noopener">ON GOOGLE</a>
+          <a class="btn btn--ghost btn--sm" id="taLink" href="{{tripadvisor}}" target="_blank" rel="noopener">ON TRIPADVISOR</a>
+        </div>
+      </div>
+      <div class="revs" id="revs"></div>
+    </div>
+  </div>
+</section>
+
+<div class="gallery" id="gallery"></div>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="head head--split">
+      <div><span class="kicker">Dewch i'n gweld</span><h2>Find us</h2>
+        <p>On the seafront at Trearddur Bay, opposite the beach.<br>Only 2 minutes from the lifeboat station.</p></div>
+      <a class="btn btn--book btn--sm" id="bookVisit" href="/reserve">BOOK A TABLE</a>
+    </div>
+    <div class="visit">
+      <div>
+        <h3>Opening times</h3>
+        <div class="hrs">
+          <div><span class="k">Monday – Sunday</span><span class="v">11.30 – 23.00</span></div>
+          <div><span class="k">Food served from</span><span class="v">12.00</span></div>
+          <div><span class="k">Last food orders</span><span class="v">20.30</span></div>
+          <div><span class="k">Ice cream parlour</span><span class="v">10.00 – 22.00</span></div>
+          <div><span class="k">Christmas Day</span><span class="v">Closed</span></div>
+        </div>
+      </div>
+      <div class="contact" id="contact">
+        <h3>Get in touch</h3>
+        <a id="cPhone" href="tel:{{phone}}"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/></svg><span><b id="cPhoneT">{{phoneText}}</b><br><small>Bookings and enquiries</small></span></a>
+        <a id="cMail" href="mailto:{{email}}"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><b id="cMailT">{{email}}</b><br><small>We can't take bookings by email</small></span></a>
+        <a id="cMap" href="{{maps}}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.4"/></svg><span><b>Directions</b><br><small>LL65 2YR · free parking on the front</small></span></a>
+      </div>
+      <div class="mapcard">
+        <iframe title="Map showing Sea Shanty Cafe" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Sea%20Shanty%20Cafe%2C%20Lon%20St%20Ffraid%2C%20Trearddur%20Bay%2C%20LL65%202YR&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- @footer -->
+<!-- @scripts -->
+<script>
+(() => {
+const C=window.SEASHANTY, $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+
+const bind=(el,url,lazy)=>{if(!el)return;const w=el.closest(".imgwrap");
+  if(typeof url==="string"&&url.startsWith("art:")){
+    const art=(window.SS_ART||{})[url.slice(4)];
+    if(art){w.innerHTML=art;w.classList.add("is-art");}else{w.classList.add("failed");el.remove();}
+    return;}
+  if(lazy)el.loading="lazy";
+  el.onerror=()=>{
+    el.remove();
+    const key=(el.dataset.artKey||w.dataset.artKey||"");
+    const art=(window.SS_ART||{})[key];
+    if(art){w.innerHTML=art;w.classList.add("is-art");}else w.classList.add("failed");
+  };
+  el.src=url};
+bind($("#imgHero"),C.img.hero);
+[["imgRestaurant","restaurant"],["imgBar","bar"],["imgParlour","parlour"],
+ ["imgTerrace","terrace"],["imgStory","story"],["imgTide","tide"]]
+ .forEach(([id,k])=>bind($("#"+id),C.img[k],true));
+
+$("#gallery").innerHTML=[1,2,3,4,5].map(i=>
+  `<div class="imgwrap" data-art-key="${["bay","terrace","parlour","restaurant","bar"][i-1]}" data-alt=""><img loading="lazy" alt=""></div>`).join("");
+document.querySelectorAll("#gallery .imgwrap").forEach((w,i)=>bind(w.querySelector("img"),C.img["g"+(i+1)],true));
+
+
+
+const hdr=$("#hdr");
+addEventListener("scroll",()=>hdr.classList.toggle("solid",scrollY>innerHeight*.8),{passive:true});
+
+const mins=t=>{const[h,m]=t.split(":").map(Number);return h*60+m};
+function status(){
+  const n=new Date(),cur=n.getHours()*60+n.getMinutes(),d=$("#dot");
+  const dayNames=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  $("#dotDay").textContent=dayNames[n.getDay()];
+  const open=cur>=mins(C.hours.open)&&cur<mins(C.hours.close);
+  if(open){
+    d.classList.remove("shut");
+    $("#dotText").textContent=cur<mins(C.hours.lastFood)?"Open now":"Open · bar only";
+    $("#dotHours").textContent="Food till "+C.hours.lastFood.replace(":",".")+" · Bar till "+C.hours.close.replace(":",".");
+  }else{
+    d.classList.add("shut");
+    $("#dotText").textContent="Closed";
+    $("#dotHours").textContent="Opens at "+C.hours.open.replace(":",".");
+  }
+}
+status();setInterval(status,60000);
+
+/* tides */
+const {height,extremes,hhmm,sun,seaTemp}=window.SS_TIDE;  /* shared, see /assets/site.js */
+
+function drawCurve(){
+  const now=Date.now(),d=new Date();
+  const s=new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime(),e=s+864e5;
+  const W=1000,H=300,PADT=38,PADB=78,N=200;   // deep bottom band keeps the
+  const PAD=PADT;                             // low-water labels clear of the axis
+  const hs=[];for(let i=0;i<=N;i++)hs.push(height(s+i*(864e5/N)));
+  const lo=Math.min(...hs)-.5,hi=Math.max(...hs)+.5;
+  const x=t=>((t-s)/864e5)*W,y=h=>PADT+(1-(h-lo)/(hi-lo))*(H-PADT-PADB);
+  let line="";hs.forEach((h,i)=>line+=(i?"L":"M")+((i/N)*W).toFixed(1)+" "+y(h).toFixed(1));
+  const area=line+`L${W} ${H} L0 ${H}Z`;
+  const nx=Math.max(0,Math.min(W,x(now))),nh=height(now),ny=y(nh);
+  let marks="";
+  extremes(s,e).forEach(v=>{const px=x(v.t),py=y(v.h),up=v.type==="High",cx=Math.min(Math.max(px,36),W-36);
+    marks+=`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4.5" fill="#fff"/>
+      <text x="${cx.toFixed(1)}" y="${(py+(up?-17:28)).toFixed(1)}" text-anchor="middle" fill="#EAF3F8"
+        font-family="Instrument Sans,sans-serif" font-size="17" font-weight="600">${hhmm(v.t)}</text>
+      <text x="${cx.toFixed(1)}" y="${(py+(up?-37:46)).toFixed(1)}" text-anchor="middle" fill="#9CC6DE"
+        font-family="Instrument Sans,sans-serif" font-size="13">${v.type} ${v.h.toFixed(1)}m</text>`});
+  let grid="";
+  for(let h=0;h<24;h+=3){const px=(h/24)*W;
+    grid+=`<line x1="${px}" y1="${PADT}" x2="${px}" y2="${H-PADB}" stroke="rgba(255,255,255,.1)"/>
+      <text x="${px+6}" y="${H-16}" fill="#7BA3BC" font-family="Instrument Sans,sans-serif" font-size="11.5">${String(h).padStart(2,"0")}:00</text>`}
+  $("#curve").innerHTML=`<defs>
+      <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#9CC6DE" stop-opacity=".5"/><stop offset="1" stop-color="#2E77A6" stop-opacity="0"/></linearGradient>
+      <clipPath id="past"><rect width="${nx.toFixed(1)}" height="${H}"/></clipPath></defs>
+    ${grid}
+    <path d="${area}" fill="url(#wg)" opacity=".4"/>
+    <path d="${area}" fill="url(#wg)" clip-path="url(#past)"/>
+    <path d="${line}" fill="none" stroke="#BFD8E6" stroke-width="2" opacity=".45"/>
+    <path d="${line}" fill="none" stroke="#fff" stroke-width="3" clip-path="url(#past)"/>
+    ${marks}
+    <line x1="${nx.toFixed(1)}" y1="${PADT-12}" x2="${nx.toFixed(1)}" y2="${H-PADB}" stroke="#C8402E" stroke-width="2"/>
+    <circle cx="${nx.toFixed(1)}" cy="${ny.toFixed(1)}" r="7" fill="#C8402E" stroke="#0B2C44" stroke-width="2.5"/>
+    <text x="${nx.toFixed(1)}" y="${PADT-20}" text-anchor="middle" fill="#C8402E"
+      font-family="Instrument Sans,sans-serif" font-size="12" font-weight="700">NOW</text>`;
+
+  const nxt=extremes(now,now+26*36e5).filter(v=>v.type==="High")[0];
+  if(nxt){
+    $("#tideLbl").textContent="NEXT HIGH WATER";
+    $("#tideTime").firstChild.nodeValue=hhmm(nxt.t);
+    $("#tideHeight").textContent=nxt.h.toFixed(1)+" m above chart datum";
+    const mn=Math.round((nxt.t-now)/6e4);
+    $("#tideCount").textContent=Math.floor(mn/60)+"h "+String(mn%60).padStart(2,"0")+"m";
+  }
+  $("#fNow").textContent=nh.toFixed(1)+" m "+(height(now+18e5)>nh?"rising":"falling");
+  const sn=sun(now,53.2799,-4.6206);
+  $("#fRise").textContent=hhmm(sn.rise);$("#fSet").textContent=hhmm(sn.set);
+  $("#fTemp").textContent=seaTemp()+" °C";
+}
+function drawWeek(){
+  const d=new Date(),base=new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime();
+  let html="";
+  for(let i=0;i<7;i++){
+    const s=base+i*864e5,e=s+864e5,pts=[];
+    for(let k=0;k<=48;k++)pts.push(height(s+k*(864e5/48)));
+    const lo=Math.min(...pts),hi=Math.max(...pts);
+    let p="";pts.forEach((h,k)=>p+=(k?"L":"M")+(k/48*100).toFixed(1)+" "+(28-((h-lo)/(hi-lo||1))*24).toFixed(1));
+    const hg=extremes(s,e).filter(v=>v.type==="High").slice(0,2);
+    const lw=extremes(s,e).filter(v=>v.type==="Low").slice(0,2);
+    html+=`<div class="${i?"":"today"}">
+      <div class="d">${i?new Date(s).toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase():"TODAY"}</div>
+      <svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="${p}" fill="none" stroke="#9CC6DE" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+      <div class="t"><span class="tr"><span class="hl">H</span><b>${hg.map(v=>hhmm(v.t)).join(" &amp; ")||"—"}</b></span><span class="tr"><span class="hl">L</span><em>${lw.map(v=>hhmm(v.t)).join(" &amp; ")||"—"}</em></span></div></div>`;
+  }
+  $("#week").innerHTML=html;
+}
+drawCurve();drawWeek();setInterval(drawCurve,60000);
+/* tap a day card on mobile to update the main tide chart to that day */
+{const cards=document.querySelectorAll("#week > div");
+  cards.forEach((c,i)=>{
+    c.style.cursor="pointer";
+    c.addEventListener("click",()=>{
+      cards.forEach(x=>x.classList.remove("today"));
+      c.classList.add("today");
+      /* offset = days from today */
+      const now=new Date(), base=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+      const dayStart=base.getTime()+i*864e5;
+      const svg=document.getElementById("curve");
+      if(!svg) return;
+      /* redraw the curve for the selected day */
+      const mob=matchMedia("(max-width:720px)").matches;
+      const W=mob?680:1000, H=mob?220:300, PAD=mob?28:38, N=mob?144:200;
+      const hs=[];for(let j=0;j<=N;j++)hs.push(height(dayStart+j*(864e5/N)));
+      const lo=Math.min(...hs)-.4,hi=Math.max(...hs)+.4;
+      const x=t=>((t-dayStart)/864e5)*W, y=h=>PAD+(1-(h-lo)/(hi-lo))*(H-PAD*2);
+      let line="";hs.forEach((h,j)=>line+=(j?"L":"M")+((j/N)*W).toFixed(1)+" "+y(h).toFixed(1));
+      const area=line+"L"+W+" "+H+" L0 "+H+"Z";
+      /* now marker only if today */
+      const isToday=i===0;
+      const nx=isToday?Math.max(0,Math.min(W,x(Date.now()))):0;
+      const ny=isToday?y(height(Date.now())):0;
+      let marks="";
+      extremes(dayStart,dayStart+864e5).forEach(v=>{
+        const px=x(v.t),py=y(v.h),up=v.type==="High",
+          cx=Math.min(Math.max(px,34),W-34);
+        marks+='<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="4" fill="#fff"/>'+
+          '<text x="'+cx.toFixed(1)+'" y="'+(py+(up?-14:24)).toFixed(1)+'" text-anchor="middle" fill="#EAF3F8"'+
+          ' font-family="Instrument Sans,sans-serif" font-size="13" font-weight="600">'+
+          '<tspan font-size="10" fill="#B7D3E4">'+v.type.substring(0,1)+' </tspan>'+
+          v.h.toFixed(1)+'m '+hhmm(v.t)+'</text>';
+      });
+      let grid="";
+      for(let h=0;h<24;h+=3){const px=(h/24)*W;
+        grid+='<line x1="'+px+'" y1="'+PAD+'" x2="'+px+'" y2="'+(H-PAD)+'" stroke="rgba(255,255,255,.1)"/>'+
+          '<text x="'+(px+4)+'" y="'+(H-6)+'" fill="#7BA3BC" font-family="Instrument Sans,sans-serif" font-size="10">'+
+          String(h).padStart(2,"0")+'</text>';}
+      svg.setAttribute("viewBox","0 0 "+W+" "+H);
+      svg.innerHTML='<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">'+
+        '<stop offset="0" stop-color="#9CC6DE" stop-opacity=".5"/>'+
+        '<stop offset="1" stop-color="#2E77A6" stop-opacity="0"/></linearGradient>'+
+        (isToday?'<clipPath id="past"><rect width="'+nx.toFixed(1)+'" height="'+H+'"/></clipPath>':'')+
+        '</defs>'+grid+
+        '<path d="'+area+'" fill="url(#wg)" opacity=".4"/>'+
+        (isToday?'<path d="'+area+'" fill="url(#wg)" clip-path="url(#past)"/>':'')+
+        '<path d="'+line+'" fill="none" stroke="#BFD8E6" stroke-width="1.8" opacity=".45"/>'+
+        (isToday?'<path d="'+line+'" fill="none" stroke="#fff" stroke-width="2.6" clip-path="url(#past)"/>':
+                 '<path d="'+line+'" fill="none" stroke="#fff" stroke-width="2.6"/>')+
+        marks+
+        (isToday?'<line x1="'+nx.toFixed(1)+'" y1="'+(PAD-4)+'" x2="'+nx.toFixed(1)+'" y2="'+(H-PAD)+'" stroke="#C8402E" stroke-width="2"/>'+
+          '<circle cx="'+nx.toFixed(1)+'" cy="'+ny.toFixed(1)+'" r="5.5" fill="#C8402E" stroke="#0B2C44" stroke-width="2.2"/>':'');
+      /* update the side panel for the selected day */
+      const nxtE=extremes(dayStart,dayStart+26*36e5).filter(v=>v.type==="High");
+      if(nxtE.length){
+        const nxt=nxtE[0];
+        document.getElementById("tideLbl").textContent="NEXT HIGH WATER";
+        document.getElementById("tideTime").firstChild.nodeValue=hhmm(nxt.t);
+        document.getElementById("tideHeight").textContent=nxt.h.toFixed(1)+" m above chart datum";
+        if(isToday){
+          const mn=Math.round((nxt.t-Date.now())/6e4);
+          document.getElementById("tideCount").textContent=Math.floor(mn/60)+"h "+String(mn%60).padStart(2,"0")+"m";
+        } else {
+          const dayName=new Date(dayStart).toLocaleDateString("en-GB",{weekday:"long"});
+          document.getElementById("tideCount").textContent=dayName;
+        }
+      }
+    });
+  });
+}
+
+/* drag-to-scroll on the mobile tide strip */
+{const w=document.getElementById("week"); if(w){
+  let down=false,sx,sl;
+  w.addEventListener("pointerdown",e=>{down=true;sx=e.pageX;sl=w.scrollLeft;w.style.cursor="grabbing";w.setPointerCapture(e.pointerId)});
+  w.addEventListener("pointermove",e=>{if(!down)return;e.preventDefault();w.scrollLeft=sl-(e.pageX-sx)});
+  w.addEventListener("pointerup",()=>{down=false;w.style.cursor=""});
+  w.addEventListener("pointercancel",()=>{down=false;w.style.cursor=""});
+  w.style.cursor="grab";
+}}
+
+
+
+
+
+/* precise scroll for Find Us — avoids first-click misalignment from lazy images */
+document.querySelectorAll('a[href="#visit"],a[href="#contact"]').forEach(a=>a.addEventListener("click",function(e){
+  const id=this.getAttribute("href").slice(1);
+  const el=document.getElementById(id);
+  if(!el)return;
+  e.preventDefault();
+  const hdr=document.querySelector("header.site")||document.querySelector("header");
+  const off=hdr?hdr.offsetHeight-44:38;
+  const y=el.getBoundingClientRect().top+window.scrollY-off;
+  window.scrollTo({top:y,behavior:"smooth"});
+  /* re-check after images may have shifted layout */
+  setTimeout(()=>{const y2=el.getBoundingClientRect().top+window.scrollY-off;window.scrollTo({top:y2,behavior:"smooth"})},600);
+}));
+
+/* reviews */
+const SEED={rating:4.4,total:2320,reviews:[
+ {name:"Placeholder review",initial:"P",rating:5,when:"Replace via /api/reviews",text:"These cards fill with live Google reviews once the endpoint is wired up. Until then, paste in a few you have permission to use."},
+ {name:"Placeholder review",initial:"P",rating:5,when:"Replace via /api/reviews",text:"Keep each to two or three lines so the grid stays even."},
+ {name:"Placeholder review",initial:"P",rating:4,when:"Replace via /api/reviews",text:"Google returns a maximum of five reviews per request — this grid shows four plus the link out."},
+ {name:"Placeholder review",initial:"P",rating:5,when:"Replace via /api/reviews",text:"Aggregate rating and review count come from the same call and fill the big number."}]};
+const star=f=>`<svg viewBox="0 0 24 24" style="${f?"":"opacity:.22"}"><path d="m12 2 3 6.6 7 .9-5 4.9 1.3 7L12 18l-6.3 3.4L7 14.4l-5-4.9 7-.9Z"/></svg>`;
+function paint(d){
+  $("#gScore").textContent=d.rating.toFixed(1);
+  $("#gStars").innerHTML=[1,2,3,4,5].map(i=>star(i<=Math.round(d.rating))).join("");
+  $("#gCount").textContent=d.total.toLocaleString("en-GB")+" reviews";
+  const items=d.reviews.slice(0,4);
+  $("#revs").innerHTML=items.map((r,i)=>`<article class="rev" data-index="${i}"${i===0?' data-active="true"':''}>
+    <div class="stars">${[1,2,3,4,5].map(k=>star(k<=r.rating)).join("")}</div>
+    <p>${r.text}</p>
+    <footer><span class="av">${r.initial}</span><span>${r.name}<br><small style="color:#8199A8">${r.when}</small></span></footer>
+  </article>`).join("")+`<div class="rev-dots" aria-hidden="true">${items.map((_,i)=>`<span${i===0?' data-active="true"':''}></span>`).join("")}</div>`;
+  /* mobile swipe-through reviews */
+  if(items.length>1){
+    const strip=document.getElementById("revs");
+    const goTo=idx=>{
+      document.querySelectorAll("#revs .rev").forEach(el=>el.removeAttribute("data-active"));
+      document.querySelectorAll("#revs .rev-dots span").forEach(el=>el.removeAttribute("data-active"));
+      const r=document.querySelector(`#revs .rev[data-index="${idx}"]`);
+      if(r) r.setAttribute("data-active","true");
+      const dot=document.querySelectorAll("#revs .rev-dots span")[idx];
+      if(dot) dot.setAttribute("data-active","true");
+    };
+    /* pointer drag (works on touch + mouse) */
+    let down=false,sx=0,cur=0;
+    strip.addEventListener("pointerdown",e=>{down=true;sx=e.clientX;strip.setPointerCapture(e.pointerId)});
+    strip.addEventListener("pointermove",e=>{if(!down)return;e.preventDefault()});
+    strip.addEventListener("pointerup",e=>{
+      if(!down)return;down=false;
+      const dx=e.clientX-sx;
+      if(Math.abs(dx)>40){
+        cur=Math.max(0,Math.min(items.length-1, cur+(dx<0?1:-1)));
+        goTo(cur);
+      }
+    });
+    strip.addEventListener("pointercancel",()=>{down=false});
+    /* dot taps */
+    document.querySelectorAll("#revs .rev-dots span").forEach((d,i)=>{
+      d.style.cursor="pointer";
+      d.addEventListener("click",()=>{cur=i;goTo(i)});
+    });
+  }
+}
+(async()=>{if(C.reviewsEndpoint){try{const r=await fetch(C.reviewsEndpoint);if(r.ok){paint(await r.json());return}}catch(e){}}paint(SEED)})();
+})();
+</script>
+</body>
+</html>

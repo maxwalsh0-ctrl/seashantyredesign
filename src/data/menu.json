@@ -1,0 +1,220 @@
+{
+  "Small plates": [
+    [
+      "Pan seared scallops",
+      "Black pudding, crispy bacon, pea purée",
+      "12.95"
+    ],
+    [
+      "Mussels",
+      "White wine, garlic and cream, toasted sourdough",
+      "9.50",
+      "GFA"
+    ],
+    [
+      "Thai fishcakes",
+      "Salmon and haddock, aioli",
+      "8.45"
+    ],
+    [
+      "Antipasti",
+      "Salami and prosciutto, Grana Padano, olives, sourdough",
+      "8.25",
+      "GFA"
+    ],
+    [
+      "Spiced lamb koftas",
+      "Minted mayonnaise, pickled chillies",
+      "7.95"
+    ],
+    [
+      "Pork belly bites",
+      "Chipotle and honey dressing",
+      "7.95",
+      "GF"
+    ],
+    [
+      "Chorizo",
+      "Cooked in honey and red wine",
+      "7.85",
+      "GF"
+    ],
+    [
+      "Fried calamari",
+      "Paprika, lemon, sweet soy reduction",
+      "7.75",
+      "GF"
+    ],
+    [
+      "Chicken liver pâté",
+      "Brandy and herb, onion chutney, sourdough toast",
+      "7.75",
+      "GFA"
+    ],
+    [
+      "Salt and pepper chicken",
+      "Peppers and spring onions",
+      "7.75"
+    ],
+    [
+      "Patatas bravas",
+      "Spiced tomato sauce, aioli",
+      "7.25",
+      "GF/V"
+    ],
+    [
+      "Deep fried whitebait",
+      "Homemade tartare sauce",
+      "7.00"
+    ],
+    [
+      "Halloumi fries",
+      "Sweet chilli dip",
+      "6.95",
+      "GF"
+    ],
+    [
+      "Soup of the day",
+      "Toasted sourdough",
+      "6.00",
+      "GFA"
+    ],
+    [
+      "Single seared scallop",
+      "Garlic butter",
+      "4.50",
+      "GF"
+    ],
+    [
+      "Marinated olives",
+      "",
+      "4.00",
+      "GF/V"
+    ]
+  ],
+  "From the sea": [
+    [
+      "Catch of the day",
+      "Ask your server — it depends entirely on the weather",
+      ""
+    ],
+    [
+      "Moules frites",
+      "Mussels in white wine, garlic and cream, fries, sourdough",
+      "19.00",
+      "GFA"
+    ],
+    [
+      "Seafood tagliatelle",
+      "Cod, mussels, crab and prawns, dill cream, Grana Padano",
+      "16.50",
+      "GFA"
+    ],
+    [
+      "Beer battered cod",
+      "Homemade chips, tartare sauce, mushy peas · add curry sauce 1.00",
+      "15.50",
+      "GFA"
+    ],
+    [
+      "Whitby breaded scampi",
+      "Homemade chips, tartare sauce, mushy peas",
+      "15.50"
+    ],
+    [
+      "Thai fishcakes",
+      "Salmon and haddock, dressed salad, aioli",
+      "14.25"
+    ]
+  ],
+  "From the land": [
+    [
+      "Sea Shanty steak sandwich",
+      "Sliced fillet, fried onions and mushrooms, melted cheddar, toasted ciabatta, fries",
+      "16.00"
+    ],
+    [
+      "Cajun chicken",
+      "Chorizo jam, sesame brioche, homemade chips, coleslaw",
+      "15.50"
+    ],
+    [
+      "Chicken and pancetta carbonara",
+      "Grana Padano",
+      "15.50",
+      "GFA"
+    ],
+    [
+      "Stir fried pork belly",
+      "Thai veg, basil and chilli, jasmine rice, fried egg",
+      "15.50",
+      "GF"
+    ]
+  ],
+  "Sides": [
+    [
+      "Sweet potato fries",
+      "",
+      "4.50"
+    ],
+    [
+      "Homemade chips",
+      "",
+      "3.95"
+    ],
+    [
+      "French fries",
+      "",
+      "3.95"
+    ],
+    [
+      "Mixed salad",
+      "",
+      "3.95"
+    ]
+  ],
+  "Bar": [
+    [
+      "Cask ale",
+      "Up to three rotating locals from Conwy Brewery and Snowdon Craft Brewery",
+      ""
+    ],
+    [
+      "Draught",
+      "San Miguel, Guinness, Heineken",
+      ""
+    ],
+    [
+      "Wine",
+      "A short list — some by the glass, some in our own jugs",
+      ""
+    ],
+    [
+      "Gin and rum",
+      "A long list of both, built on what people kept asking for",
+      ""
+    ],
+    [
+      "Chartley coffee",
+      "Second-generation family roaster, plus hand-made cakes",
+      ""
+    ]
+  ],
+  "Parlour": [
+    [
+      "Cones and tubs",
+      "Edwardian counter, 10.00 – 22.00",
+      ""
+    ],
+    [
+      "Sundaes",
+      "Built at the counter in front of you",
+      ""
+    ],
+    [
+      "Takeaway hatch",
+      "Round the side when the restaurant's full",
+      ""
+    ]
+  ]
+}

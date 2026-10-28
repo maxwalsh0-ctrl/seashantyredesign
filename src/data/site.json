@@ -1,0 +1,96 @@
+{
+  "_readme": "Everything the café might ask you to change lives here. Edit, commit, and Vercel rebuilds every page.",
+  "siteUrl": "https://seashantyredesign.vercel.app",
+  "_siteUrlNote": "Change siteUrl to https://seashantycafe.co.uk on go-live day. It feeds the sitemap.",
+  "name": "Sea Shanty Cafe",
+  "address": [
+    "Lon St Ffraid",
+    "Trearddur Bay",
+    "Anglesey LL65 2YR"
+  ],
+  "nav": [
+    [
+      "/",
+      "HOME"
+    ],
+    [
+      "/about",
+      "ABOUT"
+    ],
+    [
+      "/menu",
+      "MENU"
+    ],
+    [
+      "/tides",
+      "TIDE TIMES"
+    ],
+    [
+      "/#visit",
+      "FIND US"
+    ],
+    [
+      "/webcam",
+      "WEBCAM"
+    ],
+    [
+      "/gift-cards",
+      "GIFT CARDS"
+    ],
+    [
+      "/faq",
+      "FAQS"
+    ],
+    [
+      "/jobs",
+      "JOBS"
+    ]
+  ],
+  "booking": "https://www.resdiary.com/restaurant/SeaShantyCafe",
+  "bookingPage": "https://seashantycafe.uk/book-a-table/",
+  "resdiaryName": "SeaShantyCafe",
+  "resdiarySiteId": null,
+  "phone": "+441407728200",
+  "phoneText": "01407 728 200",
+  "email": "info@seashantycafe.co.uk",
+  "jobsEmail": "info@seashantycafe.co.uk",
+  "facebook": "https://www.facebook.com/seashantycafe/",
+  "instagram": "https://www.instagram.com/seashantycafe/",
+  "tiktok": "https://www.tiktok.com/@seashantycafe",
+  "tripadvisor": "https://www.tripadvisor.co.uk/Restaurant_Review-g552032-d10595445-Reviews-Sea_Shanty_Cafe-Trearddur_Bay_Anglesey_North_Wales_Wales.html",
+  "maps": "https://maps.google.com/?q=Sea+Shanty+Cafe,+Lon+St+Ffraid,+Trearddur+Bay,+LL65+2YR",
+  "googleReviews": "https://search.google.com/local/reviews?placeid=REPLACE_WITH_PLACE_ID",
+  "easytide": "https://easytide.admiralty.co.uk/?PortID=0479",
+  "shop": "https://seashantycafe.co.uk/shop/",
+  "webcamEmbed": "https://v.angelcam.com/iframe?v=2dr60ojnrk&autoplay=1",
+  "webcamLink": "https://trearddurbay.org/webcam/",
+  "webcamCredit": "Live camera by trearddurbay.org",
+  "reviewsEndpoint": null,
+  "tidesEndpoint": null,
+  "hours": {
+    "open": "11:30",
+    "close": "23:00",
+    "foodFrom": "12:00",
+    "lastFood": "20:30"
+  },
+  "img": {
+    "logo": "assets/images/logo.png",
+    "giftcard": "art:giftcard",
+    "building": "assets/images/sea-shanty-dusk.jpg",
+    "portrait": "art:portrait",
+    "hero": "https://commons.wikimedia.org/wiki/Special:FilePath/Trearddur_Bay%2C_Bae_Trearddur%2C_Holy_Island_%28507292%29_%2832302725344%29.jpg?width=2000",
+    "restaurant": "art:restaurant",
+    "bar": "art:bar",
+    "parlour": "art:parlour",
+    "terrace": "art:terrace",
+    "story": "assets/images/old-sea-shanty.jpg",
+    "tide": "https://commons.wikimedia.org/wiki/Special:FilePath/Trearddur_Beach_-_geograph.org.uk_-_923913.jpg?width=1600",
+    "bay": "assets/images/trearddur-bay.jpg",
+    "lifeboat": "https://commons.wikimedia.org/wiki/Special:FilePath/Trearddur_Bay_Lifeboat_Station_-_geograph.org.uk_-_5155028.jpg?width=1600",
+    "g1": "https://commons.wikimedia.org/wiki/Special:FilePath/Trearddur_bay_-_geograph.org.uk_-_952233.jpg?width=900",
+    "g2": "https://commons.wikimedia.org/wiki/Special:FilePath/Trearddur_Bay_Lifeboat_Station_-_geograph.org.uk_-_5155028.jpg?width=900",
+    "g3": "https://commons.wikimedia.org/wiki/Special:FilePath/Trearddur_Bay_Beach_-_geograph.org.uk_-_60745.jpg?width=900",
+    "g4": "https://commons.wikimedia.org/wiki/Special:FilePath/Sailing_boat_near_Trearddur_Bay_-_geograph.org.uk_-_2551578.jpg?width=900",
+    "g5": "https://commons.wikimedia.org/wiki/Special:FilePath/Trearddur_Bay_viewed_from_Graig_Lwyd_-_geograph.org.uk_-_2572838.jpg?width=900"
+  }
+}
